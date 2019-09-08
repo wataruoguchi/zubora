@@ -1,0 +1,61 @@
+{
+  "name": "zubora",
+  "version": "0.0.1",
+  "description": "zubora CLI",
+  "private": true,
+  "bin": {
+    "zubora": "bin/zubora"
+  },
+  "scripts": {
+    "format": "prettier --write **/*.{js,ts,tsx,json}",
+    "lint": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx",
+    "lint:fix": "yarn lint --fix",
+    "clean-build": "rm -rf ./build",
+    "compile": "tsc -p .",
+    "copy-templates": "if [ -e ./src/templates ]; then cp -a ./src/templates ./build/; fi",
+    "build": "yarn format && yarn lint && yarn clean-build && yarn compile && yarn copy-templates",
+    "test": "jest",
+    "type-check": "tsc",
+    "watch": "jest --watch",
+    "snapupdate": "jest --updateSnapshot",
+    "coverage": "jest --coverage"
+  },
+  "files": [
+    "tsconfig.json",
+    "tslint.json",
+    "build",
+    "LICENSE",
+    "readme.md",
+    "docs",
+    "bin"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "gluegun": "^2.1.0",
+    "ts-node": "^7.0.1",
+    "typescript": "3.2.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.10",
+    "@types/node": "^10.12.12",
+    "@typescript-eslint/eslint-plugin": "^2.1.0",
+    "@typescript-eslint/parser": "^2.1.0",
+    "eslint": "^6.3.0",
+    "husky": "^3.0.5",
+    "jest": "^23.6.0",
+    "lint-staged": "^9.2.5",
+    "prettier": "^1.12.1",
+    "ts-jest": "^23.10.5",
+    "tslint": "^5.12.0",
+    "tslint-config-prettier": "^1.17.0",
+    "tslint-config-standard": "^8.0.1"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  }
+}
