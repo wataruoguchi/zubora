@@ -9,7 +9,7 @@ Start small! Forget about the transpile part right now. Test case has to be supe
 Let's say, the command would look something like this:
 
 ```sh
-$ zubora <source> <destination>
+$ zubora make <source> <destination>
 Test template is created at <destination>
 ```
 
