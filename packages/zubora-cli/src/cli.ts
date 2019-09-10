@@ -1,4 +1,4 @@
-import { build } from 'gluegun'
+import { build } from 'gluegun';
 
 /**
  * Create the cli and kick it off
@@ -12,13 +12,13 @@ async function run(argv: string) {
     .plugins('./node_modules', { matching: 'zubora-*', hidden: true })
     .help() // provides default for help, h, --help, -h
     .version() // provides default for version, v, --version, -v
-    .create()
+    .create();
 
   // and run it
-  const toolbox = await cli.run(argv)
+  const toolbox = await cli.run(argv);
 
   // send it back (for testing, mostly)
-  return toolbox
+  return toolbox;
 }
 
-module.exports = { run }
+module.exports = { run };

@@ -31,16 +31,31 @@ Tools:
 - [coffee-script](http://coffeescript.org/)
 - [babel](https://babeljs.io/)
 
+TODO:
+
+- Babel
+
 ## 3. Parse
 
 Tools:
 
 - [Esprima](http://esprima.org/)
 
+TODO:
+
+- Test (module.export, module.export.default, module.export.foobar)
+
 ## 4. Generate template
 
 Tools:
 
 - [Prettier](https://prettier.io/)
+
+### TODO:
+
+- Resolve the file path to import the source file.
+- We don't want to test private methods such as \_xxxx() - should sit this in configs
+- We don't want to test constructor
+- BDD syntax, describe/describe, describe/test
 
 ## 5. File output

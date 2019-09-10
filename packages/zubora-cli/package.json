@@ -20,15 +20,7 @@
     "snapupdate": "jest --updateSnapshot",
     "coverage": "jest --coverage"
   },
-  "files": [
-    "tsconfig.json",
-    "tslint.json",
-    "build",
-    "LICENSE",
-    "readme.md",
-    "docs",
-    "bin"
-  ],
+  "files": [ "tsconfig.json", "build", "LICENSE", "readme.md", "docs", "bin" ],
   "license": "MIT",
   "dependencies": {
     "esprima": "^4.0.1",
@@ -58,9 +50,5 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node"
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true
   }
 }
