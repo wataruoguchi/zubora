@@ -1,4 +1,5 @@
 import { GluegunToolbox } from 'gluegun'
+import { parse } from '../lib/main'
 import { parseScript } from 'esprima'
 
 module.exports = {
@@ -25,13 +26,15 @@ module.exports = {
       print.error(`Couldn't find the file.`)
       return
     }
-    if (exists(destPath)) {
-      print.error(`The file "${destPath}" already exists.`)
-      return
-    }
+    // if (exists(destPath)) {
+    //   print.error(`The file "${destPath}" already exists.`)
+    //   return
+    // }
     const srcContent = read(srcPath)
     print.debug(parseScript(srcContent))
-    write(destPath, parseScript(srcContent))
+    const template = parse(srcPath, srcContent)
+    print.debug(template)
+    write(destPath, template)
     return
   }
 }
