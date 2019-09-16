@@ -6,7 +6,7 @@ module.exports = {
   name: 'make',
   description:
     'Read a JS file and generate a test file.\nUsage: $ zubora make <source> <destination>',
-  run: async (toolbox: GluegunToolbox) => {
+  run: async (toolbox: GluegunToolbox): Promise<void> => {
     const {
       parameters,
       print,
@@ -32,13 +32,15 @@ module.exports = {
     // }
     const srcContent = read(srcPath);
     print.debug(parseScript(srcContent));
-    const { error, result } = generateTemplate(srcPath, read);
-    if (error) {
-      print.error(error);
-      return;
-    }
-    // write(destPath, parseScript(srcContent))
-    write(destPath, result);
-    return;
+    await generateTemplate(srcPath, read)
+      .then((result): void => {
+        // write(destPath, parseScript(srcContent))
+        write(destPath, result);
+        return;
+      })
+      .catch((error): void => {
+        print.error(error);
+        return;
+      });
   },
 };

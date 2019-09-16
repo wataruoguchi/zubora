@@ -1,8 +1,9 @@
 import { parse } from './parse';
 import * as prettier from 'prettier';
 import { importBlock, testCaseBlock } from './template';
+import { transformAsync } from '@babel/core';
 
-function errorHandler(error: any) {
+function errorHandler(error: any): string {
   let errString = '';
   if (typeof error !== 'object') {
     try {
@@ -13,31 +14,36 @@ function errorHandler(error: any) {
   } else if (typeof error === 'string') {
     errString = error;
   }
-  return { error: errString, result: '' };
+  return errString;
 }
 
-function generateTemplate(
+async function generateTemplate(
   path: string,
   reader: Function
-): { error?: string; result: string } {
+): Promise<string> {
   if (typeof reader !== 'function') {
-    return errorHandler('File reader is not a function.');
+    return new Promise<string>((reject): void =>
+      reject(errorHandler('File reader is not a function.'))
+    );
   }
-  let srcContent;
+  let srcContent: string;
   try {
     srcContent = reader(path);
+    // Babel
+    // TODO Babel option can be from .babelrc
+    const option = {};
+    await transformAsync(srcContent, option).then((result): void => {
+      srcContent = result ? result.code || '' : '';
+    });
   } catch (error) {
-    return errorHandler(error);
+    return new Promise<string>((reject): void => reject(errorHandler(error)));
   }
   const { exposedNames, classObjects } = parse(srcContent);
   const imports = importBlock(path, exposedNames);
   const describes = testCaseBlock(exposedNames, classObjects);
-  return {
-    result: prettier.format(`
-    ${imports}\n
-    ${describes}
-  `),
-  };
+  return new Promise<string>((resolve): void => {
+    resolve(prettier.format(`${imports}\n${describes}`));
+  });
 }
 
 export { generateTemplate };
