@@ -1,5 +1,4 @@
 import { GluegunToolbox } from 'gluegun';
-import { parseScript } from 'esprima';
 import { generateTemplate } from '../lib/main';
 
 module.exports = {
@@ -30,10 +29,9 @@ module.exports = {
     //   print.error(`The file "${destPath}" already exists.`)
     //   return
     // }
-    const srcContent = read(srcPath);
-    print.debug(parseScript(srcContent));
-    await generateTemplate(srcPath, read)
+    await generateTemplate(srcPath, read, write)
       .then((result): void => {
+        print.debug(result);
         // write(destPath, parseScript(srcContent))
         write(destPath, result);
         return;

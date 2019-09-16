@@ -1,50 +1,23 @@
-import { parseScript, Program } from 'esprima';
+import { ParserOptions } from '@babel/core';
+import { parse } from '@babel/parser';
+import traverse from '@babel/traverse';
+import {
+  isMemberExpression,
+  isIdentifier,
+  MemberExpression,
+  isClassMethod,
+} from '@babel/types';
 import {
   ModuleExportObject,
   MethodObject,
   ClassObject,
   ParseResult,
 } from './zubora';
-import {
-  Node,
-  Identifier,
-  ExpressionStatement,
-  AssignmentExpression,
-  MemberExpression,
-  ClassDeclaration,
-  MethodDefinition,
-  FunctionExpression,
-  Statement,
-  Expression,
-  Super,
-} from 'estree';
-
-function isFunctionExpression(exp: Node): exp is FunctionExpression {
-  return exp.type === 'FunctionExpression';
-}
-function isMemberExpression(exp: Node): exp is MemberExpression {
-  return exp.type === 'MemberExpression';
-}
-function isAssignmentExpression(exp: Expression): exp is AssignmentExpression {
-  return exp.type === 'AssignmentExpression';
-}
-function isIdentifier(exp: Expression | Super): exp is Identifier {
-  return exp.type === 'Identifier';
-}
-function isExpressionStatement(exp: Statement): exp is ExpressionStatement {
-  return exp.type === 'ExpressionStatement';
-}
-function isMethodDefinition(exp: MethodDefinition): exp is MethodDefinition {
-  return exp.type === 'MethodDefinition';
-}
-function isClassDeclaration(exp: ClassDeclaration): exp is ClassDeclaration {
-  return exp.type === 'ClassDeclaration';
-}
 
 function flattenMemberExpression(exp: MemberExpression): string {
-  if (!exp) return '';
+  if (!isMemberExpression(exp)) return '';
   const { object } = exp;
-  const property: Identifier = exp.property as Identifier;
+  const property = exp.property;
   if (isMemberExpression(object)) {
     return flattenMemberExpression(object) + `.${property.name}`;
   } else if (isIdentifier(object)) {
@@ -54,83 +27,58 @@ function flattenMemberExpression(exp: MemberExpression): string {
   }
 }
 
-function getModuleExportsName(node: ExpressionStatement): ModuleExportObject {
-  if (
-    isExpressionStatement(node) &&
-    isAssignmentExpression(node.expression) &&
-    isMemberExpression(node.expression.left) &&
-    isIdentifier(node.expression.left.object) &&
-    isIdentifier(node.expression.left.property) &&
-    isIdentifier(node.expression.right)
-  ) {
-    const { left, right } = node.expression;
-    if (flattenMemberExpression(left).match(/^module.exports\.?(.*)$/)) {
-      return { name: right.name, property: RegExp.$1 };
-    } else {
-      return { name: null };
-    }
-  }
-  return { name: null };
-}
-
-function getClassObject(
-  node: ClassDeclaration
-): { classObject: ClassObject | null } {
-  if (isClassDeclaration(node) && node.id && isIdentifier(node.id)) {
-    const {
-      id: { name },
-    } = node;
-    const classObject = { name, methods: [] as MethodObject[] };
-    const { body } = node.body;
-    const methodObjects = body
-      .filter(
-        (bodyNode): boolean =>
-          isMethodDefinition(bodyNode) &&
-          isIdentifier(bodyNode.key) &&
-          isFunctionExpression(bodyNode.value)
-      )
-      .map(
-        (bodyNode): MethodObject => {
-          const name = isIdentifier(bodyNode.key) ? bodyNode.key.name : null;
-          const {
-            value: { async },
-          } = bodyNode;
-          return {
-            async,
-            name,
-          };
-        }
-      );
-    classObject.methods.push(...methodObjects);
-    return { classObject };
-  } else {
-    return { classObject: null };
-  }
-}
-
-function parse(jsContent: string): ParseResult {
+function parser(content: string): ParseResult {
   const exposedNames: ModuleExportObject[] = [];
   const classObjects: ClassObject[] = [];
-  function parseModuleExports(node: ExpressionStatement): void {
-    const { name, property } = getModuleExportsName(node);
-    if (name) {
-      exposedNames.push({ name, property });
-    }
+  let ast;
+  try {
+    // We determine that the input file is module
+    const options: ParserOptions = { sourceType: 'module' };
+    ast = parse(content, options);
+  } catch (err) {
+    console.log(err); // TODO: Better error handling
   }
-  function parseClassObjects(node: ClassDeclaration): void {
-    const { classObject } = getClassObject(node);
-    if (classObject) {
-      classObjects.push(classObject);
-    }
+  if (ast) {
+    traverse(ast, {
+      ClassDeclaration: function(path) {
+        if (isIdentifier(path.node.id)) {
+          const { name } = path.node.id;
+          const { body } = path.node.body;
+          const methodObjects: MethodObject[] = body
+            .filter(node => isClassMethod(node))
+            .map(method => {
+              if (isClassMethod(method) && isIdentifier(method.key)) {
+                const name: string = method.key.name || '';
+                const { kind, async } = method;
+                return { name, async, kind };
+              } else {
+                return { name: null, async: false, kind: 'get' }; // This will be ignored by 'filter'
+              }
+            })
+            .filter(methodObject => methodObject.name);
+          classObjects.push({ name, methods: methodObjects });
+        }
+      },
+      AssignmentExpression: function(path) {
+        const { left } = path.node;
+        if (isMemberExpression(left)) {
+          if (flattenMemberExpression(left).match(/^module.exports\.?(.*)$/)) {
+            const property = RegExp.$1;
+            if (property) {
+              // e.g., module.exports.func = function () { ... }
+              // e.g., module.exports.default = function () { ... }
+              exposedNames.push({ name: property, property }); // TODO: Review what to pass
+            } else {
+              // e.g., module.exports = function () { ... }
+              // e.g., function func() { ... }; module.exports = func;
+              exposedNames.push({ name: 'FILE' }); // TODO: Review what to pass
+            }
+          }
+        }
+      },
+    });
   }
-
-  const structure: Program = parseScript(jsContent, { tolerant: true });
-  for (const node of structure.body) {
-    parseModuleExports(node as ExpressionStatement);
-    parseClassObjects(node as ClassDeclaration);
-  }
-  // Return collected objects
   return { exposedNames, classObjects };
 }
 
-export { parse };
+export { parser };

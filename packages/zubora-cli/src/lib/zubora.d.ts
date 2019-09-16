@@ -3,8 +3,9 @@ export type ModuleExportObject = {
   name: string | null;
 };
 export type MethodObject = {
-  async?: boolean;
   name: string | null;
+  async: boolean;
+  kind: string;
 };
 export type ClassObject = {
   name: string;
