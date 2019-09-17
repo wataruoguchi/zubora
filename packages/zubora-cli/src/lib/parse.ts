@@ -45,7 +45,6 @@ function parser(content: string): ParseResult {
           const { name } = path.node.id;
           const { body } = path.node.body;
           const methodObjects: MethodObject[] = body
-            .filter(node => isClassMethod(node))
             .map(method => {
               if (isClassMethod(method) && isIdentifier(method.key)) {
                 const name: string = method.key.name || '';
@@ -60,18 +59,27 @@ function parser(content: string): ParseResult {
         }
       },
       AssignmentExpression: function(path) {
-        const { left } = path.node;
+        const { left, right } = path.node;
         if (isMemberExpression(left)) {
           if (flattenMemberExpression(left).match(/^module.exports\.?(.*)$/)) {
             const property = RegExp.$1;
             if (property) {
-              // e.g., module.exports.func = function () { ... }
-              // e.g., module.exports.default = function () { ... }
-              exposedNames.push({ name: property, property }); // TODO: Review what to pass
+              if (isIdentifier(right)) {
+                // e.g., function func() { ... }; module.exports.func = func;
+                exposedNames.push({ name: right.name, property }); // TODO: Review what to pass
+              } else {
+                // e.g., module.exports.func = function () { ... }
+                // e.g., module.exports.default = function () { ... }
+                exposedNames.push({ name: property, property }); // TODO: Review what to pass
+              }
             } else {
-              // e.g., module.exports = function () { ... }
-              // e.g., function func() { ... }; module.exports = func;
-              exposedNames.push({ name: 'FILE' }); // TODO: Review what to pass
+              if (isIdentifier(right)) {
+                // e.g., function func() { ... }; module.exports = func;
+                exposedNames.push({ name: right.name }); // TODO: Review what to pass
+              } else {
+                // e.g., module.exports = function () { ... }
+                exposedNames.push({ name: 'FILE' }); // TODO: Review what to pass
+              }
             }
           }
         }
