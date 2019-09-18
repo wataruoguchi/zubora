@@ -6,6 +6,10 @@ import {
   isIdentifier,
   MemberExpression,
   isClassMethod,
+  isClassExpression,
+  isClassBody,
+  ClassDeclaration,
+  ClassExpression,
 } from '@babel/types';
 import {
   ModuleExportObject,
@@ -27,8 +31,30 @@ function flattenMemberExpression(exp: MemberExpression): string {
   }
 }
 
+function traverseClassDeclarationOrClassExpression(
+  node: ClassDeclaration | ClassExpression
+): ClassObject {
+  if (isIdentifier(node.id) && isClassBody(node.body)) {
+    const { name } = node.id;
+    const { body } = node.body;
+    const methodObjects: MethodObject[] = body
+      .map(method => {
+        if (isClassMethod(method) && isIdentifier(method.key)) {
+          const name: string = method.key.name || '';
+          const { kind, async } = method;
+          return { name, async, kind };
+        } else {
+          return { name: null, async: false, kind: 'get' }; // This will be ignored by 'filter'
+        }
+      })
+      .filter(methodObject => methodObject.name);
+    return { name, methods: methodObjects };
+  } else {
+    return { name: '', methods: [] };
+  }
+}
 function parser(content: string): ParseResult {
-  const exposedNames: ModuleExportObject[] = [];
+  const moduleExports: ModuleExportObject[] = [];
   const classObjects: ClassObject[] = [];
   let ast;
   try {
@@ -40,53 +66,61 @@ function parser(content: string): ParseResult {
   }
   if (ast) {
     traverse(ast, {
+      ClassExpression: function(path) {
+        const classObject = traverseClassDeclarationOrClassExpression(
+          path.node
+        );
+        if (classObject.methods.length) classObjects.push(classObject);
+      },
       ClassDeclaration: function(path) {
-        if (isIdentifier(path.node.id)) {
-          const { name } = path.node.id;
-          const { body } = path.node.body;
-          const methodObjects: MethodObject[] = body
-            .map(method => {
-              if (isClassMethod(method) && isIdentifier(method.key)) {
-                const name: string = method.key.name || '';
-                const { kind, async } = method;
-                return { name, async, kind };
-              } else {
-                return { name: null, async: false, kind: 'get' }; // This will be ignored by 'filter'
-              }
-            })
-            .filter(methodObject => methodObject.name);
-          classObjects.push({ name, methods: methodObjects });
-        }
+        const classObject = traverseClassDeclarationOrClassExpression(
+          path.node
+        );
+        if (classObject.methods.length) classObjects.push(classObject);
       },
       AssignmentExpression: function(path) {
         const { left, right } = path.node;
         if (isMemberExpression(left)) {
           if (flattenMemberExpression(left).match(/^module.exports\.?(.*)$/)) {
-            const property = RegExp.$1;
-            if (property) {
-              if (isIdentifier(right)) {
-                // e.g., function func() { ... }; module.exports.func = func;
-                exposedNames.push({ name: right.name, property }); // TODO: Review what to pass
-              } else {
-                // e.g., module.exports.func = function () { ... }
-                // e.g., module.exports.default = function () { ... }
-                exposedNames.push({ name: property, property }); // TODO: Review what to pass
-              }
+            const property = RegExp.$1 || null;
+            if (isClassExpression(right)) {
+              // e.g., module.exports = class Class { ... }
+              // e.g., module.exports.class = class Class { ... }
+              // e.g., module.exports.default = class Class { ... }
+              const classNameIfExists = isIdentifier(right.id)
+                ? right.id.name
+                : null;
+              moduleExports.push({
+                property,
+                classNameIfExists,
+                name: classNameIfExists,
+              });
+            } else if (isIdentifier(right)) {
+              // e.g., function func() { ... }; module.exports.func = func;
+              // e.g., class Class { ... }; module.exports = Class;
+              // e.g., class Class { ... }; module.exports.class = Class;
+              // e.g., class Class { ... }; module.exports.default = Class;
+              moduleExports.push({
+                property,
+                classNameIfExists: null,
+                name: right.name,
+              });
             } else {
-              if (isIdentifier(right)) {
-                // e.g., function func() { ... }; module.exports = func;
-                exposedNames.push({ name: right.name }); // TODO: Review what to pass
-              } else {
-                // e.g., module.exports = function () { ... }
-                exposedNames.push({ name: 'FILE' }); // TODO: Review what to pass
-              }
+              // e.g., module.exports = function () { ... }
+              // e.g., module.exports.func = function () { ... }
+              // e.g., module.exports.default = function () { ... }
+              moduleExports.push({
+                property,
+                classNameIfExists: null,
+                name: null,
+              });
             }
           }
         }
       },
     });
   }
-  return { exposedNames, classObjects };
+  return { moduleExports, classObjects };
 }
 
 export { parser };

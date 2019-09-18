@@ -29,21 +29,25 @@ Tools:
 
 - [typescript](https://www.typescriptlang.org/)
 - [coffee-script](http://coffeescript.org/)
-- [babel](https://babeljs.io/)
 
 TODO:
-
-- Babel
+[] TypeScript
+[] CoffeeScript
 
 ## 3. Parse
 
 Tools:
 
-- [Esprima](http://esprima.org/)
+- [@babel/parser](https://babeljs.io/docs/en/babel-parser)
+
+Docs:
+
+- <https://github.com/jamiebuilds/babel-handbook/blob/master/translations/en/plugin-handbook.md#best-practices>
 
 TODO:
 
-- Test (module.export, module.export.default, module.export.foobar)
+[x] Test (module.export, module.export.default, module.export.foobar)
+[] Test (export module default, export module foobar)
 
 ## 4. Generate template
 
@@ -53,9 +57,9 @@ Tools:
 
 ### TODO:
 
-- Resolve the file path to import the source file.
-- We don't want to test private methods such as \_xxxx() - should sit this in configs
-- We don't want to test constructor
-- BDD syntax, describe/describe, describe/test
+[] Resolve the file path to import the source file.
+[] We don't want to test private methods such as \_xxxx() - should sit this in configs
+[] We don't want to test constructor
+[] BDD syntax, describe/describe, describe/test
 
 ## 5. File output

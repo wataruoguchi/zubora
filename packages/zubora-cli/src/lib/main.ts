@@ -21,9 +21,9 @@ async function generateTemplate(
           const { code } = result || { code: '' };
           if (typeof code === 'string') {
             write('code.js', code);
-            const { exposedNames, classObjects } = parser(code);
-            const imports = importBlock(path, exposedNames);
-            const describes = testCaseBlock(exposedNames, classObjects);
+            const { moduleExports, classObjects } = parser(code);
+            const imports = importBlock(path, moduleExports);
+            const describes = testCaseBlock(moduleExports, classObjects);
             resolve(prettier.format(`${imports}\n${describes}`));
           } else {
             reject('No code found.');
