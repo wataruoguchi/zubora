@@ -56,13 +56,14 @@ export function testCaseBlock(
         if (classObj) {
           const exposedName =
             (property || 'default') === 'default'
-              ? classNameIfExists || name
+              ? nameFindClassWith
               : property;
+          console.log('exposedName', exposedName);
           classTestStr =
             `describe("${classObj.name}",function(){\n` +
             classObj.methods
               .map((method: MethodObject) => {
-                return `describe("#${exposedName}", ${
+                return `describe("#${method.name}", ${
                   method.async ? 'async' : ''
                 } function(){\n
                   it("", function() {\n

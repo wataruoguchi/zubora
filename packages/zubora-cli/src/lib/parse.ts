@@ -2,6 +2,7 @@ import { ParserOptions } from '@babel/core';
 import { parse } from '@babel/parser';
 import traverse from '@babel/traverse';
 import {
+  Node,
   isMemberExpression,
   isIdentifier,
   MemberExpression,
@@ -31,7 +32,7 @@ function flattenMemberExpression(exp: MemberExpression): string {
   }
 }
 
-function traverseClassDeclarationOrClassExpression(
+function fetchClassObject(
   node: ClassDeclaration | ClassExpression
 ): ClassObject {
   if (isIdentifier(node.id) && isClassBody(node.body)) {
@@ -53,6 +54,42 @@ function traverseClassDeclarationOrClassExpression(
     return { name: '', methods: [] };
   }
 }
+
+function fetchModuleExportObject(
+  property: string | null,
+  node: Node
+): ModuleExportObject {
+  if (isClassExpression(node)) {
+    // e.g., module.exports = class Class { ... }
+    // e.g., module.exports.class = class Class { ... }
+    // e.g., module.exports.default = class Class { ... }
+    const classNameIfExists = isIdentifier(node.id) ? node.id.name : null;
+    return {
+      property,
+      classNameIfExists,
+      name: classNameIfExists,
+    };
+  } else if (isIdentifier(node)) {
+    // e.g., function func() { ... }; module.exports.func = func;
+    // e.g., class Class { ... }; module.exports = Class;
+    // e.g., class Class { ... }; module.exports.class = Class;
+    // e.g., class Class { ... }; module.exports.default = Class;
+    return {
+      property,
+      classNameIfExists: null,
+      name: node.name,
+    };
+  } else {
+    // e.g., module.exports = function () { ... }
+    // e.g., module.exports.func = function () { ... }
+    // e.g., module.exports.default = function () { ... }
+    return {
+      property,
+      classNameIfExists: null,
+      name: null,
+    };
+  }
+}
 function parser(content: string): ParseResult {
   const moduleExports: ModuleExportObject[] = [];
   const classObjects: ClassObject[] = [];
@@ -67,59 +104,46 @@ function parser(content: string): ParseResult {
   if (ast) {
     traverse(ast, {
       ClassExpression: function(path) {
-        const classObject = traverseClassDeclarationOrClassExpression(
-          path.node
-        );
+        const classObject = fetchClassObject(path.node);
         if (classObject.methods.length) classObjects.push(classObject);
       },
       ClassDeclaration: function(path) {
-        const classObject = traverseClassDeclarationOrClassExpression(
-          path.node
-        );
+        const classObject = fetchClassObject(path.node);
         if (classObject.methods.length) classObjects.push(classObject);
+      },
+      // ExportNamedDeclaration: function(path) {
+      //   const declaration = path.node.declaration;
+      //   const moduleExportObject: ModuleExportObject = fetchModuleExportObject(
+      //     'TODO',
+      //     declaration
+      //   );
+      //   moduleExports.push(moduleExportObject);
+      // },
+      ExportDefaultDeclaration: function(path) {
+        const declaration = path.node.declaration;
+        const moduleExportObject: ModuleExportObject = fetchModuleExportObject(
+          'default',
+          declaration
+        );
+        moduleExports.push(moduleExportObject);
       },
       AssignmentExpression: function(path) {
         const { left, right } = path.node;
         if (isMemberExpression(left)) {
           if (flattenMemberExpression(left).match(/^module.exports\.?(.*)$/)) {
             const property = RegExp.$1 || null;
-            if (isClassExpression(right)) {
-              // e.g., module.exports = class Class { ... }
-              // e.g., module.exports.class = class Class { ... }
-              // e.g., module.exports.default = class Class { ... }
-              const classNameIfExists = isIdentifier(right.id)
-                ? right.id.name
-                : null;
-              moduleExports.push({
-                property,
-                classNameIfExists,
-                name: classNameIfExists,
-              });
-            } else if (isIdentifier(right)) {
-              // e.g., function func() { ... }; module.exports.func = func;
-              // e.g., class Class { ... }; module.exports = Class;
-              // e.g., class Class { ... }; module.exports.class = Class;
-              // e.g., class Class { ... }; module.exports.default = Class;
-              moduleExports.push({
-                property,
-                classNameIfExists: null,
-                name: right.name,
-              });
-            } else {
-              // e.g., module.exports = function () { ... }
-              // e.g., module.exports.func = function () { ... }
-              // e.g., module.exports.default = function () { ... }
-              moduleExports.push({
-                property,
-                classNameIfExists: null,
-                name: null,
-              });
-            }
+            const moduleExportObject: ModuleExportObject = fetchModuleExportObject(
+              property,
+              right
+            );
+            moduleExports.push(moduleExportObject);
           }
         }
       },
     });
   }
+  console.log('moduleExports', moduleExports);
+  console.log('classObjects', classObjects);
   return { moduleExports, classObjects };
 }
 
