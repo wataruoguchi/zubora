@@ -46,14 +46,14 @@ Docs:
 
 TODO:
 
-[x] Test Exporting Class (module.export, module.export.default, module.export.foobar)
+[x] Let's write unit tests
+[x] Test Exporting Class (module.export, module.export.default, module.export.named)
+[x] Let's write unit tests
 [x] Test Exporting Class (export default)
-[] Test Exporting Class (export named)
-[] Let's write unit tests
-[] Test Exporting Function, Property, Identifier (module.export, module.export.default, module.export.foobar)
-[] Test Exporting Function, Property, Identifier (export default)
-[] Test Exporting Function, Property, Identifier (export named)
-[] Test <https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export>
+[x] Let's write unit tests
+[x] Test Exporting Class (export named)
+[x] Let's write unit tests
+[x] Test all patterns you can find in <https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export>
 
 ## 4. Generate template
 
@@ -63,9 +63,13 @@ Tools:
 
 ### TODO:
 
+[] Let's write unit tests
 [] Resolve the file path to import the source file.
-[] describe/describe (default), BDD syntax, describe/test
-[] We don't want to test private methods such as \_xxxx() - should sit this in configs
+[] Let's write unit tests
+[] describe/describe in BDD syntax
+[] Let's write unit tests
 [] We don't want to test constructor
+[] Let's write unit tests
+[] We don't want to test private methods such as \_xxxx() - it should be configurable
 
 ## 5. File output

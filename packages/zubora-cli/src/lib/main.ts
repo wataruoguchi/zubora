@@ -1,7 +1,7 @@
-import { parser } from './parse';
 import * as prettier from 'prettier';
-import { importBlock, testCaseBlock } from './template';
 import { transformAsync } from '@babel/core';
+import { parser } from './parser';
+import { importBlock, testCaseBlock } from './template';
 
 async function generateTemplate(
   path: string,
