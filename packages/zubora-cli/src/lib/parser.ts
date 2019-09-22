@@ -189,8 +189,6 @@ function parser(content: string): ParseResult {
       },
     });
   }
-  console.log('moduleExports', moduleExports);
-  console.log('classObjects', classObjects);
   return { moduleExports, classObjects };
 }
 

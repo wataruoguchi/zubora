@@ -65,11 +65,14 @@ Tools:
 
 [x] Let's write unit tests
 [x] Resolve the file path to import the source file.
-[] Let's write unit tests
-[] describe/describe in BDD syntax
-[] Let's write unit tests
-[] We don't want to test constructor
-[] Let's write unit tests
-[] We don't want to test private methods such as \_xxxx() - it should be configurable
+[x] Let's write unit tests
+[x] Template for Class in BDD syntax
+[x] Let's write unit tests
+[x] Template for others in BDD syntax
+
+### Someday
+
+[] We don't want to test constructor, so remove it from test case
+[] We don't want to test "private" methods such as \_xxxx() - it should be configurable
 
 ## 5. File output

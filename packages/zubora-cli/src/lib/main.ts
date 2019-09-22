@@ -25,7 +25,11 @@ async function generateTemplate(
             const relativePath = getRelativePath(srcPath, destPath);
             const { moduleExports, classObjects } = parser(code);
             const imports = importBlock(relativePath, moduleExports);
-            const describes = testCaseBlock(moduleExports, classObjects);
+            const describes = testCaseBlock(
+              relativePath,
+              moduleExports,
+              classObjects
+            );
             resolve(prettier.format(`${imports}\n${describes}`));
           } else {
             reject('No code found.');

@@ -35,9 +35,10 @@ export function importBlock(
     : '';
   return `import ${[nonNamedModuleImport, namedModuleImport]
     .filter(str => str.length)
-    .join(',')} from "${relativePath}"`;
+    .join(',')} from '${relativePath}'`;
 }
 export function testCaseBlock(
+  relativePath: string,
   exported: ModuleExportObject[],
   classObjects: ClassObject[]
 ): string {
@@ -53,31 +54,38 @@ export function testCaseBlock(
       const { property, classNameIfExists, name } = moduleExportObj;
       const nameFindClassWith = classNameIfExists || name;
       let classTestStr = '';
+      const exposedName =
+        (property || 'default') === 'default'
+          ? getFileName(relativePath)
+          : property;
       if (nameFindClassWith) {
         const classObj: ClassObject = classHash[nameFindClassWith];
         if (classObj) {
-          const exposedName =
-            (property || 'default') === 'default'
-              ? nameFindClassWith
-              : property;
-          console.log('exposedName', exposedName);
           classTestStr =
-            `describe("${classObj.name}",function(){\n` +
+            `describe('${classObj.name}',function(){\n` +
             classObj.methods
               .map((method: MethodObject) => {
-                return `describe("#${method.name}", ${
+                return `describe('#${method.name}', ${
                   method.async ? 'async' : ''
-                } function(){\n
-                  it("", function() {\n
-                    // TODO ${exposedName}#${method.name}\n
-                  })\n
+                } function(){
+                  it('', function() {
+                    // TODO Write test for ${exposedName}#${method.name}
+                  })
                 })`;
               })
               .join('\n') +
             `\n})`;
         }
+        return classTestStr;
+      } else {
+        return `describe('${exposedName}',function(){
+          describe('${exposedName}', function(){
+            it('', function() {
+              // TODO Write test for ${exposedName}
+            })
+          })
+        })`;
       }
-      return classTestStr;
     })
     .join('\n');
 }
