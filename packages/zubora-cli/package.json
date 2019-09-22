@@ -6,17 +6,15 @@
     "zubora": "bin/zubora"
   },
   "scripts": {
-    "format": "prettier --write **/*.{js,ts,tsx,json}",
+    "format": "prettier --write **/*.{js,jsx,ts,tsx,json}",
     "lint": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx",
     "lint:fix": "yarn lint --fix",
     "clean-build": "rm -rf ./build",
     "compile": "tsc -p .",
-    "copy-templates": "if [ -e ./src/templates ]; then cp -a ./src/templates ./build/; fi",
-    "build": "yarn format && yarn lint && yarn clean-build && yarn compile && yarn copy-templates",
+    "build": "yarn format && yarn lint && yarn clean-build && yarn compile",
     "test": "jest",
     "type-check": "tsc",
     "watch": "jest --watch",
-    "snapupdate": "jest --updateSnapshot",
     "coverage": "jest --coverage"
   },
   "files": [

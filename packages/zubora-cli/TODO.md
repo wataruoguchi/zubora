@@ -33,7 +33,7 @@ Tools:
 TODO:
 
 [x] TypeScript
-[] CoffeeScript
+[] CoffeeScript - well, let's take transpiled code instead.
 
 ## 3. Parse
 
@@ -82,5 +82,6 @@ Tools:
 
 Remove unused file (e.g., src/commands/generate)
 
+[] Decoupling this to zubora & zubora-CLI
 [] README.md
 [] docs/\*.md
