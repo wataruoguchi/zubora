@@ -76,3 +76,10 @@ Tools:
 [] We don't want to test "private" methods such as \_xxxx() - it should be configurable
 
 ## 5. File output
+
+## 6. Documentation
+
+Remove unused file (e.g., src/commands/generate)
+
+[] README.md
+[] docs/\*.md

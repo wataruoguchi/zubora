@@ -29,10 +29,9 @@ module.exports = {
     //   print.error(`The file "${destPath}" already exists.`)
     //   return
     // }
-    await generateTemplate(srcPath, destPath, read, write)
+    await generateTemplate(srcPath, destPath, read)
       .then((result): void => {
         print.debug(result);
-        // write(destPath, parseScript(srcContent))
         write(destPath, result);
         return;
       })

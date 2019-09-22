@@ -5,23 +5,23 @@ module.exports = {
   env: {
     node: true,
     es6: true,
-    jest: true
+    jest: true,
   },
   plugins: ['@typescript-eslint/eslint-plugin'],
   rules: {
-    semi: [2, 'always']
+    semi: [2, 'always'],
   },
   overrides: [
     {
       files: ['*.ts', '*.tsx'],
-      extends: ['plugin:@typescript-eslint/recommended']
-    }
+      extends: ['plugin:@typescript-eslint/recommended'],
+    },
   ],
   parserOptions: {
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
     },
     ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
-    sourceType: 'module' // Allows for the use of imports
-  }
-}
+    sourceType: 'module', // Allows for the use of imports
+  },
+};

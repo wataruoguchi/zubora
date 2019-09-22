@@ -7,8 +7,7 @@ import { importBlock, testCaseBlock } from './template';
 async function generateTemplate(
   srcPath: string,
   destPath: string,
-  reader: Function,
-  write?: any
+  reader: Function
 ): Promise<string> {
   return new Promise<string>((resolve, reject) => {
     if (typeof reader !== 'function') {
@@ -30,7 +29,9 @@ async function generateTemplate(
               moduleExports,
               classObjects
             );
-            resolve(prettier.format(`${imports}\n${describes}`));
+            resolve(
+              prettier.format(`${imports}\n${describes}`, { parser: 'babel' })
+            );
           } else {
             reject('No code found.');
           }
