@@ -63,8 +63,8 @@ Tools:
 
 ### TODO:
 
-[] Let's write unit tests
-[] Resolve the file path to import the source file.
+[x] Let's write unit tests
+[x] Resolve the file path to import the source file.
 [] Let's write unit tests
 [] describe/describe in BDD syntax
 [] Let's write unit tests
