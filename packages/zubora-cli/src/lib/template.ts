@@ -49,34 +49,35 @@ export function testCaseBlock(
     },
     {}
   );
+  console.log('exported', exported);
   return exported
     .map((moduleExportObj: ModuleExportObject): string => {
       const { property, classNameIfExists, name } = moduleExportObj;
-      const nameFindClassWith = classNameIfExists || name;
-      let classTestStr = '';
-      const exposedName =
+      const exposedName: string =
         (property || 'default') === 'default'
           ? getFileName(relativePath)
-          : property;
-      if (nameFindClassWith) {
-        const classObj: ClassObject = classHash[nameFindClassWith];
-        if (classObj) {
-          classTestStr =
-            `describe('${classObj.name}',function(){\n` +
-            classObj.methods
-              .map((method: MethodObject) => {
-                return `describe('#${method.name}', ${
-                  method.async ? 'async' : ''
-                } function(){
+          : property
+          ? property
+          : getFileName(relativePath);
+      const nameFindClassWith: string =
+        classNameIfExists || name || property || exposedName;
+      const classObj: ClassObject = classHash[nameFindClassWith];
+      if (classObj) {
+        return (
+          `describe('${classObj.name}',function(){\n` +
+          classObj.methods
+            .map((method: MethodObject) => {
+              return `describe('#${method.name}', ${
+                method.async ? 'async' : ''
+              } function(){
                   it('', function() {
                     // TODO Write test for ${exposedName}#${method.name}
                   })
                 })`;
-              })
-              .join('\n') +
-            `\n})`;
-        }
-        return classTestStr;
+            })
+            .join('\n') +
+          `\n})`
+        );
       } else {
         return `describe('${exposedName}',function(){
           describe('${exposedName}', function(){
