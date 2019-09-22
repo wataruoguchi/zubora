@@ -1,30 +1,32 @@
 import { ModuleExportObject, MethodObject, ClassObject } from './zubora';
+import { getFileName } from './resolver';
 
 type ClassHash = {
   [key: string]: ClassObject;
 };
 
 export function importBlock(
-  path: string,
-  exports: ModuleExportObject[]
+  relativePath: string,
+  exported: ModuleExportObject[]
 ): string {
-  const namedModules: ModuleExportObject[] = exports.filter(
+  const namedModules: ModuleExportObject[] = exported.filter(
     (moduleExportObj: ModuleExportObject) =>
       moduleExportObj.property && moduleExportObj.property !== 'default'
   );
-  const modules: ModuleExportObject[] = exports.filter(
+  const modules: ModuleExportObject[] = exported.filter(
     // Expecting only one object
     (moduleExportObj: ModuleExportObject) => moduleExportObj.property === null
   );
-  const defaultModules: ModuleExportObject[] = exports.filter(
+  const defaultModules: ModuleExportObject[] = exported.filter(
     // Expecting only one object
     (moduleExportObj: ModuleExportObject) =>
       moduleExportObj.property && moduleExportObj.property === 'default'
   );
+  const moduleNameFromFilePath = getFileName(relativePath);
   const nonNamedModuleImport: string = modules.length
-    ? `* as ${'FILENAME'}`
+    ? `* as ${moduleNameFromFilePath}`
     : defaultModules.length
-    ? `${'FILENAME'}`
+    ? `${moduleNameFromFilePath}`
     : '';
   const namedModuleImport: string = namedModules.length
     ? `{ ${namedModules
@@ -33,10 +35,10 @@ export function importBlock(
     : '';
   return `import ${[nonNamedModuleImport, namedModuleImport]
     .filter(str => str.length)
-    .join(',')} from "${path}"`;
+    .join(',')} from "${relativePath}"`;
 }
 export function testCaseBlock(
-  exports: ModuleExportObject[],
+  exported: ModuleExportObject[],
   classObjects: ClassObject[]
 ): string {
   const classHash: ClassHash = classObjects.reduce(
@@ -46,7 +48,7 @@ export function testCaseBlock(
     },
     {}
   );
-  return exports
+  return exported
     .map((moduleExportObj: ModuleExportObject): string => {
       const { property, classNameIfExists, name } = moduleExportObj;
       const nameFindClassWith = classNameIfExists || name;

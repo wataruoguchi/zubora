@@ -1,10 +1,12 @@
 import * as prettier from 'prettier';
 import { transformAsync } from '@babel/core';
 import { parser } from './parser';
+import { getRelativePath } from './resolver';
 import { importBlock, testCaseBlock } from './template';
 
 async function generateTemplate(
-  path: string,
+  srcPath: string,
+  destPath: string,
   reader: Function,
   write?: any
 ): Promise<string> {
@@ -13,16 +15,16 @@ async function generateTemplate(
       reject('File reader is not a function.');
     }
     try {
-      const code: string = reader(path);
+      const code: string = reader(srcPath);
       // Babel
       const option = {};
       transformAsync(code, option)
         .then((result): void => {
           const { code } = result || { code: '' };
           if (typeof code === 'string') {
-            write('code.js', code);
+            const relativePath = getRelativePath(srcPath, destPath);
             const { moduleExports, classObjects } = parser(code);
-            const imports = importBlock(path, moduleExports);
+            const imports = importBlock(relativePath, moduleExports);
             const describes = testCaseBlock(moduleExports, classObjects);
             resolve(prettier.format(`${imports}\n${describes}`));
           } else {
