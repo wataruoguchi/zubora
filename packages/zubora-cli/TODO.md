@@ -31,7 +31,8 @@ Tools:
 - [coffee-script](http://coffeescript.org/)
 
 TODO:
-[] TypeScript
+
+[x] TypeScript
 [] CoffeeScript
 
 ## 3. Parse

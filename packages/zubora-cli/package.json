@@ -2,7 +2,6 @@
   "name": "zubora",
   "version": "0.0.1",
   "description": "zubora CLI",
-  "private": true,
   "bin": {
     "zubora": "bin/zubora"
   },
@@ -32,6 +31,7 @@
   "dependencies": {
     "@babel/core": "^7.6.0",
     "@babel/parser": "^7.6.0",
+    "@babel/preset-typescript": "^7.6.0",
     "@babel/traverse": "^7.6.0",
     "figlet": "^1.2.4",
     "gluegun": "^2.1.0",
@@ -56,6 +56,7 @@
   },
   "jest": {
     "preset": "ts-jest",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": ["/node_modules/", "/build/"]
   }
 }

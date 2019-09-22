@@ -1,6 +1,8 @@
 import { parser } from '../src/lib/parser';
 
-function testUtils(baseContent: string) {
+function testUtils(
+  baseContent: string
+): { testDefault: Function; testNamed: Function } {
   function testPatterns(name: 'default' | 'named'): void {
     describe('Variable of class', () => {
       const content = `class Cls {

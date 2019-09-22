@@ -229,6 +229,29 @@ describe('testCaseBlock', () => {
         `describe('src',function(){ describe('src', function(){ it('', function() { // TODO Write test for src }) }) })`
       );
     });
+    it('has one module and one class', () => {
+      const filePath = './modules/src.js';
+      const modules: ModuleExportObject[] = [
+        { property: 'Cls', classNameIfExists: null, name: null },
+      ];
+      const classObjects: ClassObject[] = [
+        {
+          name: 'Cls',
+          methods: [{ name: 'method', async: false, kind: 'method' }],
+        },
+        {
+          name: 'Cls2',
+          methods: [{ name: 'method', async: false, kind: 'method' }],
+        },
+      ];
+      expect(
+        testCaseBlock(filePath, modules, classObjects)
+          .replace(/[\n\r]+/g, '')
+          .replace(/\s+/g, ' ')
+      ).toBe(
+        `describe('Cls',function(){describe('#method', function(){ it('', function() { // TODO Write test for Cls#method }) })})`
+      );
+    });
     it('has two modules', () => {
       const filePath = './modules/src.js';
       const modules: ModuleExportObject[] = [

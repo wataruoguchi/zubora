@@ -1,10 +1,10 @@
-import { build } from 'gluegun';
+import { build, GluegunToolbox } from 'gluegun';
 
 /**
  * Create the cli and kick it off
  */
 // TODO The type of 'argv'. I'm guessing it's string, but maybe not.
-async function run(argv: string) {
+async function run(argv: string): Promise<GluegunToolbox> {
   // create a CLI runtime
   const cli = build()
     .brand('zubora')

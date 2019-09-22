@@ -49,14 +49,11 @@ export function testCaseBlock(
     },
     {}
   );
-  console.log('exported', exported);
   return exported
     .map((moduleExportObj: ModuleExportObject): string => {
       const { property, classNameIfExists, name } = moduleExportObj;
       const exposedName: string =
-        (property || 'default') === 'default'
-          ? getFileName(relativePath)
-          : property
+        property && property !== 'default'
           ? property
           : getFileName(relativePath);
       const nameFindClassWith: string =
