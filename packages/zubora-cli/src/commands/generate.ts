@@ -2,9 +2,10 @@ import { GluegunToolbox } from 'gluegun';
 import { generateTemplate } from '../lib/main';
 
 module.exports = {
-  name: 'make',
+  name: 'generate',
+  alias: ['gen'],
   description:
-    'Read a JS file and generate a test file.\nUsage: $ zubora make <source> <destination>',
+    'Read a JS file and generate a test file.\nUsage: $ zubora generate <source> <destination>',
   run: async (toolbox: GluegunToolbox): Promise<void> => {
     const {
       parameters,
