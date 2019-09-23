@@ -8,7 +8,6 @@ async function run(argv: string): Promise<GluegunToolbox> {
   // create a CLI runtime
   const cli = build()
     .exclude([
-      'meta',
       'strings',
       'semver',
       'system',

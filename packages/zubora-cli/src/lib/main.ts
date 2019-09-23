@@ -8,14 +8,10 @@ import { importBlock, testCaseBlock } from './template';
 async function generateTemplate(
   srcPath: string,
   destPath: string,
-  reader: Function
+  code: string
 ): Promise<string> {
   return new Promise<string>((resolve, reject): void => {
-    if (typeof reader !== 'function') {
-      reject('File reader is not a function.');
-    }
     try {
-      const code: string = reader(srcPath);
       // Babel
       const option = { filename: srcPath, presets: [presetTypeScript] };
       transformAsync(code, option)

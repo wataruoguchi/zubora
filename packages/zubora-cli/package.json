@@ -32,7 +32,7 @@
     "@babel/preset-typescript": "^7.6.0",
     "@babel/traverse": "^7.6.0",
     "figlet": "^1.2.4",
-    "gluegun": "^2.1.0",
+    "gluegun": "^3.3.4",
     "prettier": "^1.18.2"
   },
   "devDependencies": {
@@ -46,7 +46,7 @@
     "@typescript-eslint/parser": "^2.1.0",
     "eslint": "^6.3.0",
     "husky": "^3.0.5",
-    "jest": "^23.6.0",
+    "jest": "^25.0.0",
     "lint-staged": "^9.2.5",
     "ts-jest": "^23.10.5",
     "ts-node": "^8.4.1",
@@ -55,6 +55,9 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",
-    "testPathIgnorePatterns": ["/node_modules/", "/build/"]
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/build/"
+    ]
   }
 }

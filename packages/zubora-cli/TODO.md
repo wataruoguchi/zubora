@@ -33,7 +33,15 @@ Tools:
 TODO:
 
 [x] TypeScript
-[] CoffeeScript - well, let's take transpiled code instead.
+[x] CoffeeScript - well, let's take transpiled code instead.
+
+Example for CoffeeScript:
+
+_NOTE_: Requires coffeescript@^2 to run `coffee` if you want to parse classes.
+
+```
+$ zubora generate Coffee.coffee Coffee.spec.js --code "$(coffee --compile --print --bare --no-header Coffee.coffee)"
+```
 
 ## 3. Parse
 
@@ -82,6 +90,6 @@ Tools:
 
 Remove unused file (e.g., src/commands/generate)
 
-[] Decoupling this to zubora & zubora-CLI
+[] Decoupling this to zubora & zubora CLI (lerna)
 [] README.md
 [] docs/\*.md

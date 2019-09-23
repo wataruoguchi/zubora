@@ -8,12 +8,12 @@ module.exports = {
     'Read a JS file and generate a test file.\nUsage: $ zubora generate <source> <destination>',
   run: async (toolbox: GluegunToolbox): Promise<void> => {
     const {
-      parameters,
+      parameters: { first, second, options },
       print,
       filesystem: { read, exists, write },
     } = toolbox;
-    const srcPath = parameters.first || '';
-    const destPath = parameters.second || '';
+    const srcPath: string = first || '';
+    const destPath: string = second || '';
     if (srcPath === '') {
       print.error(`Set the source file path.`);
       return;
@@ -30,7 +30,8 @@ module.exports = {
     //   print.error(`The file "${destPath}" already exists.`)
     //   return
     // }
-    await generateTemplate(srcPath, destPath, read)
+    const code: string = options.code || read(srcPath);
+    await generateTemplate(srcPath, destPath, code)
       .then((result): void => {
         print.debug(result);
         write(destPath, result);
