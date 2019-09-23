@@ -7,6 +7,16 @@ import { build, GluegunToolbox } from 'gluegun';
 async function run(argv: string): Promise<GluegunToolbox> {
   // create a CLI runtime
   const cli = build()
+    .exclude([
+      'meta',
+      'strings',
+      'semver',
+      'system',
+      'prompt',
+      'http',
+      'template',
+      'patching',
+    ])
     .brand('zubora')
     .src(__dirname)
     .plugins('./node_modules', { matching: 'zubora-*', hidden: true })
