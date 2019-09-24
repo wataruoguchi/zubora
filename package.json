@@ -6,8 +6,7 @@
     "lint": "lerna run lint",
     "lint:fix": "lerna run lint:fix",
     "type-check": "lerna run type-check",
-    "build": "lerna run build",
-    "build-ci": "lerna run build-ci"
+    "build": "lerna run build"
   },
   "devDependencies": {
     "lerna": "^3.16.4"
