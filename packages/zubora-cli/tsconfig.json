@@ -15,8 +15,6 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "sourceMap": false,
-    "allowJs": true,
-    "checkJs": true,
     "inlineSourceMap": true,
     "outDir": "build",
     "strict": true,
