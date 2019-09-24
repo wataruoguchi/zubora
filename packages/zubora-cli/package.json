@@ -20,7 +20,6 @@
   "files": [
     "tsconfig.json",
     "build",
-    "!build/__tests__",
     "LICENSE",
     "readme.md",
     "docs",
