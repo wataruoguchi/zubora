@@ -1,7 +1,7 @@
 {
   "name": "zubora",
   "version": "0.0.1",
-  "description": "Module for the cli",
+  "description": "The zubora module for the cli",
   "keywords": [
     "zubora",
     "Test",
@@ -25,7 +25,8 @@
   "files": [
     "dist",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "!dist/__tests__"
   ],
   "license": "MIT",
   "dependencies": {
