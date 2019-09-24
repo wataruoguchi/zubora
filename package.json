@@ -1,7 +1,14 @@
 {
-  "name": "root",
+  "name": "zubora",
   "private": true,
+  "scripts": {
+    "test": "lerna run test",
+    "lint": "lerna run lint",
+    "lint:fix": "lerna run lint:fix",
+    "type-check": "lerna run type-check"
+  },
   "devDependencies": {
     "lerna": "^3.16.4"
-  }
+  },
+  "license": "MIT"
 }

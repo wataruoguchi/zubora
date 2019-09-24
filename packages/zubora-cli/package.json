@@ -1,5 +1,5 @@
 {
-  "name": "zubora",
+  "name": "zubora-cli",
   "version": "0.0.1",
   "description": "zubora CLI",
   "bin": {
