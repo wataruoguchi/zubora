@@ -2,7 +2,7 @@
   "name": "zubora",
   "private": true,
   "scripts": {
-    "add": "lerna bootstrap",
+    "add-all": "lerna bootstrap",
     "test": "lerna run test",
     "lint": "lerna run lint",
     "lint:fix": "lerna run lint:fix",
