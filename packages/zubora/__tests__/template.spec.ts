@@ -1,4 +1,4 @@
-import { ModuleExportObject, ClassObject } from '../src/zubora';
+import { ModuleExportObject, ClassObject } from '../src/types';
 import { importBlock, testCaseBlock } from '../src/template';
 
 describe('importBlock', () => {

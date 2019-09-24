@@ -1,9 +1,7 @@
 import * as prettier from 'prettier';
 import { transformAsync } from '@babel/core';
 const presetTypeScript = require('@babel/preset-typescript').default;
-import { parser } from './parser';
-import { getRelativePath } from './resolver';
-import { importBlock, testCaseBlock } from './template';
+import { parser, getRelativePath, importBlock, testCaseBlock } from 'zubora';
 
 async function generateTemplate(
   srcPath: string,

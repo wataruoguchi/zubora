@@ -21,19 +21,18 @@
     "tsconfig.json",
     "build",
     "LICENSE",
-    "readme.md",
+    "README.md",
     "docs",
     "bin"
   ],
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.6.0",
-    "@babel/parser": "^7.6.0",
     "@babel/preset-typescript": "^7.6.0",
-    "@babel/traverse": "^7.6.0",
     "figlet": "^1.2.4",
     "gluegun": "^3.3.4",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "zubora": "^0.0.3"
   },
   "devDependencies": {
     "@babel/types": "^7.6.1",

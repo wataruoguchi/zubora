@@ -90,6 +90,6 @@ Tools:
 
 Remove unused file (e.g., src/commands/generate)
 
-[] Decoupling this to zubora & zubora CLI (lerna)
+[x] Decoupling this to zubora & zubora CLI (lerna)
 [] README.md
 [] docs/\*.md
