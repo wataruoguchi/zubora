@@ -1,6 +1,6 @@
 {
   "name": "zubora",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "The zubora module for the cli",
   "keywords": [
     "zubora",
@@ -15,7 +15,7 @@
     "lint": "eslint --ignore-path .gitignore . --ext ts --ext js",
     "lint:fix": "yarn lint --fix",
     "clean-build": "rm -rf ./dist",
-    "compile": "tsc -p .",
+    "compile": "tsc",
     "build": "yarn format && yarn lint && yarn clean-build && yarn compile",
     "test": "jest",
     "type-check": "tsc",

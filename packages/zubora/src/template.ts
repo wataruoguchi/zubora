@@ -1,4 +1,4 @@
-import { ModuleExportObject, MethodObject, ClassObject } from './zubora';
+import { ModuleExportObject, MethodObject, ClassObject } from './types';
 import { getFileName } from './resolver';
 
 type ClassHash = {

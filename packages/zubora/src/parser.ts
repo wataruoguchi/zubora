@@ -21,7 +21,7 @@ import {
   MethodObject,
   ClassObject,
   ParseResult,
-} from './zubora';
+} from './types';
 
 function flattenMemberExpression(exp: MemberExpression): string {
   if (!isMemberExpression(exp)) return '';
