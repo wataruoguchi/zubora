@@ -20,5 +20,5 @@ jobs:
         run: |
           npm install -g yarn
           yarn
-          yarn build --if-present
+          yarn build-ci --if-present
           yarn test
