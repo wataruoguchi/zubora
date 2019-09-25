@@ -9,7 +9,7 @@ Start small! Forget about the transpile part right now. Test case has to be supe
 Let's say, the command would look something like this:
 
 ```sh
-$ zubora make <source> <destination>
+$ zubora gen <source> <destination>
 Test template is created at <destination>
 ```
 
@@ -33,15 +33,7 @@ Tools:
 TODO:
 
 [x] TypeScript
-[x] CoffeeScript - well, let's take transpiled code instead.
-
-Example for CoffeeScript:
-
-_NOTE_: Requires coffeescript@^2 to run `coffee` if you want to parse classes.
-
-```
-$ zubora generate Coffee.coffee Coffee.spec.js --code "$(coffee --compile --print --bare --no-header Coffee.coffee)"
-```
+[] CoffeeScript - well, let's take transpiled code instead.
 
 ## 3. Parse
 
@@ -78,6 +70,7 @@ Tools:
 [x] Template for Class in BDD syntax
 [x] Let's write unit tests
 [x] Template for others in BDD syntax
+[] Add more test for CLI
 
 ### Someday
 
@@ -91,5 +84,5 @@ Tools:
 Remove unused file (e.g., src/commands/generate)
 
 [x] Decoupling this to zubora & zubora CLI (lerna)
-[] README.md
+[x] README.md
 [] docs/\*.md
