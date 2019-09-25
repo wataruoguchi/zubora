@@ -9,3 +9,7 @@ export function getFileName(filePath: string): string {
   const { name } = path.parse(filePath);
   return name;
 }
+export function getFileExt(filePath: string): string {
+  const { ext } = path.parse(filePath);
+  return ext;
+}

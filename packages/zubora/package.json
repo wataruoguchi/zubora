@@ -1,6 +1,6 @@
 {
   "name": "zubora",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "The zubora module for the cli",
   "keywords": [
     "zubora",
@@ -10,6 +10,12 @@
     "Abstract Syntax Tree",
     "TypeScript"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wataruoguchi/zubora.git"
+  },
+  "bugs": "https://github.com/wataruoguchi/zubora/issues",
+  "homepage": "https://github.com/wataruoguchi/zubora",
   "scripts": {
     "format": "prettier --write **/*.{js,jsx,ts,tsx,json}",
     "lint": "eslint --ignore-path .gitignore . --ext ts --ext js",

@@ -1,5 +1,5 @@
 import { ModuleExportObject, MethodObject, ClassObject } from './types';
-import { getFileName } from './resolver';
+import { getRelativePath, getFileName } from './resolver';
 
 type ClassHash = {
   [key: string]: ClassObject;
@@ -86,4 +86,16 @@ export function testCaseBlock(
       }
     })
     .join('\n');
+}
+
+export function template(srcFilePath: string, destFilePath: string): Function {
+  const relativePath = getRelativePath(srcFilePath, destFilePath);
+  return function generateTemplate(
+    moduleExports: ModuleExportObject[],
+    classObjects: ClassObject[]
+  ): string {
+    const imports = importBlock(relativePath, moduleExports);
+    const describes = testCaseBlock(relativePath, moduleExports, classObjects);
+    return `${imports}\n${describes}`;
+  };
 }
