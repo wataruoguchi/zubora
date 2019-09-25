@@ -1,7 +1,19 @@
 {
   "name": "zubora-cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "zubora CLI - Test Template Generator for zubora (\"lazy\" in Japanese) developers",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wataruoguchi/zubora.git"
+  },
+  "bugs": "https://github.com/wataruoguchi/zubora/issues",
+  "homepage": "https://github.com/wataruoguchi/zubora",
+  "keywords": [
+    "zubora",
+    "Test",
+    "Unit Test",
+    "TypeScript"
+  ],
   "bin": {
     "zubora": "bin/zubora"
   },
@@ -33,7 +45,7 @@
     "gluegun": "^3.3.4",
     "prettier": "^1.18.2",
     "ts-node": "^8.4.1",
-    "zubora": "^0.0.3"
+    "zubora": "^0.0.4"
   },
   "devDependencies": {
     "@babel/types": "^7.6.1",

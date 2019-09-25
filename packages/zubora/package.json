@@ -2,20 +2,20 @@
   "name": "zubora",
   "version": "0.0.4",
   "description": "The zubora module for the cli",
-  "keywords": [
-    "zubora",
-    "Test",
-    "Unit Test",
-    "AST",
-    "Abstract Syntax Tree",
-    "TypeScript"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/wataruoguchi/zubora.git"
   },
   "bugs": "https://github.com/wataruoguchi/zubora/issues",
   "homepage": "https://github.com/wataruoguchi/zubora",
+  "keywords": [
+    "zubora",
+    "Test",
+    "Unit Test",
+    "TypeScript",
+    "AST",
+    "Abstract Syntax Tree"
+  ],
   "scripts": {
     "format": "prettier --write **/*.{js,jsx,ts,tsx,json}",
     "lint": "eslint --ignore-path .gitignore . --ext ts --ext js",

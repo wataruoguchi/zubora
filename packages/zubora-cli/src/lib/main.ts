@@ -1,7 +1,7 @@
 import * as prettier from 'prettier';
 import { transformAsync } from '@babel/core';
 const presetTypeScript = require('@babel/preset-typescript').default;
-import { parser, getRelativePath, importBlock, testCaseBlock } from 'zubora';
+import { parser, template } from 'zubora';
 
 async function generateTemplate(
   srcPath: string,
@@ -16,16 +16,12 @@ async function generateTemplate(
         .then((result): void => {
           const { code } = result || { code: '' };
           if (typeof code === 'string' && code.length) {
-            const relativePath = getRelativePath(srcPath, destPath);
             const { moduleExports, classObjects } = parser(code);
-            const imports = importBlock(relativePath, moduleExports);
-            const describes = testCaseBlock(
-              relativePath,
-              moduleExports,
-              classObjects
-            );
+            const generateTemplate = template(srcPath, destPath);
             resolve(
-              prettier.format(`${imports}\n${describes}`, { parser: 'babel' })
+              prettier.format(generateTemplate(moduleExports, classObjects), {
+                parser: 'babel',
+              })
             );
           } else {
             reject('No code found.');
