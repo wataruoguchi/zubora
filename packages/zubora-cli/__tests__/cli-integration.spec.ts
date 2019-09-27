@@ -3,7 +3,7 @@ const src = filesystem.path(__dirname, '..');
 const cli = async (cmd: string): Promise<string> =>
   system.run('node ' + filesystem.path(src, 'bin', 'zubora') + ` ${cmd}`);
 
-async function expectsContainingVersion(command: string) {
+async function expectsContainingVersion(command: string): Promise<void> {
   const output = await cli(command);
   expect(output).toContain('0.0.2');
 }
