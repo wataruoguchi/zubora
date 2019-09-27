@@ -70,7 +70,7 @@ Tools:
 [x] Template for Class in BDD syntax
 [x] Let's write unit tests
 [x] Template for others in BDD syntax
-[] Add more test for CLI
+[x] Add more test for CLI
 
 ### Someday
 
@@ -81,7 +81,7 @@ Tools:
 
 ## 6. Documentation
 
-Remove unused file (e.g., src/commands/generate)
+[x] Remove unused file (e.g., src/commands/generate)
 
 [x] Decoupling this to zubora & zubora CLI (lerna)
 [x] README.md
