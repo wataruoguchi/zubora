@@ -86,5 +86,5 @@ Tools:
 [x] Decoupling this to zubora & zubora CLI (lerna)
 [x] README.md
 [] docs/\*.md
-[] Tidy up config files for lerna - See <https://github.com/typescript-eslint/typescript-eslint>
+[x] Tidy up config files for lerna - See <https://github.com/typescript-eslint/typescript-eslint>
 [x] Tidy up tsconfig.json
