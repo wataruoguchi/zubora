@@ -87,3 +87,4 @@ Tools:
 [x] README.md
 [] docs/\*.md
 [] Tidy up config files for lerna - See <https://github.com/typescript-eslint/typescript-eslint>
+[x] Tidy up tsconfig.json
