@@ -19,7 +19,7 @@
   },
   "scripts": {
     "format": "prettier --write **/*.{js,jsx,ts,tsx,json}",
-    "lint": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx",
+    "lint": "eslint --ignore-path ../../.gitignore . --ext ts --ext tsx --ext js --ext jsx",
     "lint:fix": "yarn lint --fix",
     "clean-build": "rm -rf ./build",
     "compile": "tsc -p tsconfig.build.json",
@@ -43,7 +43,6 @@
     "@babel/preset-typescript": "^7.6.0",
     "figlet": "^1.2.4",
     "gluegun": "^3.3.4",
-    "prettier": "^1.18.2",
     "ts-node": "^8.4.1",
     "zubora": "^0.0.4"
   },
@@ -53,15 +52,7 @@
     "@types/figlet": "^1.2.0",
     "@types/jest": "^24.0.18",
     "@types/node": "^10.12.12",
-    "@types/prettier": "^1.18.2",
-    "@typescript-eslint/eslint-plugin": "^2.1.0",
-    "@typescript-eslint/parser": "^2.1.0",
-    "eslint": "^6.3.0",
-    "husky": "^3.0.5",
-    "jest": "^25.0.0",
-    "lint-staged": "^9.2.5",
-    "ts-jest": "^23.10.5",
-    "typescript": "^3.6.3"
+    "@types/prettier": "^1.18.2"
   },
   "jest": {
     "preset": "ts-jest",
