@@ -1,6 +1,6 @@
 {
   "name": "zubora-cli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "zubora CLI - Test Template Generator for zubora (\"lazy\" in Japanese) developers",
   "repository": {
     "type": "git",
