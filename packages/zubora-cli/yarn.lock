@@ -211,9 +211,9 @@
   dependencies:
     "@types/jest-diff" "*"
 
-"@types/node@^10.12.12":
-  version "10.14.17"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.14.17.tgz#b96d4dd3e427382482848948041d3754d40fd5ce"
+"@types/node@^12.7.11":
+  version "12.7.11"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.11.tgz#be879b52031cfb5d295b047f5462d8ef1a716446"
 
 "@types/prettier@^1.18.2":
   version "1.18.2"
