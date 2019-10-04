@@ -22,7 +22,7 @@
     "lint": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx",
     "lint:fix": "yarn lint --fix",
     "clean-build": "rm -rf ./build",
-    "compile": "tsc -p .",
+    "compile": "tsc -p tsconfig.build.json",
     "build": "yarn format && yarn lint && yarn clean-build && yarn compile",
     "test": "jest",
     "type-check": "tsc",

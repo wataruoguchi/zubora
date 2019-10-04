@@ -1,25 +1,7 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "allowSyntheticDefaultImports": false,
-    "experimentalDecorators": true,
-    "lib": [
-      "es2015",
-      "es2015.promise",
-      "es2015.generator",
-      "es2015.iterable",
-      "dom"
-    ],
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "noUnusedLocals": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "sourceMap": false,
-    "inlineSourceMap": true,
-    "outDir": "build",
-    "strict": true,
-    "target": "es5"
+    "outDir": "build"
   },
-  "include": ["src/**/*"],
   "exclude": ["node_modules", "build"]
 }
