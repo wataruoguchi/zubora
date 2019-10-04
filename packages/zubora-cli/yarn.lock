@@ -923,9 +923,9 @@ yn@^3.0.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/yn/-/yn-3.1.1.tgz#1e87401a09d767c1d5eab26a6e4c185182d2eb50"
 
-zubora@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/zubora/-/zubora-0.0.4.tgz#c45fdc9675f919907068d01c734881df8227d164"
+zubora@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/zubora/-/zubora-0.0.5.tgz#838a3107e53074b478f25d11b0bbf99fa802174b"
   dependencies:
     "@babel/parser" "^7.6.0"
     "@babel/traverse" "^7.6.0"
