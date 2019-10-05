@@ -88,6 +88,25 @@ describe('main.ts', () => {
           expect(false).toBeTruthy();
         });
     });
+    it('does not fail with TSX', async () => {
+      const expectedLines = [
+        `import test from "./test.tsx";`,
+        `describe("test", function() {`,
+        `it("", function() {`,
+        `// TODO Write test for test`,
+      ];
+      await generateTemplate(
+        './test.tsx',
+        '',
+        'const a: number = 1; export default a;'
+      )
+        .then(result => {
+          expectedLines.map(line => expect(result).toMatch(line));
+        })
+        .catch(error => {
+          expect(false).toBeTruthy();
+        });
+    });
     it('does not fail with JS', async () => {
       const expectedLines = [
         `import test from "./test.js";`,

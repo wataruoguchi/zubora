@@ -11,7 +11,7 @@ async function generateTemplate(
   return new Promise<string>((resolve, reject): void => {
     try {
       // Babel
-      const presets: string[] = /.tsx?/.test(getFileExt(srcPath))
+      const presets: string[] = /\.tsx?$/.test(getFileExt(srcPath))
         ? [presetTypeScript]
         : [];
       const option = { filename: srcPath, presets };
