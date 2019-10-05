@@ -29,6 +29,38 @@ describe('main.ts', () => {
       ).catch(error => {
         expect(error.message).toMatch('Unexpected token');
       });
+      await generateTemplate('', '', 'const a = 1; export default a;').catch(
+        error => {
+          expect(error.message).toMatch(
+            'The only valid meta property for import is import.meta'
+          );
+        }
+      );
+      await generateTemplate(
+        './test.js',
+        '',
+        'const a = 1; export default a;'
+      ).catch(error => {
+        expect(error.message).toMatch(
+          'The only valid meta property for import is import.meta'
+        );
+      });
+      await generateTemplate(
+        './test.ts',
+        '',
+        'const a: number = 1; export default a;'
+      ).catch(error => {
+        expect(error.message).toMatch(
+          'The only valid meta property for import is import.meta'
+        );
+      });
+      await generateTemplate(
+        './test.js',
+        './result.spec.js',
+        'const a: number = 1; export default a;'
+      ).catch(error => {
+        expect(error.message).toMatch('Unexpected token');
+      });
     });
     it('does not fail with TS', async () => {
       const expectedLines = [
