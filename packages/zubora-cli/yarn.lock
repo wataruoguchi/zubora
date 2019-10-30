@@ -1324,8 +1324,9 @@ globals@^11.1.0:
   resolved "https://registry.yarnpkg.com/globals/-/globals-11.12.0.tgz#ab8795338868a0babd8525758018c2a7eb95c42e"
 
 gluegun@^4.0.1:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/gluegun/-/gluegun-4.0.2.tgz#9a5a80d6892da8abb881b0604d2750065d808550"
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/gluegun/-/gluegun-4.0.3.tgz#9b6ca12fdb3bad80e7d2fa1840d2ca6265dfa9c5"
+  integrity sha512-4vrwsDea8Sbd8I6aenVYF6yGOkumBGwdvzoW7lsGLYxkApq91QLFV8pUjXtVs6Mw1cee4qLgmN6TVanmd3juyg==
   dependencies:
     apisauce "^1.0.1"
     app-module-path "^2.2.0"
@@ -1357,7 +1358,7 @@ gluegun@^4.0.1:
     ramdasauce "^2.1.0"
     semver "^6.1.1"
     which "^2.0.0"
-    yargs-parser "^15.0.0"
+    yargs-parser "^16.0.0"
 
 graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2:
   version "4.2.2"
@@ -3527,9 +3528,10 @@ yargs-parser@^13.1.1:
     camelcase "^5.0.0"
     decamelize "^1.2.0"
 
-yargs-parser@^15.0.0:
-  version "15.0.0"
-  resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-15.0.0.tgz#cdd7a97490ec836195f59f3f4dbe5ea9e8f75f08"
+yargs-parser@^16.0.0:
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-16.0.0.tgz#534baab6f1c1c0c80adc2f57d1bcd55117a56bb2"
+  integrity sha512-WyNdFYED0penIaLqLSDSeFksC5lVjrjp9vNkG7IKfgQNiAYa6FfHuJXjuaQgt0eOVN2z+gJhHJSX7uRhJKPc7Q==
   dependencies:
     camelcase "^5.0.0"
     decamelize "^1.2.0"
