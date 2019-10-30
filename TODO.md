@@ -55,6 +55,8 @@ TODO:
 [x] Test Exporting Class (export named)
 [x] Let's write unit tests
 [x] Test all patterns you can find in <https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export>
+[] Babel polyfill
+[] Babel - can I block configs outside of this package?
 
 ## 4. Generate template
 
