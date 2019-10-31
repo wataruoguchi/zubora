@@ -9,6 +9,8 @@ async function generateTemplate(
   code: string
 ): Promise<string> {
   return new Promise<string>((resolve, reject): void => {
+    const codeNotFountMessage: string = 'No code found.';
+    if (code.length === 0) reject(codeNotFountMessage);
     try {
       // Babel
       const presets: string[] = /\.tsx?$/.test(getFileExt(srcPath))
@@ -27,7 +29,7 @@ async function generateTemplate(
               })
             );
           } else {
-            reject('No code found.');
+            reject(codeNotFountMessage);
           }
         })
         .catch((error): void => {
