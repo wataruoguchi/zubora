@@ -1,5 +1,5 @@
 import * as prettier from 'prettier';
-import { transformAsync } from '@babel/core';
+import { transformAsync, TransformOptions,BabelFileResult } from '@babel/core';
 const presetTypeScript = require('@babel/preset-typescript').default;
 import { parser, template, getFileExt } from 'zubora';
 
@@ -14,12 +14,12 @@ async function generateTemplate(
       const presets: string[] = /\.tsx?$/.test(getFileExt(srcPath))
         ? [presetTypeScript]
         : [];
-      const option = { filename: srcPath, presets };
+      const option: TransformOptions = { filename: srcPath, presets };
       transformAsync(code, option)
-        .then((result): void => {
-          const { code } = result || { code: '' };
-          if (typeof code === 'string' && code.length) {
-            const { moduleExports, classObjects } = parser(code);
+        .then((result: BabelFileResult | null): void => {
+          if (result && typeof result.code === 'string') {
+            const {code} = result;
+            const {moduleExports, classObjects} = parser(code);
             const generateTemplate = template(srcPath, destPath);
             resolve(
               prettier.format(generateTemplate(moduleExports, classObjects), {
