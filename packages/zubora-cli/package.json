@@ -1,6 +1,6 @@
 {
   "name": "zubora-cli",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "zubora CLI - Test Template Generator for zubora (\"lazy\" in Japanese) developers",
   "repository": {
     "type": "git",
@@ -52,7 +52,7 @@
     "prettier": "^1.18.2",
     "ts-node": "^8.4.1",
     "typescript": "^3.6.4",
-    "zubora": "^0.0.5"
+    "zubora": "^0.1.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.18",
