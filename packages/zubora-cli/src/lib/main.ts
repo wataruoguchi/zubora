@@ -14,7 +14,7 @@ async function generateTemplate(
       const presets: string[] = /\.tsx?$/.test(getFileExt(srcPath))
         ? [presetTypeScript]
         : [];
-      const option: TransformOptions = { filename: srcPath, presets };
+      const option: TransformOptions = { filename: srcPath, babelrc: false, configFile: false, code: true, comments: false, presets };
       transformAsync(code, option)
         .then((result: BabelFileResult | null): void => {
           if (result && typeof result.code === 'string') {
