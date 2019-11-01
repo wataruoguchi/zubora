@@ -9,7 +9,7 @@ async function generateTemplate(
   code: string
 ): Promise<string> {
   return new Promise<string>((resolve, reject): void => {
-    const codeNotFountMessage: string = 'No code found.';
+    const codeNotFountMessage = 'No code found.';
     if (code.length === 0) reject(codeNotFountMessage);
     try {
       // Babel
