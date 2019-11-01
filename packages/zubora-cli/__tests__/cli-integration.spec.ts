@@ -5,7 +5,7 @@ const cli = async (cmd: string): Promise<string> =>
 
 async function expectsContainingVersion(command: string): Promise<void> {
   const output = await cli(command);
-  expect(output).toContain('0.0.3');
+  expect(output).toContain('0.1.0');
 }
 
 describe('CLI', () => {
