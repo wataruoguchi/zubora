@@ -1,0 +1,61 @@
+{
+  "name": "zubora-plugin-coffee",
+  "version": "0.0.2",
+  "description": "zubora plugin for transpiling CoffeeScript.",
+  "scripts": {
+    "format": "prettier --write **/*.{js,jsx,ts,tsx,json}",
+    "lint": "eslint --ignore-path ../../.gitignore . --ext ts --ext js",
+    "lint:fix": "yarn lint --fix",
+    "clean-build": "rm -rf ./dist",
+    "compile": "tsc -p ./tsconfig.build.json",
+    "build": "yarn format && yarn lint && yarn clean-build && yarn compile",
+    "test": "jest",
+    "type-check": "tsc",
+    "watch": "jest --watch",
+    "coverage": "jest --coverage"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/wataruoguchi/zubora.git"
+  },
+  "keywords": [
+    "typescript",
+    "coffeescript",
+    "Unit Test",
+    "Test",
+    "zubora"
+  ],
+  "author": "Wataru Oguchi <wataru.oguchi.0to1@gmail.com> (https://twitter.com/watarutwt/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wataruoguchi/zubora/issues"
+  },
+  "homepage": "https://github.com/wataruoguchi/zubora#readme",
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/dist/"
+    ]
+  },
+  "dependencies": {
+    "coffeescript": "^2.4.1",
+    "typescript": "^3.6.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.21",
+    "@typescript-eslint/eslint-plugin": "^2.6.0",
+    "@typescript-eslint/parser": "^2.6.0",
+    "eslint": "^6.6.0",
+    "jest": "^24.9.0",
+    "prettier": "^1.18.2",
+    "ts-jest": "^24.1.0"
+  }
+}
