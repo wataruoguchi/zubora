@@ -4,7 +4,7 @@
   "description": "zubora CLI - Test Template Generator for zubora (\"lazy\" in Japanese) developers",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wataruoguchi/zubora.git"
+    "url": "git+ssh://git@github.com/wataruoguchi/zubora.git"
   },
   "bugs": "https://github.com/wataruoguchi/zubora/issues",
   "homepage": "https://github.com/wataruoguchi/zubora",
@@ -47,6 +47,8 @@
     "@types/figlet": "^1.2.0",
     "@types/node": "^12.7.11",
     "@types/prettier": "^1.18.2",
+    "@types/resolve": "^0.0.8",
+    "cosmiconfig": "^6.0.0",
     "figlet": "^1.2.4",
     "gluegun": "^4.0.1",
     "prettier": "^1.18.2",

@@ -21,5 +21,6 @@
     "ts-jest": "^24.1.0",
     "typescript": "^3.6.3"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {}
 }

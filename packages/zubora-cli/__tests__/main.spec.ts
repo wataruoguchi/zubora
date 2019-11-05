@@ -75,6 +75,7 @@ describe('main.ts', () => {
         })
         .catch(error => {
           expect(false).toBeTruthy();
+          console.error(error);
         });
       await generateTemplate(
         './test.ts',
@@ -86,6 +87,7 @@ describe('main.ts', () => {
         })
         .catch(error => {
           expect(false).toBeTruthy();
+          console.error(error);
         });
     });
     it('does not fail with TSX', async () => {
@@ -105,6 +107,7 @@ describe('main.ts', () => {
         })
         .catch(error => {
           expect(false).toBeTruthy();
+          console.error(error);
         });
     });
     it('does not fail with JS', async () => {
@@ -120,6 +123,7 @@ describe('main.ts', () => {
         })
         .catch(error => {
           expect(false).toBeTruthy();
+          console.error(error);
         });
     });
   });
