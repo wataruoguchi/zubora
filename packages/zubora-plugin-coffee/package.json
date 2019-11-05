@@ -1,6 +1,6 @@
 {
   "name": "zubora-plugin-coffee",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "zubora plugin for transpiling CoffeeScript.",
   "scripts": {
     "format": "prettier --write **/*.{js,jsx,ts,tsx,json}",
@@ -46,7 +46,6 @@
     ]
   },
   "dependencies": {
-    "coffeescript": "^2.4.1",
     "typescript": "^3.6.4"
   },
   "devDependencies": {
@@ -57,5 +56,8 @@
     "jest": "^24.9.0",
     "prettier": "^1.18.2",
     "ts-jest": "^24.1.0"
+  },
+  "peerDependencies": {
+    "coffeescript": ">= 1.8.x"
   }
 }
