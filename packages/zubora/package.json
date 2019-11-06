@@ -1,13 +1,13 @@
 {
   "name": "zubora",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The zubora module for the cli",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/wataruoguchi/zubora.git"
   },
   "bugs": "https://github.com/wataruoguchi/zubora/issues",
-  "homepage": "https://github.com/wataruoguchi/zubora",
+  "homepage": "https://github.com/wataruoguchi/zubora/tree/master/packages/zubora",
   "keywords": [
     "zubora",
     "Test",

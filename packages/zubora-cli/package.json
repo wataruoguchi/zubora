@@ -1,13 +1,13 @@
 {
   "name": "zubora-cli",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "description": "zubora CLI - Test Template Generator for zubora (\"lazy\" in Japanese) developers",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/wataruoguchi/zubora.git"
   },
   "bugs": "https://github.com/wataruoguchi/zubora/issues",
-  "homepage": "https://github.com/wataruoguchi/zubora",
+  "homepage": "https://github.com/wataruoguchi/zubora/tree/master/packages/zubora-cli",
   "keywords": [
     "zubora",
     "Test",

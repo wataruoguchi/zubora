@@ -70,12 +70,28 @@ describe('Greeter', function() {
 });
 ```
 
-### Support File Type
+## Supported File Type
 
 We're only supporting module files currently.
 
 - Source File: We're currently support JavaScript and TypeScript files. We will soon support CoffeeScript as well.
 - Dist file: The test file is currently generated as a JavaScript file. We'd like to generate TypeScript files shortly.
+
+## Plugins
+
+We have developed plugin system. Currently, there's one plugin.
+
+- [zubora-plugin-coffee](https://www.npmjs.com/package/zubora-plugin-coffee)
+
+### Usage
+
+Install the plugin and add this snippet in your `package.json`:
+
+```json
+"zubora" : {
+  "plugins" : ["zubora-plugin-coffee"]
+}
+```
 
 ## License
 

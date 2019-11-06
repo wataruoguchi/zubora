@@ -1,8 +1,12 @@
-# Zubora CLI
-
-[![npm version](https://badge.fury.io/js/zubora-cli.svg)](https://badge.fury.io/js/zubora-cli)
+# Zubora
 
 Zubora CLI is a JavaScript Unit Test File Generator CLI for zubora ("lazy" in Japanese) developers who code without writing tests. It generates unit test template to encourage zubora developers to write tests.
+
+This repository contains following packages:
+
+- [zubora-cli](https://www.npmjs.com/package/zubora-cli) [![npm version](https://badge.fury.io/js/zubora-cli.svg)](https://badge.fury.io/js/zubora-cli)
+- [zubora](https://www.npmjs.com/package/zubora) [![npm version](https://badge.fury.io/js/zubora.svg)](https://badge.fury.io/js/zubora)
+- [zubora-plugin-coffee](https://www.npmjs.com/package/zubora-plugin-coffee) [![npm version](https://badge.fury.io/js/zubora-plugin-coffee.svg)](https://badge.fury.io/js/zubora-plugin-coffee)
 
 The test template will be written in BDD (Behaviour-Driven Development) syntax.
 
@@ -15,6 +19,17 @@ $ npm install -g zubora-cli
 $ zubora generate <source file path> <test file path>
 ```
 
+### Setup plugins (Optional)
+
+```json
+// package.json
+{
+  "zubora": {
+    "plugins": ["zubora-plugin-coffee"]
+  }
+}
+```
+
 ## Usage
 
 For example, your project looks like this:
@@ -24,7 +39,6 @@ root
 ├── src
 |   └── modules
 |       └── tsModule.ts
-|       └── jsModule.js
 └── __tests__
 └── package.json
 ```
@@ -69,13 +83,6 @@ describe('Greeter', function() {
   });
 });
 ```
-
-### Support File Type
-
-We're only supporting module files currently.
-
-- Source File: We're currently support JavaScript and TypeScript files. We will soon support CoffeeScript as well.
-- Dist file: The test file is currently generated as a JavaScript file. We'd like to generate TypeScript files shortly.
 
 ## License
 
