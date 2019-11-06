@@ -32,8 +32,8 @@ Tools:
 
 TODO:
 
-[x] TypeScript
-[] CoffeeScript - well, let's take transpiled code instead.
+- [x] TypeScript
+- [x] CoffeeScript - Introduced the plugin
 
 ## 3. Parse
 
@@ -47,15 +47,16 @@ Docs:
 
 TODO:
 
-[x] Let's write unit tests
-[x] Test Exporting Class (module.export, module.export.default, module.export.named)
-[x] Let's write unit tests
-[x] Test Exporting Class (export default)
-[x] Let's write unit tests
-[x] Test Exporting Class (export named)
-[x] Let's write unit tests
-[x] Test all patterns you can find in <https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export>
-[x] Babel - can I block configs outside of this package? - Configured the options
+- [x] Let's write unit tests
+- [x] Test Exporting Class (module.export, module.export.default, module.export.named)
+- [x] Let's write unit tests
+- [x] Test Exporting Class (export default)
+- [x] Let's write unit tests
+- [x] Test Exporting Class (export named)
+- [x] Let's write unit tests
+- [x] Test all patterns you can find in <https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export>
+- [x] Babel - can I block configs outside of this package? - Configured the options
+- [] Support complicated patterns
 
 ## 4. Generate template
 
@@ -65,27 +66,26 @@ Tools:
 
 ### TODO:
 
-[x] Let's write unit tests
-[x] Resolve the file path to import the source file.
-[x] Let's write unit tests
-[x] Template for Class in BDD syntax
-[x] Let's write unit tests
-[x] Template for others in BDD syntax
-[x] Add more test for CLI
+- [x] Let's write unit tests
+- [x] Resolve the file path to import the source file.
+- [x] Let's write unit tests
+- [x] Template for Class in BDD syntax
+- [x] Let's write unit tests
+- [x] Template for others in BDD syntax
+- [x] Add more test for CLI
 
 ### Someday
 
-[] We don't want to test constructor, so remove it from test case
-[] We don't want to test "private" methods such as \_xxxx() - it should be configurable
+- [] We don't want to test constructor, so remove it from test case
+- [] We don't want to test "private" methods such as \_xxxx() - it should be configurable
 
 ## 5. File output
 
 ## 6. Documentation
 
-[x] Remove unused file (e.g., src/commands/generate)
-
-[x] Decoupling this to zubora & zubora CLI (lerna)
-[x] README.md
-[] docs/\*.md
-[x] Tidy up config files for lerna - See <https://github.com/typescript-eslint/typescript-eslint>
-[x] Tidy up tsconfig.json
+- [x] Remove unused file (e.g., src/commands/generate)
+- [x] Decoupling this to zubora & zubora CLI (lerna)
+- [x] README.md
+- [] docs/\*.md
+- [x] Tidy up config files for lerna - See <https://github.com/typescript-eslint/typescript-eslint>
+- [x] Tidy up tsconfig.json

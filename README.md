@@ -4,9 +4,9 @@ Zubora CLI is a JavaScript Unit Test File Generator CLI for zubora ("lazy" in Ja
 
 This repository contains following packages:
 
-- [zubora-cli](https://www.npmjs.com/package/zubora-cli) [![npm version](https://badge.fury.io/js/zubora-cli.svg)](https://badge.fury.io/js/zubora-cli)
-- [zubora](https://www.npmjs.com/package/zubora) [![npm version](https://badge.fury.io/js/zubora.svg)](https://badge.fury.io/js/zubora)
-- [zubora-plugin-coffee](https://www.npmjs.com/package/zubora-plugin-coffee) [![npm version](https://badge.fury.io/js/zubora-plugin-coffee.svg)](https://badge.fury.io/js/zubora-plugin-coffee)
+- [![npm version](https://badge.fury.io/js/zubora-cli.svg)](https://badge.fury.io/js/zubora-cli) [zubora-cli](https://www.npmjs.com/package/zubora-cli)
+- [![npm version](https://badge.fury.io/js/zubora.svg)](https://badge.fury.io/js/zubora) [zubora](https://www.npmjs.com/package/zubora)
+- [![npm version](https://badge.fury.io/js/zubora-plugin-coffee.svg)](https://badge.fury.io/js/zubora-plugin-coffee) [zubora-plugin-coffee](https://www.npmjs.com/package/zubora-plugin-coffee)
 
 The test template will be written in BDD (Behaviour-Driven Development) syntax.
 
