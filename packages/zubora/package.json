@@ -19,10 +19,10 @@
   "scripts": {
     "format": "prettier --write **/*.{js,jsx,ts,tsx,json}",
     "lint": "eslint --ignore-path ../../.gitignore . --ext ts --ext js",
-    "lint:fix": "yarn lint --fix",
+    "lint:fix": "npm run lint --fix",
     "clean-build": "rm -rf ./dist",
     "compile": "tsc -p ./tsconfig.build.json",
-    "build": "yarn format && yarn lint && yarn clean-build && yarn compile",
+    "build": "npm run format && npm run lint && npm run test && npm run clean-build && npm run compile",
     "test": "jest",
     "type-check": "tsc",
     "watch": "jest --watch",
