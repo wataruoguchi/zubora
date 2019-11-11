@@ -90,8 +90,9 @@
     js-tokens "^4.0.0"
 
 "@babel/parser@^7.1.0", "@babel/parser@^7.4.3", "@babel/parser@^7.6.0", "@babel/parser@^7.6.3", "@babel/parser@^7.6.4":
-  version "7.6.4"
-  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.6.4.tgz#cb9b36a7482110282d5cb6dd424ec9262b473d81"
+  version "7.7.3"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.7.3.tgz#5fad457c2529de476a248f75b0f090b3060af043"
+  integrity sha512-bqv+iCo9i+uLVbI0ILzKkvMorqxouI+GbV13ivcARXn9NNEabi2IEz912IgNpT/60BNXac5dgcfjb94NjsF33A==
 
 "@babel/plugin-syntax-object-rest-spread@^7.0.0":
   version "7.2.0"
