@@ -31,9 +31,7 @@ describe('main.ts', () => {
       });
       await generateTemplate('', '', 'const a = 1; export default a;').catch(
         error => {
-          expect(error.message).toMatch(
-            'The only valid meta property for import is import.meta'
-          );
+          expect(error.message).toMatch('Unexpected token');
         }
       );
       await generateTemplate(
