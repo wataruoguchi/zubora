@@ -23,7 +23,7 @@
     "lint:fix": "npm run lint --fix",
     "clean-build": "rm -rf ./build",
     "compile": "tsc -p tsconfig.build.json",
-    "build": "npm run format && npm run lint && npm run test && npm run clean-build && npm run compile",
+    "build": "npm run type-check && npm run format && npm run lint && npm run test && npm run clean-build && npm run compile",
     "test": "jest",
     "type-check": "tsc",
     "watch": "jest --watch",
@@ -42,27 +42,16 @@
     "@babel/core": "^7.6.0",
     "@babel/polyfill": "^7.6.0",
     "@babel/preset-typescript": "^7.6.0",
-    "@babel/types": "^7.6.1",
     "@types/babel__core": "^7.1.3",
     "@types/figlet": "^1.2.0",
-    "@types/node": "^12.7.11",
     "@types/prettier": "^1.18.2",
-    "@types/resolve": "^0.0.8",
     "cosmiconfig": "^6.0.0",
     "figlet": "^1.2.4",
     "gluegun": "^4.0.1",
     "prettier": "^1.18.2",
     "ts-node": "^8.4.1",
     "typescript": "^3.6.4",
-    "zubora": "^0.1.0"
-  },
-  "devDependencies": {
-    "@types/jest": "^24.0.18",
-    "@typescript-eslint/eslint-plugin": "^2.6.0",
-    "@typescript-eslint/parser": "^2.6.0",
-    "eslint": "^6.6.0",
-    "jest": "^24.9.0",
-    "ts-jest": "^24.1.0"
+    "zubora": "file:../zubora"
   },
   "jest": {
     "preset": "ts-jest",
