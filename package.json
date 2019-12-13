@@ -6,7 +6,7 @@
     "cache-clean": "lerna exec -- yarn cache clean",
     "test": "lerna run --parallel test",
     "lint": "lerna run --parallel lint",
-    "lint:fix": "lerna exec -- npm run lint:fix",
+    "lint:fix": "lerna run --parallel lint:fix",
     "type-check": "lerna run --parallel type-check",
     "build": "lerna run --parallel build"
   },
