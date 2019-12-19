@@ -74,10 +74,13 @@ Tools:
 - [x] Template for others in BDD syntax
 - [x] Add more test for CLI
 
-### Someday
+### Upcoming
 
 - [] We don't want to test constructor, so remove it from test case
 - [] We don't want to test "private" methods such as \_xxxx() - it should be configurable
+- [] We should make this not class based. And get all exposed functions/class
+
+#### Refactoring...
 
 ## 5. File output
 

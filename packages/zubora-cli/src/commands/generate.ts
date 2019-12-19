@@ -1,9 +1,5 @@
 import { GluegunToolbox } from 'gluegun';
 import { generateTemplate } from '../lib/main';
-import { getConfig } from '../lib/getConfig';
-import * as resolve from 'resolve';
-
-// ~/webdev/namakemono/zubora/packages/zubora-cli/bin/zubora
 
 module.exports = {
   name: 'generate',
@@ -34,55 +30,14 @@ module.exports = {
     //   print.error(`The file "${destPath}" already exists.`)
     //   return
     // }
+
     const rawCode = read(srcPath) || '';
-
-    const { plugins = [] } = await getConfig();
-    async function codeThroughPlugins(rawCode: string): Promise<string> {
-      const loadedPlugins = new Map();
-      await Promise.all(
-        plugins.map(async (pluginName: string) => {
-          // Load plugins
-          const filePath = await resolve.sync(pluginName, {
-            basedir: process.cwd(),
-          });
-          if (!filePath)
-            throw new Error(
-              `Plugin ${pluginName} does not exist. Please try "npm install -D ${pluginName}"`
-            );
-          const plugin = await import(filePath);
-          loadedPlugins.set(
-            pluginName,
-            typeof plugin === 'object' && typeof plugin.default === 'function'
-              ? plugin.default
-              : function(code: string): string {
-                  return code;
-                }
-          );
-          return;
-        })
-      );
-      const code = plugins.reduce((code: string, pluginName: string) => {
-        try {
-          if (loadedPlugins.get(pluginName))
-            return loadedPlugins.get(pluginName)(code);
-        } catch (error) {
-          console.log('plugin error', error);
-          return code;
-        }
-      }, rawCode);
-      return code;
+    try {
+      const result = await generateTemplate(srcPath, destPath, rawCode);
+      print.debug(result);
+      write(destPath, result);
+    } catch (error) {
+      print.error(error);
     }
-    const code: string = await codeThroughPlugins(rawCode);
-
-    return generateTemplate(srcPath, destPath, code)
-      .then((result): void => {
-        print.debug(result);
-        write(destPath, result);
-        return;
-      })
-      .catch((error): void => {
-        print.error(error);
-        return;
-      });
   },
 };
