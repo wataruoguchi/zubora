@@ -3,5 +3,6 @@
   "compilerOptions": {
     "noImplicitAny": false
   },
+  "include": ["../zubora"],
   "exclude": ["node_modules", "build", "__tests__"]
 }
