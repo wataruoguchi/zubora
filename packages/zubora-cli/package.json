@@ -56,5 +56,10 @@
       "/node_modules/",
       "/build/"
     ]
+  },
+  "globals": {
+    "ts-jest": {
+      "tsConfigFile": "tsconfig.test.json"
+    }
   }
 }
