@@ -21,6 +21,5 @@ jobs:
           npm install -g yarn
           yarn
           yarn bootstrap
-          yarn build packages/zubora
           yarn build
           yarn test
