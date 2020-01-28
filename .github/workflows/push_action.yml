@@ -20,5 +20,5 @@ jobs:
         run: |
           npm install -g yarn
           yarn
-          yarn build
+          yarn postinstall
           yarn test
