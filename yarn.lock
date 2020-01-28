@@ -7900,7 +7900,7 @@ yn@3.1.1:
     gluegun "^4.0.1"
     prettier "^1.18.2"
     ts-node "^8.4.1"
-    zubora "file:../../../Library/Caches/Yarn/v6/npm-zubora-cli-0.2.2-3313ac63-d3cd-4656-bb2f-d7d7524e8d07-1580188092802/node_modules/zubora"
+    zubora "file:../../../Library/Caches/Yarn/v6/npm-zubora-cli-0.2.2-d66aba62-6d61-4cd7-9c9c-38dd1ca6dd2a-1580192333730/node_modules/zubora"
 
 "zubora-plugin-coffee@file:packages/zubora-plugin-coffee":
   version "0.0.4"
