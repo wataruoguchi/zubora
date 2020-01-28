@@ -55,11 +55,11 @@
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/build/"
-    ]
-  },
-  "globals": {
-    "ts-jest": {
-      "tsConfigFile": "tsconfig.build.json"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "tsconfig.build.json"
+      }
     }
   }
 }
