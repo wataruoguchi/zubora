@@ -56,10 +56,8 @@
       "/node_modules/",
       "/build/"
     ],
-    "globals": {
-      "ts-jest": {
-        "tsConfig": "tsconfig.build.json"
-      }
+    "moduleNameMapper": {
+      "^zubora/(.*)$": "<rootDir>/packages/zubora/$1"
     }
   }
 }
