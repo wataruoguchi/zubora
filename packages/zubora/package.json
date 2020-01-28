@@ -17,16 +17,12 @@
     "Abstract Syntax Tree"
   ],
   "scripts": {
-    "format": "prettier --write **/*.{js,jsx,ts,tsx,json}",
-    "lint": "eslint --ignore-path ../../.gitignore . --ext ts --ext js",
-    "lint:fix": "npm run lint --fix",
-    "clean-build": "rm -rf ./dist",
-    "compile": "tsc -p ./tsconfig.build.json",
-    "build": "npm run format && npm run lint && npm run test && npm run clean-build && npm run compile",
-    "test": "jest",
-    "type-check": "tsc",
-    "watch": "jest --watch",
-    "coverage": "jest --coverage"
+    "build": "tsc -b tsconfig.build.json",
+    "clean": "tsc -b tsconfig.build.json --clean",
+    "format": "prettier --write \"./**/*.{ts,js,json,md}\" --ignore-path ../../.prettierignore",
+    "lint": "eslint . --ext .js,.ts --ignore-path='../../.gitignore'",
+    "test": "jest --coverage",
+    "type-check": "tsc -p tsconfig.json --noEmit"
   },
   "files": [
     "dist",
@@ -37,11 +33,8 @@
   "dependencies": {
     "@babel/parser": "^7.6.0",
     "@babel/traverse": "^7.6.0",
-    "@babel/types": "^7.6.1",
-    "@types/babel__core": "^7.1.3",
-    "@types/node": "^12.7.11",
-    "ts-node": "^8.4.1",
-    "typescript": "^3.6.4"
+    "@babel/types": "^7.7.4",
+    "@types/babel__core": "^7.1.3"
   },
   "jest": {
     "preset": "ts-jest",
@@ -53,14 +46,5 @@
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "author": "Wataru Oguchi <wataru.oguchi.0to1@gmail.com> (https://twitter.com/watarutwt/)",
-  "devDependencies": {
-    "@types/jest": "^24.0.21",
-    "@typescript-eslint/eslint-plugin": "^2.6.0",
-    "@typescript-eslint/parser": "^2.6.0",
-    "eslint": "^6.6.0",
-    "jest": "^24.9.0",
-    "prettier": "^1.18.2",
-    "ts-jest": "^24.1.0"
-  }
+  "author": "Wataru Oguchi <wataru.oguchi.0to1@gmail.com> (https://twitter.com/watarutwt/)"
 }

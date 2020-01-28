@@ -1,24 +1,24 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": false,
-    "experimentalDecorators": true,
-    "lib": [
-      "es2015",
-      "es2015.promise",
-      "es2015.generator",
-      "es2015.iterable",
-      "dom"
-    ],
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
     "module": "commonjs",
     "moduleResolution": "node",
+    "noImplicitReturns": true,
     "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "pretty": true,
     "noImplicitAny": true,
+    "experimentalDecorators": true,
+    "lib": ["es2015", "es2015.promise", "es2015.generator", "es2015.iterable"],
     "strictNullChecks": true,
-    "sourceMap": false,
-    "inlineSourceMap": true,
+    "sourceMap": true,
     "strict": true,
-    "target": "es5",
-    "declaration": true
+    "target": "es5"
   },
   "exclude": ["node_modules"]
 }
