@@ -2,7 +2,8 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "build",
-    "declaration": false
+    "declaration": false,
+    "declarationMap": false
   },
   "exclude": ["node_modules", "build"]
 }

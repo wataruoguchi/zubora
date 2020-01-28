@@ -3,16 +3,12 @@
   "version": "0.0.4",
   "description": "zubora plugin for transpiling CoffeeScript.",
   "scripts": {
-    "format": "prettier --write **/*.{js,jsx,ts,tsx,json}",
-    "lint": "eslint --ignore-path ../../.gitignore . --ext ts --ext js",
-    "lint:fix": "npm run lint --fix",
-    "clean-build": "rm -rf ./dist",
-    "compile": "tsc -p ./tsconfig.build.json",
-    "build": "npm run type-check && npm run format && npm run lint && npm run test && npm run clean-build && npm run compile",
-    "test": "jest",
-    "type-check": "tsc",
-    "watch": "jest --watch",
-    "coverage": "jest --coverage"
+    "build": "tsc -b tsconfig.build.json",
+    "clean": "tsc -b tsconfig.build.json --clean",
+    "format": "prettier --write \"./**/*.{ts,js,json,md}\" --ignore-path ../../.prettierignore",
+    "lint": "eslint . --ext .js,.ts --ignore-path='../../.gitignore'",
+    "test": "jest --coverage",
+    "type-check": "tsc -p tsconfig.json --noEmit"
   },
   "files": [
     "dist",

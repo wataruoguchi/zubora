@@ -2,13 +2,18 @@
   "name": "zubora",
   "private": true,
   "scripts": {
-    "bootstrap": "lerna bootstrap && lerna exec -- yarn",
-    "cache-clean": "lerna exec -- yarn cache clean",
-    "test": "lerna run --parallel test",
-    "lint": "lerna run --parallel lint",
-    "lint:fix": "lerna run --parallel lint:fix",
-    "type-check": "lerna run --parallel type-check",
-    "build": "lerna exec -- yarn build ./packages/zubora && lerna exec -- yarn build ./packages/zubora-cli && lerna exec -- yarn build ./packages/zubora-plugin-coffee"
+    "build": "lerna run build",
+    "clean": "lerna clean && lerna run clean",
+    "check:docs": "lerna run check:docs",
+    "check:configs": "lerna run check:configs",
+    "format": "prettier --write \"./**/*.{ts,js,json,md}\"",
+    "format-check": "prettier --list-different \"./**/*.{ts,js,json,md}\"",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "postinstall": "lerna bootstrap && yarn build && lerna link",
+    "check-clean-workspace-after-install": "git diff --quiet --exit-code",
+    "test": "lerna run test",
+    "type-check": "lerna run type-check"
   },
   "devDependencies": {
     "@types/jest": "^24.0.21",
@@ -17,16 +22,19 @@
     "@types/resolve": "^0.0.8",
     "@typescript-eslint/eslint-plugin": "^2.6.0",
     "@typescript-eslint/parser": "^2.6.0",
-    "coffeescript": "^2.4.1",
+    "coffeescript": "^2.5.0",
     "eslint": "^6.6.0",
     "husky": "^3.0.8",
     "jest": "^24.9.0",
     "lerna": "^3.16.4",
     "lint-staged": "^9.4.1",
-    "prettier": "^1.18.2",
+    "prettier": "^1.19.1",
     "ts-jest": "^24.1.0",
     "typescript": "^3.6.4"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "license": "MIT",
   "dependencies": {
     "zubora": "file:packages/zubora",
