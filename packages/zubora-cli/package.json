@@ -57,7 +57,7 @@
       "/build/"
     ],
     "moduleNameMapper": {
-      "^zubora/(.*)$": "<rootDir>/packages/zubora/$1"
+      "^zubora(.*)$": "<rootDir>/../zubora/$1"
     }
   }
 }
