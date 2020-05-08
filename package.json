@@ -16,7 +16,7 @@
     "type-check": "lerna run type-check"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.21",
+    "@types/jest": "^25.2.1",
     "@types/node": "^13.13.4",
     "@types/prettier": "^1.18.2",
     "@types/resolve": "^1.14.0",
