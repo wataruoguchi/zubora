@@ -31,8 +31,8 @@ module.exports = {
     //   return
     // }
 
-    const rawCode = read(srcPath) || '';
     try {
+      const rawCode = read(srcPath) || '';
       const result = await generateTemplate(srcPath, destPath, rawCode);
       print.debug(result);
       write(destPath, result);
