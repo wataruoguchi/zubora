@@ -1,6 +1,6 @@
 {
   "name": "zubora-cli",
-  "version": "0.2.2",
+  "version": "0.3.2",
   "description": "zubora CLI - Test Template Generator for zubora (\"lazy\" in Japanese) developers",
   "repository": {
     "type": "git",
@@ -12,7 +12,8 @@
     "zubora",
     "Test",
     "Unit Test",
-    "TypeScript"
+    "TypeScript",
+    "JavaScript"
   ],
   "bin": {
     "zubora": "bin/zubora"
@@ -35,9 +36,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@babel/core": "^7.6.0",
     "@babel/polyfill": "^7.6.0",
-    "@babel/preset-typescript": "^7.6.0",
     "@types/babel__core": "^7.1.3",
     "@types/cosmiconfig": "^6.0.0",
     "@types/figlet": "^1.2.0",

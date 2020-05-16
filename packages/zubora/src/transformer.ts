@@ -26,6 +26,7 @@ function transformer(
     code: true,
     comments: false,
     presets,
+    ast: true,
   };
   return function(code: string): Promise<BabelFileResult | null> {
     return transformAsync(code, option);

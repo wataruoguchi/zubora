@@ -3,7 +3,7 @@
  * Transpile code with specified plugins. TypeScript & JavaScript are supported by default.
  * With `zubora-plugin-coffee`, we can support CoffeeScript. Please see README for more details.
  */
-import { getConfig } from './getConfig';
+import { loadConfig } from './configLoader';
 import resolve from 'resolve';
 
 type loadedPlugin = {
@@ -64,7 +64,7 @@ function _transpile(code: string, loadedPlugin: loadedPlugin): string {
  * @returns Transpiled code
  */
 async function transpileWithPlugins(rawCode: string): Promise<string> {
-  const { plugins = [] } = await getConfig();
+  const { plugins = [] } = await loadConfig();
   const loadedPlugins: loadedPlugin[] = await Promise.all(
     plugins.map(_loadPlugin)
   );

@@ -1,10 +1,10 @@
-import { ModuleExportObject, ClassObject } from '../src/types';
+import { ExportedModule, ClassObject } from '../src/types';
 import { importBlock, testCaseBlock } from '../src/template';
 
 describe('importBlock', () => {
   describe('import export.modules', () => {
     it('has on its own 1', () => {
-      const modules: ModuleExportObject[] = [
+      const modules: ExportedModule[] = [
         { property: null, classNameIfExists: null, name: null },
       ];
       expect(importBlock('./src.js', modules)).toBe(
@@ -12,7 +12,7 @@ describe('importBlock', () => {
       );
     });
     it('has one other named module', () => {
-      const modules: ModuleExportObject[] = [
+      const modules: ExportedModule[] = [
         { property: null, classNameIfExists: null, name: null },
         { property: 'named', classNameIfExists: null, name: null },
       ];
@@ -21,7 +21,7 @@ describe('importBlock', () => {
       );
     });
     it('has two other named modules', () => {
-      const modules: ModuleExportObject[] = [
+      const modules: ExportedModule[] = [
         { property: null, classNameIfExists: null, name: null },
         { property: 'named', classNameIfExists: null, name: null },
         { property: 'anotherNamed', classNameIfExists: null, name: null },
@@ -31,7 +31,7 @@ describe('importBlock', () => {
       );
     });
     it('has one default module', () => {
-      const modules: ModuleExportObject[] = [
+      const modules: ExportedModule[] = [
         { property: null, classNameIfExists: null, name: null },
         { property: 'default', classNameIfExists: null, name: null },
       ];
@@ -42,7 +42,7 @@ describe('importBlock', () => {
   });
   describe('import default', () => {
     it('has on its own', () => {
-      const modules: ModuleExportObject[] = [
+      const modules: ExportedModule[] = [
         { property: 'default', classNameIfExists: null, name: null },
       ];
       expect(importBlock('./src.js', modules)).toBe(
@@ -50,7 +50,7 @@ describe('importBlock', () => {
       );
     });
     it('has one other named module', () => {
-      const modules: ModuleExportObject[] = [
+      const modules: ExportedModule[] = [
         { property: 'default', classNameIfExists: null, name: null },
         { property: 'named', classNameIfExists: null, name: null },
       ];
@@ -59,7 +59,7 @@ describe('importBlock', () => {
       );
     });
     it('has two other named modules', () => {
-      const modules: ModuleExportObject[] = [
+      const modules: ExportedModule[] = [
         { property: 'default', classNameIfExists: null, name: null },
         { property: 'named', classNameIfExists: null, name: null },
         { property: 'anotherNamed', classNameIfExists: null, name: null },
@@ -71,7 +71,7 @@ describe('importBlock', () => {
   });
   describe('import named', () => {
     it('has on its own', () => {
-      const modules: ModuleExportObject[] = [
+      const modules: ExportedModule[] = [
         { property: 'named', classNameIfExists: null, name: null },
       ];
       expect(importBlock('./src.js', modules)).toBe(
@@ -79,7 +79,7 @@ describe('importBlock', () => {
       );
     });
     it('has one other named module', () => {
-      const modules: ModuleExportObject[] = [
+      const modules: ExportedModule[] = [
         { property: 'named', classNameIfExists: null, name: null },
         { property: 'anotherNamed', classNameIfExists: null, name: null },
       ];
@@ -88,7 +88,7 @@ describe('importBlock', () => {
       );
     });
     it('has two other named modules', () => {
-      const modules: ModuleExportObject[] = [
+      const modules: ExportedModule[] = [
         { property: 'named', classNameIfExists: null, name: null },
         { property: 'anotherNamed', classNameIfExists: null, name: null },
         { property: 'third', classNameIfExists: null, name: null },
@@ -104,7 +104,7 @@ describe('testCaseBlock', () => {
   describe('importing one class', () => {
     it('imports export.modules 1', () => {
       const filePath = '../modules/src.js';
-      const modules: ModuleExportObject[] = [
+      const modules: ExportedModule[] = [
         { property: null, classNameIfExists: 'Cls', name: null },
       ];
       const classObjects: ClassObject[] = [
@@ -126,7 +126,7 @@ describe('testCaseBlock', () => {
     });
     it('imports export.modules 2', () => {
       const filePath = './modules/src.js';
-      const modules: ModuleExportObject[] = [
+      const modules: ExportedModule[] = [
         { property: null, classNameIfExists: null, name: 'Cls' },
       ];
       const classObjects: ClassObject[] = [
@@ -148,7 +148,7 @@ describe('testCaseBlock', () => {
     });
     it('imports default', () => {
       const filePath = './modules/src.js';
-      const modules: ModuleExportObject[] = [
+      const modules: ExportedModule[] = [
         { property: 'default', classNameIfExists: 'Cls', name: null },
       ];
       const classObjects: ClassObject[] = [
@@ -167,7 +167,7 @@ describe('testCaseBlock', () => {
     });
     it('imports named', () => {
       const filePath = './modules/src.js';
-      const modules: ModuleExportObject[] = [
+      const modules: ExportedModule[] = [
         { property: 'named', classNameIfExists: 'Cls', name: null },
       ];
       const classObjects: ClassObject[] = [
@@ -188,7 +188,7 @@ describe('testCaseBlock', () => {
   describe('importing two classes', () => {
     it('imports export.modules and one named module', () => {
       const filePath = './modules/src.js';
-      const modules: ModuleExportObject[] = [
+      const modules: ExportedModule[] = [
         { property: null, classNameIfExists: 'Cls', name: null },
         { property: 'named', classNameIfExists: 'Cls2', name: null },
       ];
@@ -217,7 +217,7 @@ describe('testCaseBlock', () => {
   describe('imports export.modules', () => {
     it('has one module', () => {
       const filePath = './modules/src.js';
-      const modules: ModuleExportObject[] = [
+      const modules: ExportedModule[] = [
         { property: null, classNameIfExists: null, name: null },
       ];
       const classObjects: ClassObject[] = [];
@@ -231,7 +231,7 @@ describe('testCaseBlock', () => {
     });
     it('has one module and one class', () => {
       const filePath = './modules/src.js';
-      const modules: ModuleExportObject[] = [
+      const modules: ExportedModule[] = [
         { property: 'Cls', classNameIfExists: null, name: null },
       ];
       const classObjects: ClassObject[] = [
@@ -254,7 +254,7 @@ describe('testCaseBlock', () => {
     });
     it('has two modules', () => {
       const filePath = './modules/src.js';
-      const modules: ModuleExportObject[] = [
+      const modules: ExportedModule[] = [
         { property: 'default', classNameIfExists: null, name: null },
         { property: 'named', classNameIfExists: null, name: null },
       ];

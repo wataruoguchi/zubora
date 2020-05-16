@@ -1,3 +1,4 @@
+import { traverser } from '../src/traverser';
 import { parser } from '../src/parser';
 
 function testUtils(
@@ -13,7 +14,7 @@ function testUtils(
       }
       ${baseContent} Cls;`;
       it('imports one module', () => {
-        const { moduleExports } = parser(content);
+        const { moduleExports } = traverser(parser(content));
         expect(moduleExports.length).toBe(1);
         const moduleExport = moduleExports.pop();
         if (moduleExport) {
@@ -25,7 +26,7 @@ function testUtils(
         }
       });
       it('imports one class object that has four methods', () => {
-        const { classObjects } = parser(content);
+        const { classObjects } = traverser(parser(content));
         expect(classObjects.length).toBe(1);
         const classObject = classObjects.pop();
         if (classObject) {
@@ -41,7 +42,7 @@ function testUtils(
         constructor() {}
       }`;
       it('imports one module', () => {
-        const { moduleExports } = parser(content);
+        const { moduleExports } = traverser(parser(content));
         expect(moduleExports.length).toBe(1);
         const moduleExport = moduleExports.pop();
         if (moduleExport) {
@@ -53,7 +54,7 @@ function testUtils(
         }
       });
       it('imports one class object that has one method', () => {
-        const { classObjects } = parser(content);
+        const { classObjects } = traverser(parser(content));
         expect(classObjects.length).toBe(1);
         const classObject = classObjects.pop();
         if (classObject) {
@@ -76,7 +77,7 @@ function testUtils(
       const content = `function func() {};
       ${baseContent} func;`;
       it('imports one module', () => {
-        const { moduleExports } = parser(content);
+        const { moduleExports } = traverser(parser(content));
         expect(moduleExports.length).toBe(1);
         const moduleExport = moduleExports.pop();
         if (moduleExport) {
@@ -91,7 +92,7 @@ function testUtils(
     describe('Function Declaration', () => {
       const content = `${baseContent} function func() {};`;
       it('imports one module', () => {
-        const { moduleExports } = parser(content);
+        const { moduleExports } = traverser(parser(content));
         expect(moduleExports.length).toBe(1);
         const moduleExport = moduleExports.pop();
         if (moduleExport) {
@@ -109,7 +110,7 @@ function testUtils(
       const c = '0';
       ${baseContent} {a, b, c};`;
       it('imports one module', () => {
-        const { moduleExports } = parser(content);
+        const { moduleExports } = traverser(parser(content));
         expect(moduleExports.length).toBe(1);
         const moduleExport = moduleExports.pop();
         if (moduleExport) {
@@ -143,7 +144,7 @@ describe('parser', () => {
       }
       ${baseContent} Cls;`;
       it('imports one module', () => {
-        const { moduleExports } = parser(content);
+        const { moduleExports } = traverser(parser(content));
         expect(moduleExports.length).toBe(1);
         const moduleExport = moduleExports.pop();
         if (moduleExport) {
@@ -155,7 +156,7 @@ describe('parser', () => {
         }
       });
       it('imports one class object that has four methods', () => {
-        const { classObjects } = parser(content);
+        const { classObjects } = traverser(parser(content));
         expect(classObjects.length).toBe(1);
         const classObject = classObjects.pop();
         if (classObject) {
@@ -206,7 +207,7 @@ describe('parser', () => {
         constructor() {}
       }`;
       it('imports one module', () => {
-        const { moduleExports } = parser(content);
+        const { moduleExports } = traverser(parser(content));
         expect(moduleExports.length).toBe(1);
         const moduleExport = moduleExports.pop();
         if (moduleExport) {
@@ -218,7 +219,7 @@ describe('parser', () => {
         }
       });
       it('imports one class object that has one method', () => {
-        const { classObjects } = parser(content);
+        const { classObjects } = traverser(parser(content));
         expect(classObjects.length).toBe(1);
         const classObject = classObjects.pop();
         if (classObject) {
@@ -241,7 +242,7 @@ describe('parser', () => {
       const content = `function func() {};
       ${baseContent} func;`;
       it('imports one module', () => {
-        const { moduleExports } = parser(content);
+        const { moduleExports } = traverser(parser(content));
         expect(moduleExports.length).toBe(1);
         const moduleExport = moduleExports.pop();
         if (moduleExport) {
@@ -256,7 +257,7 @@ describe('parser', () => {
     describe('Function Declaration', () => {
       const content = `${baseContent} function func() {};`;
       it('imports one module', () => {
-        const { moduleExports } = parser(content);
+        const { moduleExports } = traverser(parser(content));
         expect(moduleExports.length).toBe(1);
         const moduleExport = moduleExports.pop();
         if (moduleExport) {
@@ -274,7 +275,7 @@ describe('parser', () => {
       const c = '0';
       ${baseContent} {a, b, c};`;
       it('imports one module', () => {
-        const { moduleExports } = parser(content);
+        const { moduleExports } = traverser(parser(content));
         expect(moduleExports.length).toBe(1);
         const moduleExport = moduleExports.pop();
         if (moduleExport) {
@@ -310,7 +311,7 @@ describe('parser', () => {
       }
       ${baseContent} { Cls };`;
       it('imports one module', () => {
-        const { moduleExports } = parser(content);
+        const { moduleExports } = traverser(parser(content));
         expect(moduleExports.length).toBe(1);
         const moduleExport = moduleExports.pop();
         if (moduleExport) {
@@ -322,7 +323,7 @@ describe('parser', () => {
         }
       });
       it('imports one class object that has four methods', () => {
-        const { classObjects } = parser(content);
+        const { classObjects } = traverser(parser(content));
         expect(classObjects.length).toBe(1);
         const classObject = classObjects.pop();
         if (classObject) {
@@ -338,7 +339,7 @@ describe('parser', () => {
     constructor() {}
     }`;
       it('imports one module', () => {
-        const { moduleExports } = parser(content);
+        const { moduleExports } = traverser(parser(content));
         expect(moduleExports.length).toBe(1);
         const moduleExport = moduleExports.pop();
         if (moduleExport) {
@@ -350,7 +351,7 @@ describe('parser', () => {
         }
       });
       it('imports one class object that has one method', () => {
-        const { classObjects } = parser(content);
+        const { classObjects } = traverser(parser(content));
         expect(classObjects.length).toBe(1);
         const classObject = classObjects.pop();
         if (classObject) {
@@ -373,7 +374,7 @@ describe('parser', () => {
       const content = `function func() {};
     ${baseContent} {func};`;
       it('imports one module', () => {
-        const { moduleExports } = parser(content);
+        const { moduleExports } = traverser(parser(content));
         expect(moduleExports.length).toBe(1);
         const moduleExport = moduleExports.pop();
         if (moduleExport) {
@@ -388,7 +389,7 @@ describe('parser', () => {
     describe('Function Declaration', () => {
       const content = `${baseContent} function func() {};`;
       it('imports one module', () => {
-        const { moduleExports } = parser(content);
+        const { moduleExports } = traverser(parser(content));
         expect(moduleExports.length).toBe(1);
         const moduleExport = moduleExports.pop();
         if (moduleExport) {
@@ -406,7 +407,7 @@ describe('parser', () => {
         class c { constructor() {} };
         ${baseContent} {a, b, c};`;
       it('imports three modules', () => {
-        const { moduleExports } = parser(content);
+        const { moduleExports } = traverser(parser(content));
         expect(moduleExports.length).toBe(3);
         const [moduleA, moduleB, moduleC] = moduleExports;
         if (moduleA && moduleB && moduleC) {
@@ -424,7 +425,7 @@ describe('parser', () => {
         }
       });
       it('imports one class object that has one method', () => {
-        const { classObjects } = parser(content);
+        const { classObjects } = traverser(parser(content));
         expect(classObjects.length).toBe(1);
         const classObject = classObjects.pop();
         if (classObject) {
@@ -449,7 +450,7 @@ describe('parser', () => {
         const c = '0';
         ${baseContent} {a as default, b as beta, c};`;
       it('imports three modules', () => {
-        const { moduleExports } = parser(content);
+        const { moduleExports } = traverser(parser(content));
         expect(moduleExports.length).toBe(3);
         const [moduleA, moduleB, moduleC] = moduleExports;
         if (moduleA && moduleB && moduleC) {

@@ -1,49 +1,27 @@
-import { generateTemplate } from '../src/lib/main';
+import { zubora } from '../src/index';
 
 describe('main.ts', () => {
-  describe('generateTemplate', () => {
-    it('fails with "No code found."', async () => {
-      await generateTemplate('', '', '').catch(error => {
-        expect(error).toBe('No code found.');
-      });
-      await generateTemplate('./test.ts', '', '').catch(error => {
-        expect(error).toBe('No code found.');
-      });
-      await generateTemplate('../test.js', '', '').catch(error => {
-        expect(error).toBe('No code found.');
-      });
-      await generateTemplate('./test.js', './result.spec.js', '').catch(
-        error => {
-          expect(error).toBe('No code found.');
-        }
-      );
-    });
+  describe('zubora', () => {
     it('fails with parse errors', async () => {
-      await generateTemplate('./test.js', '', 'const a = 1;').catch(error => {
+      await zubora('./test.js', '', 'const a = 1;').catch(error => {
         expect(error.message).toMatch('Unexpected token');
       });
-      await generateTemplate(
-        './test.js',
-        './result.spec.js',
-        'const a = 1;'
-      ).catch(error => {
-        expect(error.message).toMatch('Unexpected token');
-      });
-      await generateTemplate('', '', 'const a = 1; export default a;').catch(
+      await zubora('./test.js', './result.spec.js', 'const a = 1;').catch(
         error => {
           expect(error.message).toMatch('Unexpected token');
         }
       );
-      await generateTemplate(
-        './test.js',
-        '',
-        'const a = 1; export default a;'
-      ).catch(error => {
-        expect(error.message).toMatch(
-          'The only valid meta property for import is import.meta'
-        );
+      await zubora('', '', 'const a = 1; export default a;').catch(error => {
+        expect(error.message).toMatch('Unexpected token');
       });
-      await generateTemplate(
+      await zubora('./test.js', '', 'const a = 1; export default a;').catch(
+        error => {
+          expect(error.message).toMatch(
+            'The only valid meta property for import is import.meta'
+          );
+        }
+      );
+      await zubora(
         './test.ts',
         '',
         'const a: number = 1; export default a;'
@@ -52,7 +30,7 @@ describe('main.ts', () => {
           'The only valid meta property for import is import.meta'
         );
       });
-      await generateTemplate(
+      await zubora(
         './test.js',
         './result.spec.js',
         'const a: number = 1; export default a;'
@@ -67,7 +45,7 @@ describe('main.ts', () => {
         `it("", function() {`,
         `// TODO Write test for test`,
       ];
-      await generateTemplate('./test.ts', '', 'const a = 1; export default a;')
+      await zubora('./test.ts', '', 'const a = 1; export default a;')
         .then(result => {
           expectedLines.map(line => expect(result).toMatch(line));
         })
@@ -75,11 +53,7 @@ describe('main.ts', () => {
           expect(false).toBeTruthy();
           console.error(error);
         });
-      await generateTemplate(
-        './test.ts',
-        '',
-        'const a: number = 1; export default a;'
-      )
+      await zubora('./test.ts', '', 'const a: number = 1; export default a;')
         .then(result => {
           expectedLines.map(line => expect(result).toMatch(line));
         })
@@ -95,11 +69,7 @@ describe('main.ts', () => {
         `it("", function() {`,
         `// TODO Write test for test`,
       ];
-      await generateTemplate(
-        './test.tsx',
-        '',
-        'const a: number = 1; export default a;'
-      )
+      await zubora('./test.tsx', '', 'const a: number = 1; export default a;')
         .then(result => {
           expectedLines.map(line => expect(result).toMatch(line));
         })
@@ -115,7 +85,7 @@ describe('main.ts', () => {
         `it("", function() {`,
         `// TODO Write test for test`,
       ];
-      await generateTemplate('./test.js', '', 'const a = 1; export default a;')
+      await zubora('./test.js', '', 'const a = 1; export default a;')
         .then(result => {
           expectedLines.map(line => expect(result).toMatch(line));
         })
