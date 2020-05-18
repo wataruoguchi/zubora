@@ -4,7 +4,7 @@ import { ExportedModule } from '../types';
 import { buildExportedModule } from './buildExportedModule';
 
 function visitExportDefaultDeclaration(
-  moduleExports: ExportedModule[]
+  exportedModules: ExportedModule[]
 ): (path: NodePath<ExportDefaultDeclaration>) => void {
   return function(path): void {
     const node: ExportDefaultDeclaration = path.node;
@@ -13,7 +13,7 @@ function visitExportDefaultDeclaration(
       'default',
       declaration
     );
-    moduleExports.push(moduleExportObject);
+    exportedModules.push(moduleExportObject);
   };
 }
 export { visitExportDefaultDeclaration };

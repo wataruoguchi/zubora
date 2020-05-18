@@ -58,7 +58,7 @@ function functionDeclaration(declaration: any): string[] | null {
 }
 
 function visitExportNamedDeclaration(
-  moduleExports: ExportedModule[]
+  exportedModules: ExportedModule[]
 ): (path: NodePath<ExportNamedDeclaration>) => void {
   return function(path): void {
     const node: ExportNamedDeclaration = path.node;
@@ -74,7 +74,7 @@ function visitExportNamedDeclaration(
           name,
           declaration
         );
-        moduleExports.push(moduleExportObject);
+        exportedModules.push(moduleExportObject);
       });
     } else if (
       declaration === null &&
@@ -91,7 +91,7 @@ function visitExportNamedDeclaration(
           name,
           node // declaration must be null, let's pass the node to avoid the type error
         );
-        moduleExports.push(moduleExportObject);
+        exportedModules.push(moduleExportObject);
       });
       return;
     } else if (!declaration) return;

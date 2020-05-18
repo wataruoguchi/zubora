@@ -21,7 +21,7 @@ function flattenMemberExpression(exp: MemberExpression): string {
 }
 
 function visitAssignmentExpression(
-  moduleExports: ExportedModule[]
+  exportedModules: ExportedModule[]
 ): (path: NodePath<AssignmentExpression>) => void {
   return function(path): void {
     const node: AssignmentExpression = path.node;
@@ -33,7 +33,7 @@ function visitAssignmentExpression(
           property,
           right
         );
-        moduleExports.push(moduleExportObject);
+        exportedModules.push(moduleExportObject);
       }
     }
   };
