@@ -1,54 +1,17 @@
 import {
   Node,
-  MemberExpression,
-  ClassDeclaration,
-  ClassExpression,
-  isMemberExpression,
   isIdentifier,
-  isClassMethod,
   isClassExpression,
-  isClassBody,
   isClassDeclaration,
 } from '@babel/types';
-import { ExportedModule, MethodObject, ClassObject } from '../types';
+import { ExportedModule } from '../types';
 
-function flattenMemberExpression(exp: MemberExpression): string {
-  if (!isMemberExpression(exp)) return '';
-  const { object } = exp;
-  const property = exp.property;
-  if (isMemberExpression(object)) {
-    return flattenMemberExpression(object) + `.${property.name}`;
-  } else if (isIdentifier(object)) {
-    return `${object.name}.${property.name}`;
-  } else {
-    return '';
-  }
-}
-
-function fetchClassObject(
-  node: ClassDeclaration | ClassExpression
-): ClassObject {
-  if (isIdentifier(node.id) && isClassBody(node.body)) {
-    const { name } = node.id;
-    const { body } = node.body;
-    const methodObjects: MethodObject[] = body
-      .map(method => {
-        if (isClassMethod(method) && isIdentifier(method.key)) {
-          const name: string = method.key.name || '';
-          const { kind, async } = method;
-          return { name, async, kind };
-        } else {
-          return { name: null, async: false, kind: 'get' }; // This will be ignored by 'filter'
-        }
-      })
-      .filter(methodObject => methodObject.name);
-    return { name, methods: methodObjects };
-  } else {
-    return { name: '', methods: [] };
-  }
-}
-
-function fetchExportedModule(
+/**
+ * Create ExportedModule type object by given property and name, then return.
+ * @param property name, 'default', or null
+ * @param node
+ */
+function buildExportedModule(
   property: string | null,
   node: Node
 ): ExportedModule {
@@ -91,4 +54,4 @@ function fetchExportedModule(
   }
 }
 
-export { flattenMemberExpression, fetchClassObject, fetchExportedModule };
+export { buildExportedModule };

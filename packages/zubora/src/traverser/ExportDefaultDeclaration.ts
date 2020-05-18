@@ -1,14 +1,15 @@
 import { ExportDefaultDeclaration } from '@babel/types';
-import { NodePath } from 'babel__traverse';
+import { NodePath } from '@babel/core';
 import { ExportedModule } from '../types';
-import { fetchExportedModule } from './utils';
+import { buildExportedModule } from './buildExportedModule';
 
 function visitExportDefaultDeclaration(
   moduleExports: ExportedModule[]
 ): (path: NodePath<ExportDefaultDeclaration>) => void {
   return function(path): void {
-    const { declaration } = path.node;
-    const moduleExportObject: ExportedModule = fetchExportedModule(
+    const node: ExportDefaultDeclaration = path.node;
+    const { declaration } = node;
+    const moduleExportObject: ExportedModule = buildExportedModule(
       'default',
       declaration
     );

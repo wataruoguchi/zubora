@@ -14,9 +14,9 @@ function testUtils(
       }
       ${baseContent} Cls;`;
       it('imports one module', () => {
-        const { moduleExports } = traverser(parser(content));
-        expect(moduleExports.length).toBe(1);
-        const moduleExport = moduleExports.pop();
+        const { exportedModules } = traverser(parser(content));
+        expect(exportedModules.length).toBe(1);
+        const moduleExport = exportedModules.pop();
         if (moduleExport) {
           expect(moduleExport.property).toBe(name);
           expect(moduleExport.classNameIfExists).toBe(null);
@@ -42,9 +42,9 @@ function testUtils(
         constructor() {}
       }`;
       it('imports one module', () => {
-        const { moduleExports } = traverser(parser(content));
-        expect(moduleExports.length).toBe(1);
-        const moduleExport = moduleExports.pop();
+        const { exportedModules } = traverser(parser(content));
+        expect(exportedModules.length).toBe(1);
+        const moduleExport = exportedModules.pop();
         if (moduleExport) {
           expect(moduleExport.property).toBe(name);
           expect(moduleExport.classNameIfExists).toBe('Cls');
@@ -77,9 +77,9 @@ function testUtils(
       const content = `function func() {};
       ${baseContent} func;`;
       it('imports one module', () => {
-        const { moduleExports } = traverser(parser(content));
-        expect(moduleExports.length).toBe(1);
-        const moduleExport = moduleExports.pop();
+        const { exportedModules } = traverser(parser(content));
+        expect(exportedModules.length).toBe(1);
+        const moduleExport = exportedModules.pop();
         if (moduleExport) {
           expect(moduleExport.property).toBe(name);
           expect(moduleExport.classNameIfExists).toBe(null);
@@ -92,9 +92,9 @@ function testUtils(
     describe('Function Declaration', () => {
       const content = `${baseContent} function func() {};`;
       it('imports one module', () => {
-        const { moduleExports } = traverser(parser(content));
-        expect(moduleExports.length).toBe(1);
-        const moduleExport = moduleExports.pop();
+        const { exportedModules } = traverser(parser(content));
+        expect(exportedModules.length).toBe(1);
+        const moduleExport = exportedModules.pop();
         if (moduleExport) {
           expect(moduleExport.property).toBe(name);
           expect(moduleExport.classNameIfExists).toBe(null);
@@ -110,9 +110,9 @@ function testUtils(
       const c = '0';
       ${baseContent} {a, b, c};`;
       it('imports one module', () => {
-        const { moduleExports } = traverser(parser(content));
-        expect(moduleExports.length).toBe(1);
-        const moduleExport = moduleExports.pop();
+        const { exportedModules } = traverser(parser(content));
+        expect(exportedModules.length).toBe(1);
+        const moduleExport = exportedModules.pop();
         if (moduleExport) {
           expect(moduleExport.property).toBe(name);
           expect(moduleExport.classNameIfExists).toBe(null);
@@ -132,7 +132,7 @@ function testUtils(
   return { testDefault, testNamed };
 }
 
-describe('parser', () => {
+describe('traverser', () => {
   describe('module.exports', () => {
     const baseContent = 'module.exports = ';
     describe('Variable of class', () => {
@@ -144,9 +144,9 @@ describe('parser', () => {
       }
       ${baseContent} Cls;`;
       it('imports one module', () => {
-        const { moduleExports } = traverser(parser(content));
-        expect(moduleExports.length).toBe(1);
-        const moduleExport = moduleExports.pop();
+        const { exportedModules } = traverser(parser(content));
+        expect(exportedModules.length).toBe(1);
+        const moduleExport = exportedModules.pop();
         if (moduleExport) {
           expect(moduleExport.property).toBe(null);
           expect(moduleExport.classNameIfExists).toBe(null);
@@ -207,9 +207,9 @@ describe('parser', () => {
         constructor() {}
       }`;
       it('imports one module', () => {
-        const { moduleExports } = traverser(parser(content));
-        expect(moduleExports.length).toBe(1);
-        const moduleExport = moduleExports.pop();
+        const { exportedModules } = traverser(parser(content));
+        expect(exportedModules.length).toBe(1);
+        const moduleExport = exportedModules.pop();
         if (moduleExport) {
           expect(moduleExport.property).toBe(null);
           expect(moduleExport.classNameIfExists).toBe('Cls');
@@ -242,9 +242,9 @@ describe('parser', () => {
       const content = `function func() {};
       ${baseContent} func;`;
       it('imports one module', () => {
-        const { moduleExports } = traverser(parser(content));
-        expect(moduleExports.length).toBe(1);
-        const moduleExport = moduleExports.pop();
+        const { exportedModules } = traverser(parser(content));
+        expect(exportedModules.length).toBe(1);
+        const moduleExport = exportedModules.pop();
         if (moduleExport) {
           expect(moduleExport.property).toBe(null);
           expect(moduleExport.classNameIfExists).toBe(null);
@@ -257,9 +257,9 @@ describe('parser', () => {
     describe('Function Declaration', () => {
       const content = `${baseContent} function func() {};`;
       it('imports one module', () => {
-        const { moduleExports } = traverser(parser(content));
-        expect(moduleExports.length).toBe(1);
-        const moduleExport = moduleExports.pop();
+        const { exportedModules } = traverser(parser(content));
+        expect(exportedModules.length).toBe(1);
+        const moduleExport = exportedModules.pop();
         if (moduleExport) {
           expect(moduleExport.property).toBe(null);
           expect(moduleExport.classNameIfExists).toBe(null);
@@ -275,9 +275,9 @@ describe('parser', () => {
       const c = '0';
       ${baseContent} {a, b, c};`;
       it('imports one module', () => {
-        const { moduleExports } = traverser(parser(content));
-        expect(moduleExports.length).toBe(1);
-        const moduleExport = moduleExports.pop();
+        const { exportedModules } = traverser(parser(content));
+        expect(exportedModules.length).toBe(1);
+        const moduleExport = exportedModules.pop();
         if (moduleExport) {
           expect(moduleExport.property).toBe(null);
           expect(moduleExport.classNameIfExists).toBe(null);
@@ -311,9 +311,9 @@ describe('parser', () => {
       }
       ${baseContent} { Cls };`;
       it('imports one module', () => {
-        const { moduleExports } = traverser(parser(content));
-        expect(moduleExports.length).toBe(1);
-        const moduleExport = moduleExports.pop();
+        const { exportedModules } = traverser(parser(content));
+        expect(exportedModules.length).toBe(1);
+        const moduleExport = exportedModules.pop();
         if (moduleExport) {
           expect(moduleExport.property).toBe('Cls');
           expect(moduleExport.classNameIfExists).toBe(null);
@@ -339,9 +339,9 @@ describe('parser', () => {
     constructor() {}
     }`;
       it('imports one module', () => {
-        const { moduleExports } = traverser(parser(content));
-        expect(moduleExports.length).toBe(1);
-        const moduleExport = moduleExports.pop();
+        const { exportedModules } = traverser(parser(content));
+        expect(exportedModules.length).toBe(1);
+        const moduleExport = exportedModules.pop();
         if (moduleExport) {
           expect(moduleExport.property).toBe('Cls');
           expect(moduleExport.classNameIfExists).toBe('Cls');
@@ -374,9 +374,9 @@ describe('parser', () => {
       const content = `function func() {};
     ${baseContent} {func};`;
       it('imports one module', () => {
-        const { moduleExports } = traverser(parser(content));
-        expect(moduleExports.length).toBe(1);
-        const moduleExport = moduleExports.pop();
+        const { exportedModules } = traverser(parser(content));
+        expect(exportedModules.length).toBe(1);
+        const moduleExport = exportedModules.pop();
         if (moduleExport) {
           expect(moduleExport.property).toBe('func');
           expect(moduleExport.classNameIfExists).toBe(null);
@@ -389,9 +389,9 @@ describe('parser', () => {
     describe('Function Declaration', () => {
       const content = `${baseContent} function func() {};`;
       it('imports one module', () => {
-        const { moduleExports } = traverser(parser(content));
-        expect(moduleExports.length).toBe(1);
-        const moduleExport = moduleExports.pop();
+        const { exportedModules } = traverser(parser(content));
+        expect(exportedModules.length).toBe(1);
+        const moduleExport = exportedModules.pop();
         if (moduleExport) {
           expect(moduleExport.property).toBe('func');
           expect(moduleExport.classNameIfExists).toBe(null);
@@ -407,9 +407,9 @@ describe('parser', () => {
         class c { constructor() {} };
         ${baseContent} {a, b, c};`;
       it('imports three modules', () => {
-        const { moduleExports } = traverser(parser(content));
-        expect(moduleExports.length).toBe(3);
-        const [moduleA, moduleB, moduleC] = moduleExports;
+        const { exportedModules } = traverser(parser(content));
+        expect(exportedModules.length).toBe(3);
+        const [moduleA, moduleB, moduleC] = exportedModules;
         if (moduleA && moduleB && moduleC) {
           expect(moduleA.property).toBe('a');
           expect(moduleA.classNameIfExists).toBe(null);
@@ -450,9 +450,9 @@ describe('parser', () => {
         const c = '0';
         ${baseContent} {a as default, b as beta, c};`;
       it('imports three modules', () => {
-        const { moduleExports } = traverser(parser(content));
-        expect(moduleExports.length).toBe(3);
-        const [moduleA, moduleB, moduleC] = moduleExports;
+        const { exportedModules } = traverser(parser(content));
+        expect(exportedModules.length).toBe(3);
+        const [moduleA, moduleB, moduleC] = exportedModules;
         if (moduleA && moduleB && moduleC) {
           expect(moduleA.property).toBe('default');
           expect(moduleA.classNameIfExists).toBe(null);

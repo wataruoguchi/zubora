@@ -13,6 +13,6 @@ export type ClassObject = {
   methods: MethodObject[];
 };
 export type ParseResult = {
-  moduleExports: ExportedModule[];
+  exportedModules: ExportedModule[];
   classObjects: ClassObject[];
 };

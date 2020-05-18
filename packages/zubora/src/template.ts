@@ -91,11 +91,15 @@ export function testCaseBlock(
 export function template(srcFilePath: string, destFilePath: string): Function {
   const relativePath = getRelativePath(srcFilePath, destFilePath);
   return function generateTemplate(
-    moduleExports: ExportedModule[],
+    exportedModules: ExportedModule[],
     classObjects: ClassObject[]
   ): string {
-    const imports = importBlock(relativePath, moduleExports);
-    const describes = testCaseBlock(relativePath, moduleExports, classObjects);
+    const imports = importBlock(relativePath, exportedModules);
+    const describes = testCaseBlock(
+      relativePath,
+      exportedModules,
+      classObjects
+    );
     return `${imports}\n${describes}`;
   };
 }

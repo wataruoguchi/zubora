@@ -6,9 +6,9 @@ import { template } from './template';
 import { parser } from './parser';
 
 function buildNewContent(srcPath: string, destPath: string, ast: File): string {
-  const { moduleExports, classObjects } = traverser(ast);
+  const { exportedModules, classObjects } = traverser(ast);
   const generateTemplate = template(srcPath, destPath);
-  return prettier.format(generateTemplate(moduleExports, classObjects), {
+  return prettier.format(generateTemplate(exportedModules, classObjects), {
     parser: 'babel',
   });
 }

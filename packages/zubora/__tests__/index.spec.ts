@@ -1,6 +1,6 @@
 import { zubora } from '../src/index';
 
-describe('main.ts', () => {
+describe('index.ts', () => {
   describe('zubora', () => {
     it('fails with parse errors', async () => {
       await zubora('./test.js', '', 'const a = 1;').catch(error => {
