@@ -1,6 +1,6 @@
 import { generate } from '../src/lib/generator';
 
-describe('main.ts', () => {
+describe('generator.ts', () => {
   describe('generateTemplate', () => {
     it('fails with "No code found."', async () => {
       await generate('', '', '').catch(error => {
