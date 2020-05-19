@@ -4,7 +4,7 @@ type Config = {
   plugins: string[];
 };
 
-export async function getConfig(dir: string = process.cwd()): Promise<Config> {
+export async function loadConfig(dir: string = process.cwd()): Promise<Config> {
   const defaultConfig: Config = {
     plugins: [],
   };

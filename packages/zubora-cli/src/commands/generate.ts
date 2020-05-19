@@ -1,5 +1,5 @@
 import { GluegunToolbox } from 'gluegun';
-import { generateTemplate } from '../lib/main';
+import { generate } from '../lib/generator';
 
 module.exports = {
   name: 'generate',
@@ -31,9 +31,9 @@ module.exports = {
     //   return
     // }
 
-    const rawCode = read(srcPath) || '';
     try {
-      const result = await generateTemplate(srcPath, destPath, rawCode);
+      const rawCode = read(srcPath) || '';
+      const result = await generate(srcPath, destPath, rawCode);
       print.debug(result);
       write(destPath, result);
     } catch (error) {

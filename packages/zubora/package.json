@@ -1,6 +1,6 @@
 {
   "name": "zubora",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "The zubora module for the cli",
   "repository": {
     "type": "git",
@@ -17,12 +17,12 @@
     "Abstract Syntax Tree"
   ],
   "scripts": {
-    "build": "tsc -b tsconfig.build.json",
+    "build": "rm -rf ./dist && tsc -b tsconfig.build.json",
     "clean": "tsc -b tsconfig.build.json --clean",
     "format": "prettier --write \"./**/*.{ts,js,json,md}\" --ignore-path ../../.prettierignore",
     "lint": "eslint . --ext .js,.ts --ignore-path='../../.gitignore'",
     "test": "jest --coverage",
-    "type-check": "tsc -p tsconfig.json --noEmit"
+    "type-check": "tsc -p tsconfig.build.json --noEmit"
   },
   "files": [
     "dist",
@@ -31,7 +31,9 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "@babel/core": "^7.9.6",
     "@babel/parser": "^7.6.0",
+    "@babel/preset-typescript": "^7.9.0",
     "@babel/traverse": "^7.6.0",
     "@babel/types": "^7.7.4",
     "@types/babel__core": "^7.1.3"

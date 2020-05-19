@@ -1,4 +1,4 @@
-export type ModuleExportObject = {
+export type ExportedModule = {
   property: string | null;
   classNameIfExists: string | null;
   name: string | null;
@@ -13,6 +13,6 @@ export type ClassObject = {
   methods: MethodObject[];
 };
 export type ParseResult = {
-  moduleExports: ModuleExportObject[];
+  exportedModules: ExportedModule[];
   classObjects: ClassObject[];
 };

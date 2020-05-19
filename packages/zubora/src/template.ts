@@ -1,4 +1,4 @@
-import { ModuleExportObject, MethodObject, ClassObject } from './types';
+import { ExportedModule, MethodObject, ClassObject } from './types';
 import { getRelativePath, getFileName } from './resolver';
 
 type ClassHash = {
@@ -7,19 +7,19 @@ type ClassHash = {
 
 export function importBlock(
   relativePath: string,
-  exported: ModuleExportObject[]
+  exported: ExportedModule[]
 ): string {
-  const namedModules: ModuleExportObject[] = exported.filter(
-    (moduleExportObj: ModuleExportObject) =>
+  const namedModules: ExportedModule[] = exported.filter(
+    (moduleExportObj: ExportedModule) =>
       moduleExportObj.property && moduleExportObj.property !== 'default'
   );
-  const modules: ModuleExportObject[] = exported.filter(
+  const modules: ExportedModule[] = exported.filter(
     // Expecting only one object
-    (moduleExportObj: ModuleExportObject) => moduleExportObj.property === null
+    (moduleExportObj: ExportedModule) => moduleExportObj.property === null
   );
-  const defaultModules: ModuleExportObject[] = exported.filter(
+  const defaultModules: ExportedModule[] = exported.filter(
     // Expecting only one object
-    (moduleExportObj: ModuleExportObject) =>
+    (moduleExportObj: ExportedModule) =>
       moduleExportObj.property && moduleExportObj.property === 'default'
   );
   const moduleNameFromFilePath = getFileName(relativePath);
@@ -30,7 +30,7 @@ export function importBlock(
     : '';
   const namedModuleImport: string = namedModules.length
     ? `{ ${namedModules
-        .map((module: ModuleExportObject) => module.property)
+        .map((module: ExportedModule) => module.property)
         .join(',')} }`
     : '';
   return `import ${[nonNamedModuleImport, namedModuleImport]
@@ -39,7 +39,7 @@ export function importBlock(
 }
 export function testCaseBlock(
   relativePath: string,
-  exported: ModuleExportObject[],
+  exported: ExportedModule[],
   classObjects: ClassObject[]
 ): string {
   const classHash: ClassHash = classObjects.reduce(
@@ -50,7 +50,7 @@ export function testCaseBlock(
     {}
   );
   return exported
-    .map((moduleExportObj: ModuleExportObject): string => {
+    .map((moduleExportObj: ExportedModule): string => {
       const { property, classNameIfExists, name } = moduleExportObj;
       const exposedName: string =
         property && property !== 'default'
@@ -91,11 +91,15 @@ export function testCaseBlock(
 export function template(srcFilePath: string, destFilePath: string): Function {
   const relativePath = getRelativePath(srcFilePath, destFilePath);
   return function generateTemplate(
-    moduleExports: ModuleExportObject[],
+    exportedModules: ExportedModule[],
     classObjects: ClassObject[]
   ): string {
-    const imports = importBlock(relativePath, moduleExports);
-    const describes = testCaseBlock(relativePath, moduleExports, classObjects);
+    const imports = importBlock(relativePath, exportedModules);
+    const describes = testCaseBlock(
+      relativePath,
+      exportedModules,
+      classObjects
+    );
     return `${imports}\n${describes}`;
   };
 }

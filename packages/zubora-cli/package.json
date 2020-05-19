@@ -1,6 +1,6 @@
 {
   "name": "zubora-cli",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "zubora CLI - Test Template Generator for zubora (\"lazy\" in Japanese) developers",
   "repository": {
     "type": "git",
@@ -12,18 +12,19 @@
     "zubora",
     "Test",
     "Unit Test",
-    "TypeScript"
+    "TypeScript",
+    "JavaScript"
   ],
   "bin": {
     "zubora": "bin/zubora"
   },
   "scripts": {
-    "build": "tsc -b tsconfig.build.json",
+    "build": "rm -rf ./build && tsc -b tsconfig.build.json",
     "clean": "tsc -b tsconfig.build.json --clean",
     "format": "prettier --write \"./**/*.{ts,js,json,md}\" --ignore-path ../../.prettierignore",
     "lint": "eslint . --ext .js,.ts --ignore-path='../../.gitignore'",
     "test": "jest --coverage",
-    "type-check": "tsc -p tsconfig.json --noEmit"
+    "type-check": "tsc -p tsconfig.build.json --noEmit"
   },
   "files": [
     "tsconfig.json",
@@ -35,9 +36,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@babel/core": "^7.6.0",
     "@babel/polyfill": "^7.6.0",
-    "@babel/preset-typescript": "^7.6.0",
     "@types/babel__core": "^7.1.3",
     "@types/cosmiconfig": "^6.0.0",
     "@types/figlet": "^1.2.0",
@@ -47,7 +46,7 @@
     "gluegun": "^4.0.1",
     "prettier": "^1.18.2",
     "ts-node": "^8.4.1",
-    "zubora": "file:../zubora"
+    "zubora": "^0.2.0"
   },
   "jest": {
     "preset": "ts-jest",
