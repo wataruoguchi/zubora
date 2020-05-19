@@ -7856,8 +7856,26 @@ yn@3.1.1:
   resolved "https://registry.yarnpkg.com/yn/-/yn-3.1.1.tgz#1e87401a09d767c1d5eab26a6e4c185182d2eb50"
   integrity sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==
 
+"zubora-cli@file:packages/zubora-cli":
+  version "0.3.0"
+  dependencies:
+    "@babel/polyfill" "^7.6.0"
+    "@types/babel__core" "^7.1.3"
+    "@types/cosmiconfig" "^6.0.0"
+    "@types/figlet" "^1.2.0"
+    "@types/prettier" "^1.18.2"
+    cosmiconfig "^6.0.0"
+    figlet "^1.2.4"
+    gluegun "^4.0.1"
+    prettier "^1.18.2"
+    ts-node "^8.4.1"
+    zubora "file:../../../Library/Caches/Yarn/v6/npm-zubora-cli-0.3.0-0b2dcfe2-ff9f-4a27-80a5-41882c37f129-1589853887260/node_modules/zubora"
+
+"zubora-plugin-coffee@file:packages/zubora-plugin-coffee":
+  version "0.0.4"
+
 "zubora@file:packages/zubora":
-  version "0.2.1"
+  version "0.2.0"
   dependencies:
     "@babel/core" "^7.9.6"
     "@babel/parser" "^7.6.0"
