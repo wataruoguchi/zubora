@@ -12,7 +12,7 @@ The test template will be written in BDD (Behaviour-Driven Development) syntax.
 # Install
 $ npm install -g zubora-cli
 # Generate test file
-$ zubora generate <source file path> <test file path>
+$ zubora --src <source file path> --dist <test file path>
 ```
 
 ## Usage
@@ -47,7 +47,7 @@ export default Greeter;
 Then when you run the command like below:
 
 ```sh
-zubora generate src/modules/tsModule.ts __tests__/tsModule.spec.js
+zubora --src src/modules/tsModule.ts --dist __tests__/tsModule.spec.js
 ```
 
 It generates a test template for `tsModule.ts` in the `__tests__` directory.

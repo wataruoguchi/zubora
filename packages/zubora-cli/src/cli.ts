@@ -1,33 +1,68 @@
-import { build, GluegunToolbox } from 'gluegun';
+import * as fs from 'fs';
+import yargs from 'yargs';
+import figlet from 'figlet';
+import { generate } from './lib/generator';
+
+function exists(path: string): string | false {
+  try {
+    if (fs.existsSync(path)) {
+      const stat = fs.lstatSync(path);
+      return stat.isDirectory() ? 'directory' : 'file';
+    }
+    return false;
+  } catch {
+    return false;
+  }
+}
+
+function read(path: string): string {
+  return fs.readFileSync(path, 'utf8');
+}
+function write(path: string, content: string): void {
+  return fs.writeFileSync(path, content);
+}
 
 /**
  * Create the cli and kick it off
  */
-// TODO The type of 'argv'. I'm guessing it's string, but maybe not.
-async function run(argv: string): Promise<GluegunToolbox> {
+async function run(): Promise<void> {
   // create a CLI runtime
-  const cli = build()
-    .exclude([
-      'strings',
-      'semver',
-      'system',
-      'prompt',
-      'http',
-      'template',
-      'patching',
-    ])
-    .brand('zubora')
-    .src(__dirname)
-    .plugins('./node_modules', { matching: 'zubora-*', hidden: true })
-    .help() // provides default for help, h, --help, -h
-    .version() // provides default for version, v, --version, -v
-    .create();
+  const usage = 'Usage: --src <src file path> --dist <test file path>';
+  const welcome = `${figlet.textSync('Zubora', { horizontalLayout: 'full' })}\n
+    Hi, lazy hackers!\n${usage}`;
 
-  // and run it
-  const toolbox = await cli.run(argv);
+  const argv = yargs.usage(usage).argv;
+  if (
+    !(
+      argv.src &&
+      argv.dist &&
+      typeof argv.src === 'string' &&
+      typeof argv.dist === 'string'
+    )
+  ) {
+    console.log(welcome);
+    return;
+  }
 
-  // send it back (for testing, mostly)
-  return toolbox;
+  const srcPath: string = `${argv.src}` || '';
+  const destPath: string = `${argv.dist}` || '';
+  if (exists(srcPath) !== 'file') {
+    console.error(`Couldn't find the file.`);
+    return;
+  }
+  if (exists(destPath)) {
+    console.error(`The file "${destPath}" already exists.`);
+    return;
+  }
+
+  try {
+    const rawCode = read(srcPath) || '';
+    const result = await generate(srcPath, destPath, rawCode);
+    console.debug(result);
+    write(destPath, result);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 module.exports = { run };
