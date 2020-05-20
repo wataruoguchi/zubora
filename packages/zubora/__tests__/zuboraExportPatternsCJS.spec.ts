@@ -1,5 +1,9 @@
 // CommonJS module.exports patterns
 import { zubora } from '../src/index';
+import prettier from 'prettier';
+function prettierFormat(str: string): string {
+  return prettier.format(str, { parser: 'babel' });
+}
 
 describe('export', () => {
   describe('CommonJS', () => {
@@ -18,8 +22,8 @@ describe("test", function() {
   });
 });
 `;
-      await zubora('./test.ts', './test.spec.ts', code).then(result => {
-        expect(result).toBe(expectedContent);
+      await zubora('./test.ts', './test.spec.ts', code).then((result) => {
+        expect(result).toBe(prettierFormat(expectedContent));
       });
     });
     it('module.exports.default', async () => {
@@ -37,8 +41,8 @@ describe("test", function() {
   });
 });
 `;
-      await zubora('./test.ts', './test.spec.ts', code).then(result => {
-        expect(result).toBe(expectedContent);
+      await zubora('./test.ts', './test.spec.ts', code).then((result) => {
+        expect(result).toBe(prettierFormat(expectedContent));
       });
     });
     it('module.exports.named', async () => {
@@ -56,8 +60,8 @@ describe("person", function() {
   });
 });
 `;
-      await zubora('./test.ts', './test.spec.ts', code).then(result => {
-        expect(result).toBe(expectedContent);
+      await zubora('./test.ts', './test.spec.ts', code).then((result) => {
+        expect(result).toBe(prettierFormat(expectedContent));
       });
     });
   });

@@ -36,7 +36,10 @@
  * [x] 16a. TODO: PENDING. It this the pattern we want to write tests for?
  */
 import { zubora } from '../src/index';
-
+import prettier from 'prettier';
+function prettierFormat(str: string): string {
+  return prettier.format(str, { parser: 'babel' });
+}
 describe('export', () => {
   describe('The ES Module (ESM) format', () => {
     describe('named exports', () => {
@@ -63,8 +66,8 @@ describe("lastName", function() {
   });
 });
 `;
-        await zubora('./test.ts', './test.spec.ts', code).then(result => {
-          expect(result).toBe(expectedContent);
+        await zubora('./test.ts', './test.spec.ts', code).then((result) => {
+          expect(result).toBe(prettierFormat(expectedContent));
         });
       });
       it('CASE 03. export function functionName(){...}', async () => {
@@ -89,8 +92,8 @@ describe("person", function() {
   });
 });
 `;
-        await zubora('./test.ts', './test.spec.ts', code).then(result => {
-          expect(result).toBe(expectedContent);
+        await zubora('./test.ts', './test.spec.ts', code).then((result) => {
+          expect(result).toBe(prettierFormat(expectedContent));
         });
       });
       it('CASE 04. export class ClassName {...}', async () => {
@@ -124,8 +127,8 @@ describe("Person", function() {
   });
 });
 `;
-        await zubora('./test.ts', './test.spec.ts', code).then(result => {
-          expect(result).toBe(expectedContent);
+        await zubora('./test.ts', './test.spec.ts', code).then((result) => {
+          expect(result).toBe(prettierFormat(expectedContent));
         });
       });
       it('CASE 05. Export list', async () => {
@@ -154,8 +157,8 @@ describe("greeterJa", function() {
   });
 });
 `;
-        await zubora('./test.ts', './test.spec.ts', code).then(result => {
-          expect(result).toBe(expectedContent);
+        await zubora('./test.ts', './test.spec.ts', code).then((result) => {
+          expect(result).toBe(prettierFormat(expectedContent));
         });
       });
       it('CASE 06. Renaming exports', async () => {
@@ -174,8 +177,8 @@ describe("greet", function() {
   });
 });
 `;
-        await zubora('./test.ts', './test.spec.ts', code).then(result => {
-          expect(result).toBe(expectedContent);
+        await zubora('./test.ts', './test.spec.ts', code).then((result) => {
+          expect(result).toBe(prettierFormat(expectedContent));
         });
       });
       it('CASE 07. Exporting destructured assignments with renaming', async () => {
@@ -206,8 +209,8 @@ describe("sirName", function() {
   });
 });
 `;
-        await zubora('./test.ts', './test.spec.ts', code).then(result => {
-          expect(result).toBe(expectedContent);
+        await zubora('./test.ts', './test.spec.ts', code).then((result) => {
+          expect(result).toBe(prettierFormat(expectedContent));
         });
       });
     });
@@ -226,8 +229,8 @@ describe("test", function() {
   });
 });
 `;
-        await zubora('./test.ts', './test.spec.ts', code).then(result => {
-          expect(result).toBe(expectedContent);
+        await zubora('./test.ts', './test.spec.ts', code).then((result) => {
+          expect(result).toBe(prettierFormat(expectedContent));
         });
       });
       it('CASE 09. export default function (…) { … } // also class, function*', async () => {
@@ -243,8 +246,8 @@ describe("test", function() {
   });
 });
 `;
-        await zubora('./test.ts', './test.spec.ts', code).then(result => {
-          expect(result).toBe(expectedContent);
+        await zubora('./test.ts', './test.spec.ts', code).then((result) => {
+          expect(result).toBe(prettierFormat(expectedContent));
         });
       });
       it('CASE 09. export default class ClassName { … }', async () => {
@@ -274,8 +277,8 @@ describe("Person", function() {
   });
 });
 `;
-        await zubora('./test.ts', './test.spec.ts', code).then(result => {
-          expect(result).toBe(expectedContent);
+        await zubora('./test.ts', './test.spec.ts', code).then((result) => {
+          expect(result).toBe(prettierFormat(expectedContent));
         });
       });
       it('CASE 10. export default function name1(…) { … } // also class, function*', async () => {
@@ -291,8 +294,8 @@ describe("test", function() {
   });
 });
 `;
-        await zubora('./test.ts', './test.spec.ts', code).then(result => {
-          expect(result).toBe(expectedContent);
+        await zubora('./test.ts', './test.spec.ts', code).then((result) => {
+          expect(result).toBe(prettierFormat(expectedContent));
         });
       });
       it('CASE 11. export { name1 as default, … };', async () => {
@@ -317,8 +320,8 @@ describe("lastName", function() {
   });
 });
 `;
-        await zubora('./test.ts', './test.spec.ts', code).then(result => {
-          expect(result).toBe(expectedContent);
+        await zubora('./test.ts', './test.spec.ts', code).then((result) => {
+          expect(result).toBe(prettierFormat(expectedContent));
         });
       });
     });

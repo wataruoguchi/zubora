@@ -20,13 +20,13 @@
     "@typescript-eslint/eslint-plugin": "^2.6.0",
     "@typescript-eslint/parser": "^2.6.0",
     "coffeescript": "^2.5.0",
-    "eslint": "^6.6.0",
+    "eslint": "^7.0.0",
     "husky": "^4.2.5",
-    "jest": "^24.9.0",
+    "jest": "^26.0.1",
     "lerna": "^3.16.4",
     "lint-staged": "^10.2.2",
-    "prettier": "^1.19.1",
-    "ts-jest": "^24.1.0",
+    "prettier": "^2.0.5",
+    "ts-jest": "^26.0.0",
     "typescript": "^3.6.4"
   },
   "workspaces": [
