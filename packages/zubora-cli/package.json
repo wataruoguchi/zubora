@@ -20,7 +20,7 @@
   },
   "scripts": {
     "build": "tsc -b tsconfig.build.json",
-    "clean": "tsc -b tsconfig.build.json --clean",
+    "clean": "tsc -b tsconfig.build.json --clean && rm -rf ./build",
     "format": "prettier --write \"./**/*.{ts,js,json,md}\" --ignore-path ../../.prettierignore",
     "lint": "eslint . --ext .js,.ts --ignore-path='../../.gitignore'",
     "test": "jest --coverage",
@@ -48,7 +48,7 @@
     "prettier": "^1.18.2",
     "ts-node": "^8.4.1",
     "yargs": "^15.3.1",
-    "zubora": "file:../zubora"
+    "zubora": "^0.2.0"
   },
   "jest": {
     "preset": "ts-jest",
@@ -58,7 +58,7 @@
       "/build/"
     ],
     "moduleNameMapper": {
-      "^zubora(.*)$": "<rootDir>/../zubora/$1"
+      "^zubora$": "<rootDir>/../zubora/src/"
     }
   }
 }
