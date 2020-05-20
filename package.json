@@ -10,7 +10,7 @@
     "format-check": "prettier --list-different \"./**/*.{ts,js,json,md}\"",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
-    "postinstall": "lerna bootstrap && lerna link",
+    "postinstall": "lerna bootstrap && lerna link && yarn build",
     "check-clean-workspace-after-install": "git diff --quiet --exit-code",
     "test": "lerna run test",
     "type-check": "lerna run type-check"
