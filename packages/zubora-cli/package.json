@@ -56,9 +56,6 @@
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/build/"
-    ],
-    "moduleNameMapper": {
-      "^zubora$": "<rootDir>/../zubora/src/"
-    }
+    ]
   }
 }
