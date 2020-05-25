@@ -121,7 +121,7 @@ describe('testCaseBlock', () => {
           .replace(/[\n\r]+/g, '')
           .replace(/\s+/g, ' ')
       ).toBe(
-        `describe('Cls',function(){describe('#method', function(){ it('', function() { // TODO Write test for src#method }) })describe('#asyncMethod', async function(){ it('', function() { // TODO Write test for src#asyncMethod }) })})`
+        `describe('Cls',function(){describe('#method', function(){ it('', function() { // TODO Write test for src#method }) })describe('#asyncMethod', function(){ it('', async function() { // TODO Write test for src#asyncMethod }) })})`
       );
     });
     it('imports export.modules 2', () => {
@@ -143,7 +143,7 @@ describe('testCaseBlock', () => {
           .replace(/[\n\r]+/g, '')
           .replace(/\s+/g, ' ')
       ).toBe(
-        `describe('Cls',function(){describe('#method', function(){ it('', function() { // TODO Write test for src#method }) })describe('#asyncMethod', async function(){ it('', function() { // TODO Write test for src#asyncMethod }) })})`
+        `describe('Cls',function(){describe('#method', function(){ it('', function() { // TODO Write test for src#method }) })describe('#asyncMethod', function(){ it('', async function() { // TODO Write test for src#asyncMethod }) })})`
       );
     });
     it('imports default', () => {
@@ -210,7 +210,7 @@ describe('testCaseBlock', () => {
           .replace(/[\n\r]+/g, '')
           .replace(/\s+/g, ' ')
       ).toBe(
-        `describe('Cls',function(){describe('#method', function(){ it('', function() { // TODO Write test for src#method }) })describe('#asyncMethod', async function(){ it('', function() { // TODO Write test for src#asyncMethod }) })})describe('Cls2',function(){describe('#method', function(){ it('', function() { // TODO Write test for named#method }) })})`
+        `describe('Cls',function(){describe('#method', function(){ it('', function() { // TODO Write test for src#method }) })describe('#asyncMethod', function(){ it('', async function() { // TODO Write test for src#asyncMethod }) })})describe('Cls2',function(){describe('#method', function(){ it('', function() { // TODO Write test for named#method }) })})`
       );
     });
   });

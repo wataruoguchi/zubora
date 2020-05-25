@@ -426,7 +426,7 @@ describe('traverser', () => {
       });
       it('imports one class object that has one method', () => {
         const { classObjects } = traverser(parser(content));
-        expect(classObjects.length).toBe(1);
+        expect(classObjects.length).toBe(6);
         const classObject = classObjects.pop();
         if (classObject) {
           expect(classObject.name).toBe('c');
