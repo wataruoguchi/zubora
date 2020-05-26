@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "lerna run build",
-    "clean": "lerna clean && lerna run clean",
+    "clean": "lerna clean --yes && lerna run clean",
     "check:docs": "lerna run check:docs",
     "check:configs": "lerna run check:configs",
     "format": "prettier --write \"./**/*.{ts,js,json,md}\"",
@@ -13,7 +13,8 @@
     "postinstall": "lerna bootstrap && lerna link && lerna run build",
     "check-clean-workspace-after-install": "git diff --quiet --exit-code",
     "test": "lerna run test",
-    "type-check": "lerna run type-check"
+    "type-check": "lerna run type-check",
+    "pre-push": "yarn clean && yarn && yarn test"
   },
   "devDependencies": {
     "@types/jest": "^25.2.3",
