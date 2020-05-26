@@ -3,10 +3,9 @@ import {
   isMemberExpression,
   AssignmentExpression,
   MemberExpression,
+  Node,
 } from '@babel/types';
 import { NodePath } from '@babel/core';
-import { ExportedModule } from '../types';
-import { buildExportedModule } from './buildExportedModule';
 
 function flattenMemberExpression(exp: MemberExpression): string {
   if (!isMemberExpression(exp)) return '';
@@ -20,20 +19,20 @@ function flattenMemberExpression(exp: MemberExpression): string {
   }
 }
 
+// TODO This will be better. Issue #128
 function visitAssignmentExpression(
-  exportedModules: ExportedModule[]
+  callback: (property: string, node: Node) => void
 ): (path: NodePath<AssignmentExpression>) => void {
-  return function(path): void {
+  /**
+   * Do something only when the member expression builds `module.exports`.
+   */
+  return function assignmentExpression(path): void {
     const node: AssignmentExpression = path.node;
     const { left, right } = node;
     if (isMemberExpression(left)) {
       if (flattenMemberExpression(left).match(/^module.exports\.?(.*)$/)) {
-        const property = RegExp.$1 || null;
-        const moduleExportObject: ExportedModule = buildExportedModule(
-          property,
-          right
-        );
-        exportedModules.push(moduleExportObject);
+        const property = RegExp.$1 || '';
+        callback(property, right);
       }
     }
   };

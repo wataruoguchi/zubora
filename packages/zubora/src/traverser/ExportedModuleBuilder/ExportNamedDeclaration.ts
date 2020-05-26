@@ -9,10 +9,9 @@ import {
   isObjectProperty,
   ObjectPattern,
   VariableDeclarator,
+  Node,
 } from '@babel/types';
 import { NodePath } from '@babel/core';
-import { ExportedModule } from '../types';
-import { buildExportedModule } from './buildExportedModule';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function classDeclaration(declaration: any): string[] | null {
@@ -58,9 +57,9 @@ function functionDeclaration(declaration: any): string[] | null {
 }
 
 function visitExportNamedDeclaration(
-  exportedModules: ExportedModule[]
+  callback: (property: string, node: Node) => void
 ): (path: NodePath<ExportNamedDeclaration>) => void {
-  return function(path): void {
+  return function exportNamedDeclaration(path): void {
     const node: ExportNamedDeclaration = path.node;
     const { declaration } = node;
     const names: string[] | null =
@@ -69,29 +68,21 @@ function visitExportNamedDeclaration(
       functionDeclaration(declaration);
 
     if (names) {
-      names.forEach(name => {
-        const moduleExportObject: ExportedModule = buildExportedModule(
-          name,
-          declaration
-        );
-        exportedModules.push(moduleExportObject);
+      names.forEach((name) => {
+        callback(name, declaration);
       });
     } else if (
       declaration === null &&
       node.specifiers &&
       node.specifiers.length > 0 &&
       node.specifiers.every(
-        specifier =>
+        (specifier) =>
           isExportSpecifier(specifier) && isIdentifier(specifier.exported)
       )
     ) {
-      node.specifiers.map(specifier => {
+      node.specifiers.map((specifier) => {
         const name = specifier.exported.name;
-        const moduleExportObject: ExportedModule = buildExportedModule(
-          name,
-          node // declaration must be null, let's pass the node to avoid the type error
-        );
-        exportedModules.push(moduleExportObject);
+        callback(name, node);
       });
       return;
     } else if (!declaration) return;

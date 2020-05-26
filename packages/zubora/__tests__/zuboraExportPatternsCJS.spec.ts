@@ -1,68 +1,24 @@
 // CommonJS module.exports patterns
 import { zubora } from '../src/index';
 import prettier from 'prettier';
-function prettierFormat(str: string): string {
-  return prettier.format(str, { parser: 'babel' });
+import testCases from '../testSrc/src.zuboraExportPatternsCJS';
+
+type ioTestInput = { code: string; expected: string };
+async function ioTest({ code, expected }: ioTestInput): Promise<void> {
+  const result = await zubora('./test.ts', './test.spec.ts', code);
+  expect(result).toBe(prettier.format(expected, { parser: 'babel' }));
 }
 
 describe('export', () => {
   describe('CommonJS', () => {
     it('module.exports', async () => {
-      const code = `
-          function firstName() { return 'Wataru' };
-          function lastName() { return 'Oguchi' };
-          module.exports = { firstName, lastName }
-`;
-      const expectedContent = `import * as test from "./test.ts";
-describe("test", function() {
-  describe("test", function() {
-    it("", function() {
-      // TODO Write test for test
-    });
-  });
-});
-`;
-      await zubora('./test.ts', './test.spec.ts', code).then((result) => {
-        expect(result).toBe(prettierFormat(expectedContent));
-      });
+      await ioTest(testCases['module.exports']);
     });
     it('module.exports.default', async () => {
-      const code = `
-          function firstName() { return 'Wataru' };
-          function lastName() { return 'Oguchi' };
-          module.exports.default = { firstName, lastName }
-`;
-      const expectedContent = `import test from "./test.ts";
-describe("test", function() {
-  describe("test", function() {
-    it("", function() {
-      // TODO Write test for test
-    });
-  });
-});
-`;
-      await zubora('./test.ts', './test.spec.ts', code).then((result) => {
-        expect(result).toBe(prettierFormat(expectedContent));
-      });
+      await ioTest(testCases['module.exports.default']);
     });
     it('module.exports.named', async () => {
-      const code = `
-          function firstName() { return 'Wataru' };
-          function lastName() { return 'Oguchi' };
-          module.exports.person = { firstName, lastName }
-`;
-      const expectedContent = `import { person } from "./test.ts";
-describe("person", function() {
-  describe("person", function() {
-    it("", function() {
-      // TODO Write test for person
-    });
-  });
-});
-`;
-      await zubora('./test.ts', './test.spec.ts', code).then((result) => {
-        expect(result).toBe(prettierFormat(expectedContent));
-      });
+      await ioTest(testCases['module.exports.named']);
     });
   });
 });
