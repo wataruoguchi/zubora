@@ -1,6 +1,6 @@
 {
   "name": "zubora",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "The zubora module for the cli",
   "repository": {
     "type": "git",
@@ -18,12 +18,12 @@
   ],
   "scripts": {
     "build": "tsc -b tsconfig.build.json",
-    "clean": "tsc -b tsconfig.build.json --clean && rm -rf ./dist",
+    "clean": "tsc -b tsconfig.json --clean && rm -rf ./dist",
     "format": "prettier --write \"./**/*.{ts,js,json,md}\" --ignore-path ../../.prettierignore",
     "lint": "eslint . --ext .js,.ts --ignore-path='../../.gitignore'",
     "test": "jest --coverage",
     "clean:jest": "jest --clearCache",
-    "type-check": "tsc -p tsconfig.build.json --noEmit"
+    "type-check": "tsc -p tsconfig.json --noEmit"
   },
   "files": [
     "dist",
