@@ -4,10 +4,11 @@
   "description": "zubora plugin for transpiling CoffeeScript.",
   "scripts": {
     "build": "tsc -b tsconfig.build.json",
-    "clean": "tsc -b tsconfig.build.json --clean",
+    "clean": "tsc -b tsconfig.json --clean && rm -rf ./dist",
     "format": "prettier --write \"./**/*.{ts,js,json,md}\" --ignore-path ../../.prettierignore",
     "lint": "eslint . --ext .js,.ts --ignore-path='../../.gitignore'",
     "test": "jest --coverage",
+    "clean:jest": "jest --clearCache",
     "type-check": "tsc -p tsconfig.json --noEmit"
   },
   "files": [
