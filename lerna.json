@@ -1,5 +1,11 @@
 {
   "version": "independent",
   "npmClient": "yarn",
-  "useWorkspaces": true
+  "useWorkspaces": true,
+  "command": {
+    "publish": {
+      "ignoreChanges": ["LICENSE", "*.md", "*.spec.ts", "src.*.ts"]
+    }
+  },
+  "packages": ["packages/*"]
 }

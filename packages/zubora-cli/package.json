@@ -20,10 +20,11 @@
   },
   "scripts": {
     "build": "tsc -b tsconfig.build.json",
-    "clean": "tsc -b tsconfig.build.json --clean && rm -rf ./build",
+    "clean": "tsc -b tsconfig.json --clean && rm -rf ./build",
     "format": "prettier --write \"./**/*.{ts,js,json,md}\" --ignore-path ../../.prettierignore",
     "lint": "eslint . --ext .js,.ts --ignore-path='../../.gitignore'",
     "test": "jest --coverage",
+    "clean:jest": "jest --clearCache",
     "type-check": "tsc -p tsconfig.build.json --noEmit"
   },
   "files": [

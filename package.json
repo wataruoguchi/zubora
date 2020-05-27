@@ -4,17 +4,19 @@
   "scripts": {
     "build": "lerna run build",
     "clean": "lerna clean --yes && lerna run clean",
-    "check:docs": "lerna run check:docs",
-    "check:configs": "lerna run check:configs",
     "format": "prettier --write \"./**/*.{ts,js,json,md}\"",
-    "format-check": "prettier --list-different \"./**/*.{ts,js,json,md}\"",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
-    "postinstall": "lerna bootstrap && lerna link && lerna run build",
-    "check-clean-workspace-after-install": "git diff --quiet --exit-code",
-    "test": "lerna run test",
+    "test": "yarn lint:fix && lerna run test",
+    "clean:jest": "lerna run clean:jest",
     "type-check": "lerna run type-check",
-    "pre-push": "yarn clean && yarn && yarn test"
+    "postinstall": "lerna bootstrap && lerna run build",
+    "test:scratch": "yarn clean && yarn postinstall && yarn test",
+    "pre-push": "yarn test:scratch",
+    "pub": "lerna publish",
+    "format-check": "prettier --list-different \"./**/*.{ts,js,json,md}\"",
+    "check:docs": "lerna run check:docs",
+    "check:configs": "lerna run check:configs"
   },
   "devDependencies": {
     "@types/jest": "^25.2.3",
@@ -33,10 +35,5 @@
   "workspaces": [
     "packages/*"
   ],
-  "license": "MIT",
-  "dependencies": {
-    "zubora": "file:packages/zubora",
-    "zubora-cli": "file:packages/zubora-cli",
-    "zubora-plugin-coffee": "file:packages/zubora-plugin-coffee"
-  }
+  "license": "MIT"
 }
