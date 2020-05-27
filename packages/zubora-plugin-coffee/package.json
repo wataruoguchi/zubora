@@ -1,6 +1,6 @@
 {
   "name": "zubora-plugin-coffee",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "zubora plugin for transpiling CoffeeScript.",
   "scripts": {
     "build": "tsc -b tsconfig.build.json",
