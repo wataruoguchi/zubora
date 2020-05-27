@@ -1,6 +1,6 @@
-name: push action
+name: CI Test on Push
 
-on: [push]
+on: push
 
 jobs:
   build:
@@ -12,12 +12,21 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+
+      - name: Cache dependencies
+        uses: actions/cache@v1
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
       - name: npm install, yarn build, and test
         run: |
-          npm install -g yarn
-          yarn
+          yarn install --frozen-lockfile
           yarn test:scratch
