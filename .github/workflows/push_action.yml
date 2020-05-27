@@ -20,5 +20,4 @@ jobs:
         run: |
           npm install -g yarn
           yarn
-          yarn postinstall
-          yarn test
+          yarn test:scratch
