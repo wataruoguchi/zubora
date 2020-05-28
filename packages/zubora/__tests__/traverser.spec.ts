@@ -424,10 +424,12 @@ describe('traverser', () => {
           expect(true).toBe(false);
         }
       });
-      it('imports one class object that has one method', () => {
+      it('imports three class objects. One is actual "class" that has one method', () => {
         const { classObjects } = traverser(parser(content));
-        expect(classObjects.length).toBe(6);
-        const classObject = classObjects.pop();
+        expect(classObjects.length).toBe(3);
+        const [classObject] = classObjects.filter(
+          clsObj => clsObj.name === 'c'
+        );
         if (classObject) {
           expect(classObject.name).toBe('c');
           expect(classObject.methods.length).toBe(1);

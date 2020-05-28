@@ -1,4 +1,3 @@
-// TODO This could be a babel plugin in the future.
 import traverse from '@babel/traverse';
 import { NodePath } from '@babel/core';
 import { File, Node, isProgram, Program } from '@babel/types';
@@ -25,10 +24,31 @@ function traverser(ast: File): ParseResult {
     ClassDeclaration: visitClassExpression(classObjects),
     ...exportedModuleBuilder(exportedModules),
   });
-  const resultClassObjects: ClassObject[] = classObjects
-    .reduce((acc: ClassObject[], clsObj) => {
-      // TODO Refactoring
-      // Link objects
+  // Unique by name
+  const classObjMap = new Map(
+    classObjects.map(classObject => [classObject.name, classObject])
+  );
+  const resultClassObjects: ClassObject[] = Array.from(classObjMap).reduce(
+    (acc: ClassObject[], [name, clsObj]) => {
+      /**
+       * Link objects.
+       * If the identifierName is matched to other clsObj, update the name of the found clsObj.
+       *
+       * For example,
+       * [
+       *   {
+       *     name: 'exportedName',
+       *     methods: [],
+       *     identifierName: 'localName'
+       *   },
+       *   {
+       *     name: 'localName',
+       *     methods: [<methods you want to test>],
+       *   }
+       * ]
+       * This structure is built from something like: `const exportedName = class localName() { method() {} }`
+       * If the case above is given, the latter's name will be updated with `exportedName`.
+       */
       if (clsObj.identifierName) {
         const foundCls = classObjects.find(
           _clsObj => _clsObj.name === clsObj.identifierName
@@ -36,26 +56,16 @@ function traverser(ast: File): ParseResult {
         if (foundCls) {
           acc.push({
             ...foundCls,
-            name: clsObj.name,
+            name,
           });
         } else acc.push(clsObj);
       } else {
         acc.push(clsObj);
       }
       return acc;
-    }, [])
-    .reduce((acc: ClassObject[], clsObj) => {
-      // Filter out to be unique if it's class. TODO refactoring
-      if (clsObj.methods.length) {
-        // TODO refactoring
-        if (!acc.length || acc.find(cls => cls.name !== clsObj.name)) {
-          acc.push(clsObj);
-        }
-      } else {
-        acc.push(clsObj);
-      }
-      return acc;
-    }, []);
+    },
+    []
+  );
   return {
     exportedModules,
     classObjects: resultClassObjects.filter(

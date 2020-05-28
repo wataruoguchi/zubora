@@ -18,7 +18,7 @@ function declarationCollector(node: Node): ClassObject[] {
   const classObjects: ClassObject[] = [];
   if (isExportNamedDeclaration(node)) {
     if (node.specifiers) {
-      node.specifiers.map(specifier => {
+      node.specifiers.map((specifier) => {
         if (isExportSpecifier(specifier) && isIdentifier(specifier.exported)) {
           if (isIdentifier(specifier.local)) {
             classObjects.push({
@@ -47,7 +47,7 @@ function declarationCollector(node: Node): ClassObject[] {
       classObjects.push(classObject);
     }
   } else if (isVariableDeclaration(node)) {
-    visitVariableDeclaration(node).forEach(classObj =>
+    visitVariableDeclaration(node).forEach((classObj) =>
       classObjects.push(classObj)
     );
   }
