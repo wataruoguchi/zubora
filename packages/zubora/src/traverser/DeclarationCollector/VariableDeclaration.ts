@@ -35,20 +35,15 @@ function visitVariableDeclaration(node: VariableDeclaration): ClassObject[] {
   const classObjectsArray: ClassObject[][] = node.declarations.map(function(
     declaration
   ): ClassObject[] {
-    if (isClassExpression(declaration.init)) {
-      return [visitClassDeclaration(declaration.init)];
-    } else if (isFunctionExpression(declaration.init)) {
-      const { id, init } = declaration;
-      if (isIdentifier(id)) {
-        return _visitFunctionExpression(id, init);
-      } else {
-        // TODO refactoring
-        return [];
-      }
+    const { id, init } = declaration;
+    if (isClassExpression(init)) {
+      return [visitClassDeclaration(init)];
+    } else if (isIdentifier(id) && isFunctionExpression(init)) {
+      return _visitFunctionExpression(id, init);
     } else if (isVariableDeclarator(declaration)) {
       const classObjects: ClassObject[] = [];
-      if (isIdentifier(declaration.id)) {
-        if (isIdentifier(declaration.init)) {
+      if (isIdentifier(id)) {
+        if (isIdentifier(init)) {
           /**
            * Example:
            * function fnOrig() {};
@@ -56,12 +51,12 @@ function visitVariableDeclaration(node: VariableDeclaration): ClassObject[] {
            * export {fn};
            */
           classObjects.push({
-            name: declaration.id.name,
+            name: id.name,
             methods: [],
-            identifierName: declaration.init.name,
+            identifierName: init.name,
           });
-        } else if (isObjectExpression(declaration.init)) {
-          declaration.init.properties.forEach(property => {
+        } else if (isObjectExpression(init)) {
+          init.properties.forEach(property => {
             if (isObjectProperty(property)) {
               const { key, value } = property;
               if (isIdentifier(key) && isFunctionExpression(value)) {
@@ -72,10 +67,9 @@ function visitVariableDeclaration(node: VariableDeclaration): ClassObject[] {
             }
           });
         }
-      } else if (isObjectPattern(declaration.id)) {
-        declaration.id.properties.forEach(property => {
+      } else if (isObjectPattern(id)) {
+        id.properties.forEach(property => {
           if (isObjectProperty(property)) {
-            // TODO: refactoring
             const { key, value } = property;
             if (isIdentifier(key)) {
               if (isIdentifier(value)) {
@@ -90,7 +84,7 @@ function visitVariableDeclaration(node: VariableDeclaration): ClassObject[] {
             }
           }
         });
-      } else if (isArrayPattern(declaration.id)) {
+      } else if (isArrayPattern(id)) {
         // TODO: The case: `const [a, b] = [function() {}, function() {}]
       }
       return classObjects;
