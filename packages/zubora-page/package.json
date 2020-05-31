@@ -12,8 +12,12 @@
   },
   "dependencies": {
     "next": "9.4.4",
+    "postcss-flexbugs-fixes": "^4.2.1",
+    "postcss-preset-env": "^6.7.0",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "styled-jsx-plugin-postcss": "^2.0.1",
+    "tailwindcss": "^1.4.6"
   },
   "devDependencies": {
     "@nuxt/typescript-build": "^1.0.1",
@@ -40,15 +44,6 @@
       "/public/",
       "/.next/"
     ]
-  },
-  "eslintConfig": {
-    "parserOptions": {
-      "ecmaVersion": 6,
-      "sourceType": "module",
-      "ecmaFeatures": {
-        "jsx": true
-      }
-    }
   },
   "husky": {
     "hooks": {
