@@ -7,8 +7,8 @@ describe('importBlock', () => {
       const modules: ExportedModule[] = [
         { property: null, classNameIfExists: null, name: null },
       ];
-      expect(importBlock('./src.js', modules)).toBe(
-        `import * as src from './src.js'`
+      expect(importBlock('./src.js', 'src', modules)).toBe(
+        `import * as src from './src'`
       );
     });
     it('has one other named module', () => {
@@ -16,8 +16,8 @@ describe('importBlock', () => {
         { property: null, classNameIfExists: null, name: null },
         { property: 'named', classNameIfExists: null, name: null },
       ];
-      expect(importBlock('./src.js', modules)).toBe(
-        `import * as src,{ named } from './src.js'`
+      expect(importBlock('./src.js', 'src', modules)).toBe(
+        `import * as src,{ named } from './src'`
       );
     });
     it('has two other named modules', () => {
@@ -26,8 +26,8 @@ describe('importBlock', () => {
         { property: 'named', classNameIfExists: null, name: null },
         { property: 'anotherNamed', classNameIfExists: null, name: null },
       ];
-      expect(importBlock('./src.js', modules)).toBe(
-        `import * as src,{ named,anotherNamed } from './src.js'`
+      expect(importBlock('./src.js', 'src', modules)).toBe(
+        `import * as src,{ named,anotherNamed } from './src'`
       );
     });
     it('has one default module', () => {
@@ -35,8 +35,8 @@ describe('importBlock', () => {
         { property: null, classNameIfExists: null, name: null },
         { property: 'default', classNameIfExists: null, name: null },
       ];
-      expect(importBlock('./src.js', modules)).toBe(
-        `import * as src from './src.js'`
+      expect(importBlock('./src.js', 'src', modules)).toBe(
+        `import * as src from './src'`
       );
     });
   });
@@ -45,8 +45,8 @@ describe('importBlock', () => {
       const modules: ExportedModule[] = [
         { property: 'default', classNameIfExists: null, name: null },
       ];
-      expect(importBlock('./src.js', modules)).toBe(
-        `import src from './src.js'`
+      expect(importBlock('./src.js', 'src', modules)).toBe(
+        `import src from './src'`
       );
     });
     it('has one other named module', () => {
@@ -54,8 +54,8 @@ describe('importBlock', () => {
         { property: 'default', classNameIfExists: null, name: null },
         { property: 'named', classNameIfExists: null, name: null },
       ];
-      expect(importBlock('./src.js', modules)).toBe(
-        `import src,{ named } from './src.js'`
+      expect(importBlock('./src.js', 'src', modules)).toBe(
+        `import src,{ named } from './src'`
       );
     });
     it('has two other named modules', () => {
@@ -64,8 +64,8 @@ describe('importBlock', () => {
         { property: 'named', classNameIfExists: null, name: null },
         { property: 'anotherNamed', classNameIfExists: null, name: null },
       ];
-      expect(importBlock('./src.js', modules)).toBe(
-        `import src,{ named,anotherNamed } from './src.js'`
+      expect(importBlock('./src.js', 'src', modules)).toBe(
+        `import src,{ named,anotherNamed } from './src'`
       );
     });
   });
@@ -74,8 +74,8 @@ describe('importBlock', () => {
       const modules: ExportedModule[] = [
         { property: 'named', classNameIfExists: null, name: null },
       ];
-      expect(importBlock('./src.js', modules)).toBe(
-        `import { named } from './src.js'`
+      expect(importBlock('./src.js', 'src', modules)).toBe(
+        `import { named } from './src'`
       );
     });
     it('has one other named module', () => {
@@ -83,8 +83,8 @@ describe('importBlock', () => {
         { property: 'named', classNameIfExists: null, name: null },
         { property: 'anotherNamed', classNameIfExists: null, name: null },
       ];
-      expect(importBlock('./src.js', modules)).toBe(
-        `import { named,anotherNamed } from './src.js'`
+      expect(importBlock('./src.js', 'src', modules)).toBe(
+        `import { named,anotherNamed } from './src'`
       );
     });
     it('has two other named modules', () => {
@@ -93,8 +93,8 @@ describe('importBlock', () => {
         { property: 'anotherNamed', classNameIfExists: null, name: null },
         { property: 'third', classNameIfExists: null, name: null },
       ];
-      expect(importBlock('./src.js', modules)).toBe(
-        `import { named,anotherNamed,third } from './src.js'`
+      expect(importBlock('./src.js', 'src', modules)).toBe(
+        `import { named,anotherNamed,third } from './src'`
       );
     });
   });
@@ -103,7 +103,7 @@ describe('importBlock', () => {
 describe('testCaseBlock', () => {
   describe('importing one class', () => {
     it('imports export.modules 1', () => {
-      const filePath = '../modules/src.js';
+      const filePath = 'src';
       const modules: ExportedModule[] = [
         { property: null, classNameIfExists: 'Cls', name: null },
       ];
@@ -125,7 +125,7 @@ describe('testCaseBlock', () => {
       );
     });
     it('imports export.modules 2', () => {
-      const filePath = './modules/src.js';
+      const filePath = 'src';
       const modules: ExportedModule[] = [
         { property: null, classNameIfExists: null, name: 'Cls' },
       ];
@@ -147,7 +147,7 @@ describe('testCaseBlock', () => {
       );
     });
     it('imports default', () => {
-      const filePath = './modules/src.js';
+      const filePath = 'src';
       const modules: ExportedModule[] = [
         { property: 'default', classNameIfExists: 'Cls', name: null },
       ];
@@ -166,7 +166,7 @@ describe('testCaseBlock', () => {
       );
     });
     it('imports named', () => {
-      const filePath = './modules/src.js';
+      const filePath = 'src';
       const modules: ExportedModule[] = [
         { property: 'named', classNameIfExists: 'Cls', name: null },
       ];
@@ -187,7 +187,7 @@ describe('testCaseBlock', () => {
   });
   describe('importing two classes', () => {
     it('imports export.modules and one named module', () => {
-      const filePath = './modules/src.js';
+      const filePath = 'src';
       const modules: ExportedModule[] = [
         { property: null, classNameIfExists: 'Cls', name: null },
         { property: 'named', classNameIfExists: 'Cls2', name: null },
@@ -216,7 +216,7 @@ describe('testCaseBlock', () => {
   });
   describe('imports export.modules', () => {
     it('has one module', () => {
-      const filePath = './modules/src.js';
+      const filePath = 'src';
       const modules: ExportedModule[] = [
         { property: null, classNameIfExists: null, name: null },
       ];
@@ -230,7 +230,7 @@ describe('testCaseBlock', () => {
       );
     });
     it('has one module and one class', () => {
-      const filePath = './modules/src.js';
+      const filePath = 'src';
       const modules: ExportedModule[] = [
         { property: 'Cls', classNameIfExists: null, name: null },
       ];
@@ -253,7 +253,7 @@ describe('testCaseBlock', () => {
       );
     });
     it('has two modules', () => {
-      const filePath = './modules/src.js';
+      const filePath = 'src';
       const modules: ExportedModule[] = [
         { property: 'default', classNameIfExists: null, name: null },
         { property: 'named', classNameIfExists: null, name: null },
