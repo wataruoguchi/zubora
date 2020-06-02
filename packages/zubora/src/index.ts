@@ -4,9 +4,13 @@ import { transformer } from './transformer';
 import { traverser } from './traverser';
 import { template } from './template';
 
-function buildNewContent(srcPath: string, destPath: string, ast: File): string {
+function buildNewContent(
+  relativePath: string,
+  fileName: string,
+  ast: File
+): string {
   const { exportedModules, classObjects } = traverser(ast);
-  const generateTemplate = template(srcPath, destPath);
+  const generateTemplate = template(relativePath, fileName);
   return prettier.format(generateTemplate(exportedModules, classObjects), {
     parser: 'babel',
   });
@@ -14,13 +18,14 @@ function buildNewContent(srcPath: string, destPath: string, ast: File): string {
 
 async function zubora(
   srcPath: string,
-  destPath: string,
+  relativePath: string,
+  fileName: string,
   code: string
 ): Promise<string> {
   const result = await transformer(srcPath)(code);
   if (result && typeof result.code === 'string' && isFile(result.ast)) {
     const { ast } = result;
-    const content = buildNewContent(srcPath, destPath, ast);
+    const content = buildNewContent(relativePath, fileName, ast);
     return content;
   } else {
     return '// Hmm.. Something is wrong.';

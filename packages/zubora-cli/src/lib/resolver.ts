@@ -1,4 +1,4 @@
-import * as path from 'path';
+import * as path from 'path'; // TODO Can we avoid using node.js ?
 export function getRelativePath(src: string, dest: string): string {
   // Calculate the relative import source path for the test file from given source file path and test destination file path.
   const { dir } = path.parse(dest);
@@ -8,8 +8,4 @@ export function getRelativePath(src: string, dest: string): string {
 export function getFileName(filePath: string): string {
   const { name } = path.parse(filePath);
   return name;
-}
-export function getFileExt(filePath: string): string {
-  const { ext } = path.parse(filePath);
-  return ext;
 }

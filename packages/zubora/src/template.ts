@@ -1,5 +1,4 @@
 import { ExportedModule, MethodObject, ClassObject } from './types';
-import { getRelativePath, getFileName } from './resolver';
 
 type ClassHash = {
   [key: string]: ClassObject;
@@ -7,6 +6,7 @@ type ClassHash = {
 
 export function importBlock(
   relativePath: string,
+  fileName: string,
   exported: ExportedModule[]
 ): string {
   const namedModules: ExportedModule[] = exported.filter(
@@ -22,7 +22,7 @@ export function importBlock(
     (moduleExportObj: ExportedModule) =>
       moduleExportObj.property && moduleExportObj.property === 'default'
   );
-  const moduleNameFromFilePath = getFileName(relativePath);
+  const moduleNameFromFilePath = fileName;
   const nonNamedModuleImport: string = modules.length
     ? `* as ${moduleNameFromFilePath}`
     : defaultModules.length
@@ -34,11 +34,11 @@ export function importBlock(
         .join(',')} }`
     : '';
   return `import ${[nonNamedModuleImport, namedModuleImport]
-    .filter((str) => str.length)
-    .join(',')} from '${relativePath}'`;
+    .filter(str => str.length)
+    .join(',')} from '${relativePath.replace(/\.[^/.]+$/, '')}'`;
 }
 export function testCaseBlock(
-  relativePath: string,
+  fileName: string,
   exported: ExportedModule[],
   classObjects: ClassObject[]
 ): string {
@@ -53,9 +53,7 @@ export function testCaseBlock(
     .map((exportedModule: ExportedModule): string => {
       const { property, classNameIfExists, name } = exportedModule;
       const exposedName: string =
-        property && property !== 'default'
-          ? property
-          : getFileName(relativePath);
+        property && property !== 'default' ? property : fileName;
       const nameFindClassWith: string =
         classNameIfExists || name || property || exposedName;
       const classObj: ClassObject = classHash[nameFindClassWith];
@@ -94,18 +92,13 @@ export function testCaseBlock(
     .join('\n');
 }
 
-export function template(srcFilePath: string, destFilePath: string): Function {
-  const relativePath = getRelativePath(srcFilePath, destFilePath);
+export function template(relativePath: string, fileName: string): Function {
   return function generateTemplate(
     exportedModules: ExportedModule[],
     classObjects: ClassObject[]
   ): string {
-    const imports = importBlock(relativePath, exportedModules);
-    const describes = testCaseBlock(
-      relativePath,
-      exportedModules,
-      classObjects
-    );
+    const imports = importBlock(relativePath, fileName, exportedModules);
+    const describes = testCaseBlock(fileName, exportedModules, classObjects);
     return `${imports}\n${describes}`;
   };
 }

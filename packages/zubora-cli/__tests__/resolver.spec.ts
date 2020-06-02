@@ -1,4 +1,4 @@
-import { getFileName, getRelativePath } from '../src/resolver';
+import { getFileName, getRelativePath } from '../src/lib/resolver';
 
 describe('getFileName', () => {
   describe('get file name from file path', () => {

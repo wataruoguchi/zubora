@@ -1,7 +1,7 @@
 const testCases: { [key: string]: { code: string; expected: string } } = {
   '0200': {
     code: `export const firstName = function() { return 'Wataru' }, lastName = function() { return 'Oguchi' }, asyncFunc = async function() { return await 'async' };`,
-    expected: `import { firstName, lastName, asyncFunc } from "./test.ts";
+    expected: `import { firstName, lastName, asyncFunc } from "./test";
       describe("firstName", function() {
         describe("firstName", function() {
           it("", function() {
@@ -38,7 +38,7 @@ const testCases: { [key: string]: { code: string; expected: string } } = {
         },
       };
     }`,
-    expected: `import { person } from "./test.ts";
+    expected: `import { person } from "./test";
       describe("person", function() {
         describe("person", function() {
           it("", function() {
@@ -60,7 +60,7 @@ const testCases: { [key: string]: { code: string; expected: string } } = {
         return await 'asyncFunc';
       }
     }`,
-    expected: `import { Person } from "./test.ts";
+    expected: `import { Person } from "./test";
       describe("Person", function() {
         describe("#constructor", function() {
           it("", function() {
@@ -95,7 +95,7 @@ const testCases: { [key: string]: { code: string; expected: string } } = {
         return await ' asyncFunc';
       }
       export { greeter, greeterJa, asyncFunc };`,
-    expected: `import { greeter, greeterJa, asyncFunc } from "./test.ts";
+    expected: `import { greeter, greeterJa, asyncFunc } from "./test";
       describe("greeter", function() {
         describe("greeter", function() {
           it("", function() {
@@ -126,7 +126,7 @@ const testCases: { [key: string]: { code: string; expected: string } } = {
         return await 'asyncFunc';
       }
       export { greeter as greet, asyncFunc as asyncFn};`,
-    expected: `import { greet, asyncFn } from "./test.ts";
+    expected: `import { greet, asyncFn } from "./test";
       describe("greet", function() {
         describe("greet", function() {
           it("", function() {
@@ -155,7 +155,7 @@ const testCases: { [key: string]: { code: string; expected: string } } = {
         }
       };
       export const { firstName, sirName: lastName, asyncFn: asyncFunc } = person;`,
-    expected: `import { firstName, sirName, asyncFn } from "./test.ts";
+    expected: `import { firstName, sirName, asyncFn } from "./test";
       describe("firstName", function() {
         describe("firstName", function() {
           it("", function() {
@@ -181,7 +181,7 @@ const testCases: { [key: string]: { code: string; expected: string } } = {
   '0800': {
     code: `function firstName() { return 'Wataru' }
       export default firstName;`,
-    expected: `import test from "./test.ts";
+    expected: `import test from "./test";
       describe("test", function() {
         describe("test", function() {
           it("", function() {
@@ -192,7 +192,7 @@ const testCases: { [key: string]: { code: string; expected: string } } = {
   },
   '0900': {
     code: `export default function () { return 'noname' };`,
-    expected: `import test from "./test.ts";
+    expected: `import test from "./test";
       describe("test", function() {
         describe("test", function() {
           it("", function() {
@@ -208,7 +208,7 @@ const testCases: { [key: string]: { code: string; expected: string } } = {
         lastName() {return 'Oguchi'}
         async asyncFunc() { return await 'async' }
       };`,
-    expected: `import test from "./test.ts";
+    expected: `import test from "./test";
       describe("Person", function() {
         describe("#constructor", function() {
           it("", function() {
@@ -234,7 +234,7 @@ const testCases: { [key: string]: { code: string; expected: string } } = {
   },
   '1000': {
     code: `export default function firstName() { return 'Wataru' };`,
-    expected: `import test from "./test.ts";
+    expected: `import test from "./test";
       describe("test", function() {
         describe("test", function() {
           it("", function() {
@@ -248,7 +248,7 @@ const testCases: { [key: string]: { code: string; expected: string } } = {
       function lastName() { return 'Oguchi' };
       async function asyncFunc() { return await 'asyncFunc' };
       export { firstName as default, lastName, asyncFunc }`,
-    expected: `import test, { lastName, asyncFunc } from "./test.ts";
+    expected: `import test, { lastName, asyncFunc } from "./test";
       describe("test", function() {
         describe("test", function() {
           it("", function() {
