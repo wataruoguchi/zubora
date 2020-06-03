@@ -8,11 +8,12 @@ import {
   isObjectProperty,
   isObjectExpression,
   Identifier,
+  isIdentifier,
+  FunctionExpression,
 } from '@babel/types';
 import { ClassObject } from '../../types';
 import { visitClassDeclaration } from './ClassDeclaration';
 import { visitFunctionDeclaration } from './FunctionDeclaration';
-import { isIdentifier, FunctionExpression } from '@babel/types';
 
 function _visitFunctionExpression(
   id: Identifier,

@@ -14,7 +14,7 @@
     "pretty": true,
     "noImplicitAny": true,
     "experimentalDecorators": true,
-    "lib": ["es2015", "es2015.promise", "es2015.generator", "es2015.iterable"],
+    "lib": ["es2015", "es2015.promise", "es2015.generator", "es2015.iterable", "DOM"],
     "strictNullChecks": true,
     "sourceMap": true,
     "strict": true,

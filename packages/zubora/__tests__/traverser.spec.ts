@@ -1,5 +1,5 @@
 import { traverser } from '../src/traverser';
-import { parser } from '../src/parser';
+import { parser } from '../testSrc/parser';
 
 function testUtils(
   baseContent: string
