@@ -1,3 +1,4 @@
+// This module has to be only used for testing.
 import { parse, ParserOptions } from '@babel/parser';
 import { File } from '@babel/types';
 

@@ -1,4 +1,4 @@
-import traverse from '@babel/traverse';
+import { transformFromAst } from '@babel/standalone';
 import { NodePath } from '@babel/core';
 import { File, Node, isProgram, Program } from '@babel/types';
 import { visitClassExpression } from './ClassExpression';
@@ -9,21 +9,26 @@ import { ExportedModule, ClassObject, ParseResult } from '../types';
 function traverser(ast: File): ParseResult {
   const exportedModules: ExportedModule[] = [];
   const classObjects: ClassObject[] = [];
-  traverse(ast, {
-    Program: function(path: NodePath<Program>) {
-      // Top level. Collect those declarations. Some of them could link to `exportedModules` later on.
-      if (isProgram(path.node)) {
-        path.node.body.forEach(function(child: Node) {
-          declarationCollector(child).forEach(childRes =>
-            classObjects.push(childRes)
-          );
-        });
-      }
-    },
-    ClassExpression: visitClassExpression(classObjects),
-    ClassDeclaration: visitClassExpression(classObjects),
-    ...exportedModuleBuilder(exportedModules),
-  });
+  function plugin(): { visitor: any } {
+    return {
+      visitor: {
+        Program: function(path: NodePath<Program>): void {
+          // Top level. Collect those declarations. Some of them could link to `exportedModules` later on.
+          if (isProgram(path.node)) {
+            path.node.body.forEach(function(child: Node) {
+              declarationCollector(child).forEach(childRes =>
+                classObjects.push(childRes)
+              );
+            });
+          }
+        },
+        ClassExpression: visitClassExpression(classObjects),
+        ClassDeclaration: visitClassExpression(classObjects),
+        ...exportedModuleBuilder(exportedModules),
+      },
+    };
+  }
+  transformFromAst(ast, undefined, { plugins: [plugin] });
   // Unique by name
   const classObjMap = new Map(
     classObjects.map(classObject => [classObject.name, classObject])
