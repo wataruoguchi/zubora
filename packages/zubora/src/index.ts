@@ -1,5 +1,5 @@
 import prettier from 'prettier';
-import { isFile, File } from '@babel/types';
+import { types } from '@babel/core';
 import { transformer } from './transformer';
 import { traverser } from './traverser';
 import { template } from './template';
@@ -7,7 +7,7 @@ import { template } from './template';
 function buildNewContent(
   relativePath: string,
   fileName: string,
-  ast: File
+  ast: types.Node
 ): string {
   const { exportedModules, classObjects } = traverser(ast);
   const generateTemplate = template(relativePath, fileName);
@@ -23,7 +23,7 @@ async function zubora(
   code: string
 ): Promise<string> {
   const result = await transformer(srcPath)(code);
-  if (result && typeof result.code === 'string' && isFile(result.ast)) {
+  if (result && typeof result.code === 'string' && result.ast) {
     const { ast } = result;
     const content = buildNewContent(relativePath, fileName, ast);
     return content;

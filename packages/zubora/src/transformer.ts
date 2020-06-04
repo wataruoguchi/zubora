@@ -2,7 +2,8 @@
  * Transformer
  * It transforms TypeScript / JavaScript code, then return generated code, source map, and AST.
  */
-import { transformAsync, TransformOptions, BabelFileResult } from '@babel/core';
+import { TransformOptions, BabelFileResult, PluginItem } from '@babel/core';
+import { transform } from '@babel/standalone';
 const presetTypeScript = require('@babel/preset-typescript').default;
 
 /**
@@ -14,8 +15,7 @@ function transformer(
   filename: string
 ): (code: string) => Promise<BabelFileResult | null> {
   // Babel
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const defaultPresets: any[] = [];
+  const defaultPresets: PluginItem[] = [];
   const presets: string[] = /\.tsx?$/.test(filename)
     ? [...defaultPresets, presetTypeScript]
     : defaultPresets;
@@ -29,7 +29,9 @@ function transformer(
     ast: true,
   };
   return function(code: string): Promise<BabelFileResult | null> {
-    return transformAsync(code, option);
+    return new Promise(resolve => {
+      resolve(transform(code, option));
+    });
   };
 }
 
