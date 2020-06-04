@@ -1,12 +1,12 @@
 import { transformFromAst } from '@babel/standalone';
-import { NodePath } from '@babel/core';
-import { File, Node, isProgram, Program } from '@babel/types';
+import { NodePath, types } from '@babel/core';
+import { Node, isProgram, Program } from '@babel/types';
 import { visitClassExpression } from './ClassExpression';
 import { exportedModuleBuilder } from './ExportedModuleBuilder';
 import { declarationCollector } from './DeclarationCollector';
 import { ExportedModule, ClassObject, ParseResult } from '../types';
 
-function traverser(ast: File): ParseResult {
+function traverser(ast: types.Node): ParseResult {
   const exportedModules: ExportedModule[] = [];
   const classObjects: ClassObject[] = [];
   function plugin(): { visitor: any } {
@@ -28,7 +28,16 @@ function traverser(ast: File): ParseResult {
       },
     };
   }
-  transformFromAst(ast, undefined, { plugins: [plugin] });
+  transformFromAst(ast, undefined, {
+    plugins: [plugin],
+    configFile: false,
+    babelrc: false,
+    babelrcRoots: false,
+    code: false,
+    comments: false,
+    filename: '_zubora',
+    filenameRelative: './_zubora',
+  });
   // Unique by name
   const classObjMap = new Map(
     classObjects.map(classObject => [classObject.name, classObject])
