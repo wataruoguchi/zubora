@@ -43,13 +43,11 @@
   "types": "dist/index.d.ts",
   "author": "Wataru Oguchi <wataru.oguchi.0to1@gmail.com> (https://twitter.com/watarutwt/)",
   "dependencies": {
-    "@babel/standalone": "^7.10.2"
+    "@babel/standalone": "^7.10.2",
+    "@babel/types": "^7.10.2"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
-    "@babel/parser": "^7.10.2",
-    "@babel/types": "^7.10.2",
-    "@types/babel__core": "^7.1.8",
     "@types/babel__standalone": "^7.1.2",
     "jest": "^26.0.1"
   }
