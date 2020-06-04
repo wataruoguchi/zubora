@@ -43,7 +43,6 @@
   "types": "dist/index.d.ts",
   "author": "Wataru Oguchi <wataru.oguchi.0to1@gmail.com> (https://twitter.com/watarutwt/)",
   "dependencies": {
-    "@babel/preset-typescript": "^7.9.0",
     "@babel/standalone": "^7.10.2"
   },
   "devDependencies": {
