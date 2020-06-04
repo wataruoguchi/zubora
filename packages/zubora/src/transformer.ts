@@ -4,7 +4,6 @@
  */
 import { TransformOptions, BabelFileResult, PluginItem } from '@babel/core';
 import { transform } from '@babel/standalone';
-const presetTypeScript = require('@babel/preset-typescript').default;
 
 /**
  * transformer
@@ -16,8 +15,8 @@ function transformer(
 ): (code: string) => Promise<BabelFileResult | null> {
   // Babel
   const defaultPresets: PluginItem[] = [];
-  const presets: string[] = /\.tsx?$/.test(filename)
-    ? [...defaultPresets, presetTypeScript]
+  const presets: PluginItem[] = /\.tsx?$/.test(filename)
+    ? [...defaultPresets, 'typescript']
     : defaultPresets;
   const option: TransformOptions = {
     filename,
@@ -28,8 +27,8 @@ function transformer(
     presets,
     ast: true,
   };
-  return function(code: string): Promise<BabelFileResult | null> {
-    return new Promise(resolve => {
+  return function (code: string): Promise<BabelFileResult | null> {
+    return new Promise((resolve) => {
       resolve(transform(code, option));
     });
   };
