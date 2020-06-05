@@ -13,7 +13,7 @@
     "postinstall": "lerna bootstrap && lerna run build",
     "test:scratch": "yarn clean && yarn postinstall && yarn test",
     "pre-push": "yarn test:scratch",
-    "pub": "lerna publish",
+    "pub": "yarn build && lerna publish",
     "format-check": "prettier --list-different \"./**/*.{ts,js,json,md}\"",
     "check:docs": "lerna run check:docs",
     "check:configs": "lerna run check:configs"
