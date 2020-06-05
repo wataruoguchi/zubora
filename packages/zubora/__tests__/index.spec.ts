@@ -13,17 +13,17 @@ describe('index.ts', () => {
   describe('zubora', () => {
     it('fails with parse errors', async () => {
       await zubora('./test.js', './test.js', 'test', 'const a = 1;').catch(
-        error => {
+        (error) => {
           expect(error.message).toMatch('Unexpected token');
         }
       );
       await zubora('./test.js', './test.js', 'test', 'const a = 1;').catch(
-        error => {
+        (error) => {
           expect(error.message).toMatch('Unexpected token');
         }
       );
       await zubora('', '', '', 'const a = 1; export default a;').catch(
-        error => {
+        (error) => {
           expect(error.message).toMatch('Unexpected token');
         }
       );
@@ -32,7 +32,7 @@ describe('index.ts', () => {
         'test.js',
         'test',
         'const a = 1; export default a;'
-      ).catch(error => {
+      ).catch((error) => {
         expect(error.message).toMatch(
           'The only valid meta property for import is import.meta'
         );
@@ -42,7 +42,7 @@ describe('index.ts', () => {
         './test.ts',
         'test',
         'const a: number = 1; export default a;'
-      ).catch(error => {
+      ).catch((error) => {
         expect(error.message).toMatch(
           'The only valid meta property for import is import.meta'
         );
@@ -52,7 +52,7 @@ describe('index.ts', () => {
         './test.js',
         'test',
         'const a: number = 1; export default a;'
-      ).catch(error => {
+      ).catch((error) => {
         expect(error.message).toMatch('Unexpected token');
       });
     });
@@ -73,10 +73,10 @@ describe('index.ts', () => {
         'test',
         'const a = 1; export default a;'
       )
-        .then(result => {
-          expect(result).toBe(prettierFormat(expected));
+        .then((result) => {
+          expect(prettierFormat(result)).toBe(prettierFormat(expected));
         })
-        .catch(error => {
+        .catch((error) => {
           expect(false).toBeTruthy();
           console.error(error);
         });
@@ -86,10 +86,10 @@ describe('index.ts', () => {
         'test',
         'const a: number = 1; export default a;'
       )
-        .then(result => {
-          expect(result).toBe(prettierFormat(expected));
+        .then((result) => {
+          expect(prettierFormat(result)).toBe(prettierFormat(expected));
         })
-        .catch(error => {
+        .catch((error) => {
           expect(false).toBeTruthy();
           console.error(error);
         });
@@ -110,10 +110,10 @@ describe('index.ts', () => {
         'test',
         'const a: number = 1; export default a;'
       )
-        .then(result => {
-          expect(result).toBe(prettierFormat(expected));
+        .then((result) => {
+          expect(prettierFormat(result)).toBe(prettierFormat(expected));
         })
-        .catch(error => {
+        .catch((error) => {
           expect(false).toBeTruthy();
           console.error(error);
         });
@@ -135,10 +135,10 @@ describe('index.ts', () => {
         'test',
         'const a = 1; export default a;'
       )
-        .then(result => {
-          expect(result).toBe(prettierFormat(expected));
+        .then((result) => {
+          expect(prettierFormat(result)).toBe(prettierFormat(expected));
         })
-        .catch(error => {
+        .catch((error) => {
           expect(false).toBeTruthy();
           console.error(error);
         });
