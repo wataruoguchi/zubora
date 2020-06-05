@@ -42,7 +42,9 @@ import testCases from '../testSrc/src.zuboraExportPatternsESM';
 type ioTestInput = { code: string; expected: string };
 async function ioTest({ code, expected }: ioTestInput): Promise<void> {
   const result = await zubora('./test.ts', './test.ts', 'test', code);
-  expect(result).toBe(prettier.format(expected, { parser: 'babel' }));
+  expect(prettier.format(result, { parser: 'babel' })).toBe(
+    prettier.format(expected, { parser: 'babel' })
+  );
 }
 
 describe('export', () => {
