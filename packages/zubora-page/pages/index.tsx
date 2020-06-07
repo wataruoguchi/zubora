@@ -10,6 +10,10 @@ const IndexPage: React.FC = (): React.ReactElement => {
       <Head>
         <title>Zubora - Welcome, zubora hackers!</title>
         <link rel="icon" href="/favicon.ico" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu+Mono&display=swap"
+          rel="stylesheet"
+        ></link>
       </Head>
 
       <Nav />
@@ -30,7 +34,7 @@ const IndexPage: React.FC = (): React.ReactElement => {
         body {
           padding: 0;
           margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+          font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI,
             Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
             sans-serif;
         }
