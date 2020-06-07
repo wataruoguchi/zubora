@@ -1,4 +1,5 @@
 import React from 'react';
+import { ButtonIssue } from './ButtonIssue';
 
 const Nav: React.FC = (): React.ReactElement => {
   return (
@@ -22,14 +23,7 @@ const Nav: React.FC = (): React.ReactElement => {
           </a>
         </div>
         <div>
-          <a
-            href="#"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
-          >
-            Report issue
-          </a>
+          <ButtonIssue />
         </div>
       </div>
     </nav>
