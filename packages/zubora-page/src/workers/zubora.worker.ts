@@ -2,6 +2,7 @@ import { zubora } from 'zubora';
 import prettier from 'prettier/standalone';
 import parserBabel from 'prettier/parser-babel';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ctx: Worker = self as any;
 ctx.postMessage({ foo: 'foo' });
 
