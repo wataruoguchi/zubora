@@ -1,7 +1,8 @@
 import Head from 'next/head';
 import React from 'react';
-import { ZuboraApp } from '../src/components/zubora-app';
-import { Nav } from '../src/components/nav';
+import { ZuboraApp } from '../src/components/ZuboraApp';
+import { Nav } from '../src/components/Nav';
+import 'mobx-react-lite/batchingForReactDom';
 
 const IndexPage: React.FC = (): React.ReactElement => {
   return (
