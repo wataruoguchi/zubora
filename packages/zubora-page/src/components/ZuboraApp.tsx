@@ -116,7 +116,7 @@ const ZuboraApp: React.FC = observer(
         </div>
         <style jsx>{`
           h2 {
-            @apply py-2 pl-2 text-lg font-bold text-gray-800;
+            @apply pt-2 pb-3 pl-2 text-lg font-bold text-gray-700;
           }
         `}</style>
       </div>
