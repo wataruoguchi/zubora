@@ -1,14 +1,15 @@
 {
   "name": "zubora-page",
-  "description": "zubora page. Running zubora in UI for zubora (\"lazy\" in Japanese) developers",
+  "description": "The zubora page. Running zubora in UI for zubora (\"lazy\" in Japanese) developers",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "yarn get-zubora-version && next dev",
+    "build": "yarn get-zubora-version && next build",
     "start": "next start",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore .",
-    "test": "jest"
+    "test": "jest",
+    "get-zubora-version": "node -p \"require('zubora/package.json').version\" > public/zubora-version"
   },
   "dependencies": {
     "@zeit/next-workers": "^1.0.0",

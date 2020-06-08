@@ -2,11 +2,18 @@ import React, { useContext } from 'react';
 import { observer } from 'mobx-react-lite';
 import { ZuboraStoreContext } from '../store/ZuboraStore';
 
-const ButtonIssue: React.FC = observer(
-  (): React.ReactElement => {
+type ButtonIssueProps = {
+  version: string;
+};
+const ButtonIssue: React.FC<ButtonIssueProps> = observer(
+  (props: ButtonIssueProps): React.ReactElement => {
     const zuboraStore = useContext(ZuboraStoreContext);
     const triplebackticks = '```';
     const body = `# New issue from playground
+
+### Version:
+
+zubora ${props.version}
 
 ### Code:
 
