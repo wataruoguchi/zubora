@@ -8,7 +8,7 @@
     "build": "yarn get-zubora-version && next build",
     "start": "next start",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore .",
-    "test": "jest",
+    "test": "echo 'zubora-page does not have any tests yet.'",
     "get-zubora-version": "node -p \"require('zubora/package.json').version\" > public/zubora-version"
   },
   "dependencies": {
