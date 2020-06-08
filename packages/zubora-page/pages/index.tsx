@@ -1,22 +1,43 @@
-import Head from 'next/head';
 import React from 'react';
+import Head from 'next/head';
+import { GetStaticProps } from 'next';
+import * as fs from 'fs';
+import * as path from 'path';
 import { ZuboraApp } from '../src/components/ZuboraApp';
 import { Nav } from '../src/components/Nav';
 import 'mobx-react-lite/batchingForReactDom';
 
-const IndexPage: React.FC = (): React.ReactElement => {
+type IndexPageProps = {
+  version: string;
+};
+const IndexPage: React.FC<IndexPageProps> = (
+  props: IndexPageProps
+): React.ReactElement => {
+  const metaDesc =
+    "Zubora is a tool generating test template files built for Zubora ('lazy' in Japanese) developers.";
   return (
     <div>
       <Head>
-        <title>Zubora - Welcome, zubora hackers!</title>
+        <title>Zubora {props.version} - Welcome, zubora hackers!</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta name="og:site_name" content="Zubora" />
+        <meta name="og:title" content="Zubora" />
+        <meta name="description" content={metaDesc} />
+        <meta name="og:description" content={metaDesc} />
+        <meta name="og:type" content="website" />
+        <meta name="og:image" content="" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="inspired"
+          content="Inspired by https://prettier.io/playground/"
+        />
         <link
           href="https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu+Mono&display=swap"
           rel="stylesheet"
         ></link>
       </Head>
 
-      <Nav />
+      <Nav version={props.version} />
       <main className="container mx-auto min-w-full text-gray-900">
         <ZuboraApp />
       </main>
@@ -42,4 +63,17 @@ const IndexPage: React.FC = (): React.ReactElement => {
     </div>
   );
 };
+
 export default IndexPage;
+export const getStaticProps: GetStaticProps = async () => {
+  // Getting the current zubora version from the file.
+  const version = fs.readFileSync(
+    path.join(process.cwd(), '/public/zubora-version'),
+    'utf8'
+  );
+  return {
+    props: {
+      version,
+    },
+  };
+};
