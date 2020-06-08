@@ -1,6 +1,6 @@
 {
   "name": "zubora-page",
-  "description": "The zubora page. Running zubora in UI for zubora (\"lazy\" in Japanese) developers",
+  "description": "The zubora page. Running Zubora in UI for zubora (\"lazy\" in Japanese) developers.",
   "version": "0.1.0",
   "private": true,
   "scripts": {

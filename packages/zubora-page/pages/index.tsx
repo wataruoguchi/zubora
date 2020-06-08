@@ -13,8 +13,7 @@ type IndexPageProps = {
 const IndexPage: React.FC<IndexPageProps> = (
   props: IndexPageProps
 ): React.ReactElement => {
-  const metaDesc =
-    "Zubora is a tool generating test template files built for Zubora ('lazy' in Japanese) developers.";
+  const metaDesc = `Zubora is a JavaScript Unit Test File Generator for zubora ("lazy" in Japanese) developers.`;
   return (
     <div>
       <Head>
@@ -31,6 +30,7 @@ const IndexPage: React.FC<IndexPageProps> = (
           name="inspired"
           content="Inspired by https://prettier.io/playground/"
         />
+        <meta name="awesome" content="Icons by https://fontawesome.com/" />
         <link
           href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
           rel="stylesheet"

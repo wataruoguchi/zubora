@@ -8,7 +8,7 @@ ctx.postMessage({ foo: 'foo' });
 
 // Respond to message from parent thread
 ctx.addEventListener('message', async ({ data }) => {
-  const srcPath = 'src.ts';
+  const srcPath = 'foobar.ts';
   if (data && typeof data === 'string') {
     try {
       const result = await zubora(srcPath, `./${srcPath}`, 'src', data);
