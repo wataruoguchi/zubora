@@ -8,7 +8,8 @@ const Nav: React.FC<NavProps> = (props: NavProps): React.ReactElement => {
   return (
     <nav className="flex items-center justify-between flex-wrap px-6 py-3 text-white">
       <div className="flex items-center flex-shrink-0 mr-6">
-        <span className="font-semibold text-xl">Zubora</span>
+        <img src="/Zubora.svg" className="w-10 mx-3" />
+        <span className="font-semibold text-xl tracking-wider">Zubora</span>
         <span className="ml-3 pt-1 text-sm opacity-75">v {props.version}</span>
       </div>
       <div className="block flex-grow flex items-center w-auto">

@@ -18,7 +18,7 @@ const IndexPage: React.FC<IndexPageProps> = (
     <div>
       <Head>
         <title>Zubora {props.version} - Welcome, zubora hackers!</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/zubora.ico" />
         <meta name="og:site_name" content="Zubora" />
         <meta name="og:title" content="Zubora" />
         <meta name="description" content={metaDesc} />
