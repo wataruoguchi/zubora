@@ -6,11 +6,7 @@ const GitHubLink: React.FC = (): React.ReactElement => {
       target="_blank"
       rel="noreferrer"
     >
-      <img
-        src="/GitHub-Mark-64px.png"
-        alt="GitHub logo"
-        className="flex px-2 py-1 object-scale-down w-8"
-      />
+      <i className="fa fa-github"></i>
     </a>
   );
 };
