@@ -41,6 +41,18 @@ const IndexPage: React.FC<IndexPageProps> = (
           href="https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu+Mono&display=swap"
           rel="stylesheet"
         ></link>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=UA-59923195-6"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-59923195-6');`,
+          }}
+        ></script>
       </Head>
 
       <Nav version={props.version} />
