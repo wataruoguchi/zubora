@@ -16,6 +16,7 @@ const Nav: React.FC<NavProps> = (props: NavProps): React.ReactElement => {
         <div className="text-sm flex-grow"></div>
         <div className="mr-3">
           <a
+            aria-label="Go to the GitHub repository."
             href="https://github.com/wataruoguchi/zubora"
             target="_blank"
             rel="noreferrer"
@@ -25,6 +26,7 @@ const Nav: React.FC<NavProps> = (props: NavProps): React.ReactElement => {
         </div>
         <div className="mr-3">
           <a
+            aria-label="Download the CLI tool."
             href="https://www.npmjs.com/package/zubora-cli"
             target="_blank"
             rel="noreferrer"

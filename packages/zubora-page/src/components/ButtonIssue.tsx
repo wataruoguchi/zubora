@@ -34,6 +34,7 @@ ${triplebackticks}
     const issueUri = `https://github.com/wataruoguchi/zubora/issues/new?${params.toString()}`;
     return (
       <a
+        aria-label="Report an issue."
         href={issueUri}
         target="_blank"
         rel="noreferrer"
