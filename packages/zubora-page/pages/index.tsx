@@ -24,7 +24,7 @@ const IndexPage: React.FC<IndexPageProps> = (
         <meta name="description" content={metaDesc} />
         <meta name="og:description" content={metaDesc} />
         <meta name="og:type" content="website" />
-        <meta name="og:image" content="" />
+        <meta name="og:image" content="/zubora_320x320.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="inspired"
