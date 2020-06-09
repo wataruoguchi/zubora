@@ -1,30 +1,18 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# The Zubora Page
 
-## Getting Started
+This page is built for playing around [Zubora](https://github.com/wataruoguchi/zubora) in your browser.
 
-First, run the development server:
+If you find it's handy, here's [the CLI](https://www.npmjs.com/package/zubora-cli) built for you!
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## The feature, and BIG thanks
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- The sloth icon is designed by my partner. Thank you for your support and everything :heart: :pray:
+- The website has been built with [Next.js](https://nextjs.org/)
+- The website is served by [Netlify](https://www.netlify.com/)
+- I've been loving using [fontawesome](https://fontawesome.com/) for icon fonts.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+This project is for playground. Learn more about Zubora in the following link:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[https://github.com/wataruoguchi/zubora](https://github.com/wataruoguchi/zubora)
