@@ -10,10 +10,23 @@ require('ace-builds/src-noconflict/snippets/typescript');
 require('ace-builds/src-noconflict/theme-tomorrow');
 import ZuboraWorker from 'worker-loader?name=static/[hash].worker.js!../workers/zubora.worker';
 
-const initialCode = `function greeter(person: string) {
+const initialCode = `export function greeter(person: string) {
   return "Hello, " + person;
 }
-export { greeter }
+
+class iAmClass {
+  constructor() {}
+  async myAsync() { return await 'It takes some time' }
+  myMethod(str: string) { return str }
+}
+
+function iWillBeRenamed() {
+  return true;
+}
+
+async function iAmDefaultAndAsync() {}
+
+export { iAmClass, iWillBeRenamed as iAmRenamed, iAmDefaultAndAsync as default }
 `;
 
 let worker;
