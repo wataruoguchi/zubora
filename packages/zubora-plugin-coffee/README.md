@@ -6,7 +6,17 @@ A plugin for [zubora-CLI](https://www.npmjs.com/package/zubora-cli) to support C
 
 ## Usage
 
-Install the plugin and add this snippet in to your project's `package.json`:
+Install the plugin.
+
+```sh
+npm install zubora-plugin-coffee --save-dev
+```
+
+```sh
+yarn add -D zubora-plugin-coffee
+```
+
+Add the following snippet in to your project's `package.json`:
 
 ```json
 "zubora" : {
@@ -14,4 +24,4 @@ Install the plugin and add this snippet in to your project's `package.json`:
 }
 ```
 
-`coffeescript` is this plugin's peer dependency. Please make sure `coffeescript` is installed in the same `package.json`.
+`coffeescript` is this plugin's peer dependency. Make sure `coffeescript` is installed in the same `package.json`.

@@ -1,8 +1,14 @@
 # Zubora
 
+![Zubora Sloth Logo](https://user-images.githubusercontent.com/8963743/84110724-40011980-a9da-11ea-9b79-ff020333fba9.jpg 'Zubora Sloth Logo')
+
 [![npm version](https://badge.fury.io/js/zubora.svg)](https://badge.fury.io/js/zubora)
 
-Zubora is a JavaScript Unit Test File Generator for zubora ("lazy" in Japanese) developers who work without TDD.
+Zubora is a JavaScript Unit Test File Generator for zubora ("lazy" in Japanese) developers.
+
+This package is used by [zubora-cli](https://www.npmjs.com/package/zubora-cli) and [The Zubora Page](https://zubora.io/).
+
+It was originally only for Node.js, now it supports frontend side! The Zubora Page is using this package as a [web worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers).
 
 ## Install the package
 
@@ -10,9 +16,14 @@ Zubora is a JavaScript Unit Test File Generator for zubora ("lazy" in Japanese) 
 npm install zubora
 ```
 
-## Project
+```sh
+yarn add zubora
+```
 
-This module is created for [zubora-cli](https://www.npmjs.com/package/zubora-cli).
+## Projects
+
+- [zubora-cli](https://www.npmjs.com/package/zubora-cli)
+- [The Zubora Page](https://zubora.io/)
 
 ## License
 

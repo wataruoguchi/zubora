@@ -1,5 +1,7 @@
 # Zubora CLI
 
+![Zubora Sloth Logo](https://user-images.githubusercontent.com/8963743/84110724-40011980-a9da-11ea-9b79-ff020333fba9.jpg 'Zubora Sloth Logo')
+
 [![npm version](https://badge.fury.io/js/zubora-cli.svg)](https://badge.fury.io/js/zubora-cli)
 
 Zubora CLI is a JavaScript Unit Test File Generator CLI for zubora ("lazy" in Japanese) developers who code without writing tests. It generates unit test template to encourage zubora developers to write tests.
@@ -55,27 +57,29 @@ It generates a test template for `tsModule.ts` in the `__tests__` directory.
 `__tests__/tsModule.spec.js`
 
 ```javascript
-import tsModule from '../src/modules/tsModule.ts';
-describe('Greeter', function() {
-  describe('#constructor', function() {
-    it('', function() {
+import tsModule from '../src/modules/tsModule';
+describe('Greeter', function () {
+  describe('#constructor', function () {
+    it('', function () {
       // TODO Write test for tsModule#constructor
     });
   });
-  describe('#greet', function() {
-    it('', function() {
+  describe('#greet', function () {
+    it('', function () {
       // TODO Write test for tsModule#greet
     });
   });
 });
 ```
 
+Play more in [The Zubora Page](https://zubora.io/) !!
+
 ## Supported File Type
 
-We're only supporting module files currently.
+We're only supporting module files.
 
-- Source File: We're currently support JavaScript and TypeScript files. We will soon support CoffeeScript as well.
-- Dist file: The test file is currently generated as a JavaScript file. We'd like to generate TypeScript files shortly.
+- Source File: We're currently support JavaScript and TypeScript files.
+- Dist file: The test file is currently generated as a JavaScript file.
 
 ## Plugins
 
@@ -83,7 +87,7 @@ We have developed plugin system. Currently, there's one plugin.
 
 - [zubora-plugin-coffee](https://www.npmjs.com/package/zubora-plugin-coffee)
 
-### Usage
+### Plugin Usage
 
 Install the plugin and add this snippet in your `package.json`:
 

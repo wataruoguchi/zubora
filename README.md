@@ -1,6 +1,8 @@
 # Zubora
 
-Zubora CLI is a JavaScript Unit Test File Generator CLI for zubora ("lazy" in Japanese) developers who code without writing tests. It generates unit test template to encourage zubora developers to write tests.
+![Zubora Sloth Logo](https://user-images.githubusercontent.com/8963743/84110724-40011980-a9da-11ea-9b79-ff020333fba9.jpg 'Zubora Sloth Logo')
+
+Zubora CLI is a JavaScript Unit Test File Generator CLI for zubora ("lazy" in Japanese) developers who code without writing tests. It generates unit test template files to encourage zubora developers to write tests.
 
 This repository contains following packages:
 
@@ -10,16 +12,35 @@ This repository contains following packages:
 
 The test template will be written in BDD (Behaviour-Driven Development) syntax.
 
-## Install the CLI
+## The CLI
+
+### Install the CLI
 
 ```sh
 # Install
 $ npm install -g zubora-cli
+```
+
+### Use the CLI
+
+```sh
 # Generate test file
 $ zubora --src <source file path> --dist <test file path>
 ```
 
-### Setup plugins (Optional)
+## Use plugins (Optional)
+
+### Install the plugin
+
+```sh
+npm install zubora-plugin-coffee --save-dev
+```
+
+```sh
+yarn add -D zubora-plugin-coffee
+```
+
+### Use the plugin
 
 ```json
 // package.json
@@ -69,20 +90,22 @@ It generates a test template for `tsModule.ts` in the `__tests__` directory.
 `__tests__/tsModule.spec.js`
 
 ```javascript
-import tsModule from '../src/modules/tsModule.ts';
-describe('Greeter', function() {
-  describe('#constructor', function() {
-    it('', function() {
+import tsModule from '../src/modules/tsModule';
+describe('Greeter', function () {
+  describe('#constructor', function () {
+    it('', function () {
       // TODO Write test for tsModule#constructor
     });
   });
-  describe('#greet', function() {
-    it('', function() {
+  describe('#greet', function () {
+    it('', function () {
       // TODO Write test for tsModule#greet
     });
   });
 });
 ```
+
+Play more in [The Zubora Page](https://zubora.io/) !!
 
 ## License
 
