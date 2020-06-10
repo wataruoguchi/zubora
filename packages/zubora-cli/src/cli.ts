@@ -21,7 +21,13 @@ function read(path: string): string {
 function write(path: string, content: string): void {
   return fs.writeFileSync(path, content);
 }
-
+function getVersions(): string {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const cliVersion = require('../package.json').version;
+  const zuboraVersion = require('zubora/package.json').version;
+  return `Zubora CLI   v.${cliVersion}
+Zubora Core  v.${zuboraVersion}`;
+}
 /**
  * Create the cli and kick it off
  */
@@ -31,7 +37,7 @@ async function run(): Promise<void> {
   const welcome = `${figlet.textSync('Zubora', { horizontalLayout: 'full' })}\n
     Hi, lazy hackers!\n${usage}`;
 
-  const argv = yargs.usage(usage).argv;
+  const argv = yargs.version(getVersions()).usage(usage).argv;
   if (
     !(
       argv.src &&
