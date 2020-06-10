@@ -22,7 +22,7 @@ export function importBlock(
     (moduleExportObj: ExportedModule) =>
       moduleExportObj.property && moduleExportObj.property === 'default'
   );
-  const moduleNameFromFilePath = fileName;
+  const moduleNameFromFilePath = fileName.replace(/\./, '_');
   const nonNamedModuleImport: string = modules.length
     ? `* as ${moduleNameFromFilePath}`
     : defaultModules.length
@@ -34,7 +34,7 @@ export function importBlock(
         .join(',')} }`
     : '';
   return `import ${[nonNamedModuleImport, namedModuleImport]
-    .filter(str => str.length)
+    .filter((str) => str.length)
     .join(',')} from '${relativePath.replace(/\.[^/.]+$/, '')}'`;
 }
 export function testCaseBlock(
