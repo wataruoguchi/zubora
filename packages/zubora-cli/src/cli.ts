@@ -27,7 +27,7 @@ function write(path: string, content: string): void {
  */
 async function run(): Promise<void> {
   // create a CLI runtime
-  const usage = 'Usage: --src <src file path> --dist <test file path>';
+  const usage = 'Usage: --src <src file path> --dest <test file path>';
   const welcome = `${figlet.textSync('Zubora', { horizontalLayout: 'full' })}\n
     Hi, lazy hackers!\n${usage}`;
 
@@ -35,9 +35,9 @@ async function run(): Promise<void> {
   if (
     !(
       argv.src &&
-      argv.dist &&
+      argv.dest &&
       typeof argv.src === 'string' &&
-      typeof argv.dist === 'string'
+      typeof argv.dest === 'string'
     )
   ) {
     console.log(welcome);
@@ -45,7 +45,7 @@ async function run(): Promise<void> {
   }
 
   const srcPath: string = `${argv.src}` || '';
-  const destPath: string = `${argv.dist}` || '';
+  const destPath: string = `${argv.dest}` || '';
   if (exists(srcPath) !== 'file') {
     console.error(`Couldn't find the file.`);
     return;
