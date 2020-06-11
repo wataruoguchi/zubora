@@ -11,7 +11,7 @@ const IndexPage: React.FC = (): React.ReactElement => {
         <h2 className="h2">What is Zubora?</h2>
         <p className="p">
           Zubora is a JavaScript Unit Test File Generator. It is made for zubora
-          (&quot;lazy&quot; in Japanese) developers. It read your
+          (&quot;lazy&quot; in Japanese) developers. It reads your
           JavaScript/TypeScript modules and automatically generates unit test
           templates for you.
         </p>
@@ -46,7 +46,7 @@ const IndexPage: React.FC = (): React.ReactElement => {
         <h2 className="h2">Why Zubora?</h2>
         <p className="p">
           <strong className="text-xl">Bootstrap writing tests: </strong>There
-          are tons of modules that have zero tests. You, and other developers
+          are tons of modules that have zero tests. You, and other developers,
           have to maintain those modules with fear. Zubora encourages developers
           to write tests by creating test templates.
         </p>
