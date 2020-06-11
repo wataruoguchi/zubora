@@ -1,81 +1,99 @@
 import React from 'react';
-import Head from 'next/head';
-import { GetStaticProps } from 'next';
-import * as fs from 'fs';
-import * as path from 'path';
-import { ZuboraApp } from '../src/components/ZuboraApp';
-import { Nav } from '../src/components/Nav';
-import 'mobx-react-lite/batchingForReactDom';
+import Link from 'next/link';
+import Hero from '../src/components/Hero';
 
-type IndexPageProps = {
-  version: string;
-};
-const IndexPage: React.FC<IndexPageProps> = (
-  props: IndexPageProps
-): React.ReactElement => {
-  const metaDesc = `Zubora is a JavaScript Unit Test File Generator for zubora ("lazy" in Japanese) developers.`;
+const IndexPage: React.FC = (): React.ReactElement => {
   return (
     <div>
-      <Head>
-        <title>Zubora {props.version} - Welcome, zubora hackers!</title>
-        <link rel="icon" href="/zubora.ico" />
-        <meta name="og:site_name" content="Zubora" />
-        <meta name="og:title" content="Zubora" />
-        <meta name="description" content={metaDesc} />
-        <meta name="og:description" content={metaDesc} />
-        <meta name="og:type" content="website" />
-        <meta name="og:image" content="/zubora_320x320.jpg" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="inspired"
-          content="Inspired by https://prettier.io/playground/"
-        />
-        <meta name="awesome" content="Icons by https://fontawesome.com/" />
-        <link
-          href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-          rel="stylesheet"
-          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-          crossOrigin="anonymous"
-        ></link>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu+Mono&display=swap"
-          rel="stylesheet"
-        ></link>
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=UA-59923195-6"
-        ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'UA-59923195-6');`,
-          }}
-        ></script>
-      </Head>
-
-      <Nav version={props.version} />
-      <main className="container mx-auto min-w-full text-gray-900">
-        <ZuboraApp />
-      </main>
+      <Hero />
+      <div className="container mx-auto max-width-limited mb-20">
+        <h1 className="text-6xl text-center py-5">Zubora</h1>
+        <h2 className="h2">What is Zubora?</h2>
+        <p className="p">
+          Zubora is a JavaScript Unit Test File Generator. It is made for zubora
+          (&quot;lazy&quot; in Japanese) developers. It read your
+          JavaScript/TypeScript modules and automatically generates unit test
+          templates for you.
+        </p>
+        <p className="p">
+          Try it in{' '}
+          <Link href="/playground">
+            <a>playground</a>
+          </Link>
+          !
+        </p>
+        <p className="p">Currently, we support the following languages:</p>
+        <ul className="ul py-5 list-inside list-disc">
+          <li>JavaScript</li>
+          <li>TypeScript</li>
+        </ul>
+        <p className="p">
+          We also provide a plugin for{' '}
+          <a
+            href="https://www.npmjs.com/package/zubora-cli"
+            aria-label="Install the plugin for CoffeeScript."
+            target="_blank"
+            rel="noreferrer"
+          >
+            CoffeeScript
+          </a>{' '}
+          that works with{' '}
+          <a aria-label="Install the CLI." target="_blank" rel="noreferrer">
+            zubora-cli
+          </a>
+          .
+        </p>
+        <h2 className="h2">Why Zubora?</h2>
+        <p className="p">
+          <strong className="text-xl">Bootstrap writing tests: </strong>There
+          are tons of modules that have zero tests. You, and other developers
+          have to maintain those modules with fear. Zubora encourages developers
+          to write tests by creating test templates.
+        </p>
+        <blockquote className="border-l-4 text-3xl my-8 py-3 pl-5 text-gray-700">
+          Code as it’s going to be abandoned anytime soon, write test otherwise.
+        </blockquote>
+        <h2 className="h2">How to use</h2>
+        <p className="p">
+          Try it in{' '}
+          <Link href="/playground">
+            <a>playground</a>
+          </Link>
+          . Then install{' '}
+          <a
+            href="https://www.npmjs.com/package/zubora-cli"
+            aria-label="Install the plugin for CoffeeScript."
+            target="_blank"
+            rel="noreferrer"
+          >
+            zubora-cli
+          </a>{' '}
+          in your dev environment.
+        </p>
+        <h2 className="h2">Special Thanks</h2>
+        <p className="p">
+          Huge thanks to my partner for drawing me the zubora sloth, and
+          supporting me always.
+        </p>
+      </div>
       <style jsx>{`
-        main {
-          min-height: calc(100vh - 56px);
+        .max-width-limited {
+          max-width: 768px;
         }
-      `}</style>
-      <style jsx global>{`
-        @tailwind base;
-        @tailwind components;
-        @tailwind utilities;
-
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
+        .h2 {
+          @apply text-3xl py-4;
+        }
+        .ul,
+        .p {
+          @apply py-2;
+          font-size: 16px;
+        }
+        a {
+          color: #de852c;
+          cursor: pointer;
+        }
+        a:hover {
+          color: #93581d;
         }
       `}</style>
     </div>
@@ -83,15 +101,3 @@ gtag('config', 'UA-59923195-6');`,
 };
 
 export default IndexPage;
-export const getStaticProps: GetStaticProps = async () => {
-  // Getting the current zubora version from the file.
-  const version = fs.readFileSync(
-    path.join(process.cwd(), '/public/zubora-version'),
-    'utf8'
-  );
-  return {
-    props: {
-      version,
-    },
-  };
-};

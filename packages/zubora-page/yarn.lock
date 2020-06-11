@@ -9598,9 +9598,9 @@ yargs@^15.3.1:
     yargs-parser "^18.1.1"
 
 zubora@^0.2.11:
-  version "0.2.11"
-  resolved "https://registry.yarnpkg.com/zubora/-/zubora-0.2.11.tgz#325f35832f9da8bb1e1beca487ab52794659561b"
-  integrity sha512-U6hsCmF57lZ0S99fILEiWqjy/ahYVUfpyVOjlWnHoihwOmqamZG5im0Ok0vLMWJAipYt4xSrAfcQjp5hMuAXOQ==
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/zubora/-/zubora-0.2.12.tgz#a5cb2294e67454815b6cbca4a4c3cd392da5401a"
+  integrity sha512-mTt64P2D3eQ5cvaDTTlROB9Vpq9tzwsHz7FqJceNUc/Mj1LIU3fZA1hEWk5okODPvCE0dlyQYZkoadio/blJfw==
   dependencies:
     "@babel/standalone" "^7.10.2"
     "@babel/types" "^7.10.2"

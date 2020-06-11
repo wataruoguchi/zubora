@@ -4,13 +4,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "yarn get-zubora-version && next dev",
-    "build": "yarn get-zubora-version && next build",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start",
     "export": "yarn build && next export",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore .",
-    "test": "echo 'zubora-page does not have any tests yet.'",
-    "get-zubora-version": "node -p \"require('zubora/package.json').version\" > public/zubora-version"
+    "test": "echo 'zubora-page does not have any tests yet.'"
   },
   "dependencies": {
     "@zeit/next-workers": "^1.0.0",
