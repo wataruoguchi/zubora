@@ -49,4 +49,5 @@ jobs:
 
       - name: build and test
         run: |
+          yarn postinstall
           yarn test
