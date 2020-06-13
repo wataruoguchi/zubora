@@ -49,4 +49,4 @@ jobs:
 
       - name: build and test
         run: |
-          yarn test:scratch
+          yarn test
