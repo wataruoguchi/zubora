@@ -2,6 +2,7 @@
 import { types, TransformOptions } from '@babel/core';
 import { transform } from '@babel/standalone';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type FIXME = any;
 function parser(content: string): types.Node | FIXME {
   try {
