@@ -51,3 +51,7 @@ jobs:
         run: |
           yarn postinstall
           yarn test
+
+      - name: cypress test
+        run: |
+          yarn test:cy
