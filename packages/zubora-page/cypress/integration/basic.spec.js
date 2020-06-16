@@ -7,7 +7,7 @@ function getAceEditorValue(elm) {
     // need to wait a few seconds.
     setTimeout(() => {
       resolve(ace.edit(elm[0]).getValue());
-    }, 2000);
+    }, 3000);
   });
 }
 
