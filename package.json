@@ -11,6 +11,7 @@
     "clean:jest": "lerna run clean:jest",
     "type-check": "lerna run type-check",
     "export": "lerna run --scope zubora-page export",
+    "dev": "lerna run --scope zubora-page dev",
     "postinstall": "lerna bootstrap && lerna run build",
     "test:scratch": "yarn clean && yarn postinstall && yarn test",
     "pre-push": "yarn lint:fix && yarn test:scratch",
