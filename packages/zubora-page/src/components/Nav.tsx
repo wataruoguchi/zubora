@@ -15,7 +15,7 @@ const Nav: React.FC<NavProps> = (props: NavProps): React.ReactElement => {
           </a>
         </Link>
         <Link href="/">
-          <a>
+          <a cy-data="nav-home">
             <span className="font-semibold text-xl tracking-wider">Zubora</span>
           </a>
         </Link>
