@@ -24,7 +24,10 @@ const Nav: React.FC<NavProps> = (props: NavProps): React.ReactElement => {
       <div className="block flex-grow md:flex lg:flex md:items-center lg:items-center md:w-auto lg:w-auto">
         <div className="text-md md:flex-grow lg:flex-grow">
           <Link href="/playground">
-            <a className="block md:inline-block lg:inline-block hover:underline mr-4">
+            <a
+              className="block md:inline-block lg:inline-block hover:underline mr-4"
+              cy-data="nav-playground"
+            >
               Playground
             </a>
           </Link>

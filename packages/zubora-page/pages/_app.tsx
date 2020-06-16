@@ -7,6 +7,7 @@ import 'mobx-react-lite/batchingForReactDom';
 const App: React.FC<AppProps> = (props: AppProps): React.ReactElement => {
   const { Component, pageProps } = props;
   const metaDesc = `Zubora is a JavaScript Unit Test File Generator for zubora ("lazy" in Japanese) developers.`;
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const version = require('zubora/package.json').version;
   return (
     <div>
