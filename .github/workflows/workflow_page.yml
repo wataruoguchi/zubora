@@ -1,22 +1,23 @@
-name: CI Test on Push
+name: Workflow for testing zubora-page
 
-on: push
+on:
+  push:
+    paths:
+      - '.github/workflows/workflow_page.yml'
+      - 'packages/zubora/**'
+      - 'packages/zubora-page/**'
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [10.x, 12.x]
-
     steps:
       - uses: actions/checkout@v1
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '12.x'
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
@@ -36,9 +37,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: node_modules
-          key: ${{ runner.os }}-${{ matrix.node-version }}-node_modules-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-${{ matrix.node-version }}-node_modules-
+            ${{ runner.os }}-node_modules-
 
       - name: Install
         if: |
@@ -47,11 +48,7 @@ jobs:
         run: |
           yarn
 
-      - name: build and test
-        run: |
-          yarn postinstall
-          yarn test
-
       - name: cypress test
         run: |
+          yarn postinstall
           yarn test:cy
