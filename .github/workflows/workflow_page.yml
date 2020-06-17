@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '.github/workflows/workflow_page.yml'
+      - 'package.json'
       - 'packages/zubora/**'
       - 'packages/zubora-page/**'
 
@@ -50,5 +51,5 @@ jobs:
 
       - name: cypress test
         run: |
-          yarn postinstall
+          yarn bootstrap && yarn lerna run build --scope zubora --scope zubora-page
           yarn test:cy

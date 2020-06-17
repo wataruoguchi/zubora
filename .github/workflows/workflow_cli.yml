@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '.github/workflows/workflow_cli.yml'
+      - 'package.json'
       - 'packages/zubora/**'
       - 'packages/zubora-cli/**'
       - 'packages/zubora-plugin-*/**'
@@ -55,5 +56,5 @@ jobs:
 
       - name: build and test
         run: |
-          yarn postinstall
+          yarn bootstrap && yarn lerna run build --scope zubora --scope zubora-cli --scope zubora-plugin-*
           yarn test
