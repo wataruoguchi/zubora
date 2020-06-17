@@ -3,6 +3,7 @@ name: Workflow for testing zubora-page
 on:
   push:
     paths:
+      - '.github/workflows/workflow_page.yml'
       - 'packages/zubora/**'
       - 'packages/zubora-page/**'
 

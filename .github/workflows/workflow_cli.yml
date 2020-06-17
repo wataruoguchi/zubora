@@ -3,6 +3,7 @@ name: Workflow for testing zubora-cli
 on:
   push:
     paths:
+      - '.github/workflows/workflow_cli.yml'
       - 'packages/zubora/**'
       - 'packages/zubora-cli/**'
       - 'packages/zubora-plugin-*/**'
