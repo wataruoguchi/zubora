@@ -1,6 +1,11 @@
-name: CI Test on Push
+name: Workflow for testing zubora-cli
 
-on: push
+on:
+  push:
+    paths:
+      - 'packages/zubora/**'
+      - 'packages/zubora-cli/**'
+      - 'packages/zubora-plugin-*/**'
 
 jobs:
   build:
@@ -51,7 +56,3 @@ jobs:
         run: |
           yarn postinstall
           yarn test
-
-      - name: cypress test
-        run: |
-          yarn test:cy
