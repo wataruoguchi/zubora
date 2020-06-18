@@ -42,12 +42,26 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node_modules-
 
+      - name: Cache Cypress
+        id: cache-cypress
+        uses: actions/cache@v2
+        with:
+          path: /home/runner/.cache/Cypress
+          key: ${{runner.os}}-cypress
+          restore-keys: ${{runner.os}}-cypress
+
       - name: Install
         if: |
           steps.yarn-cache.outputs.cache-hit != 'true' ||
           steps.cache-node-modules.outputs.cache-hit != 'true'
         run: |
           yarn
+
+      - name: Install cypress
+        if: |
+          steps.cache-cypress.outputs.cache-hit != 'true'
+        run: |
+          yarn cypress install
 
       - name: cypress test
         run: |

@@ -56,5 +56,5 @@ jobs:
 
       - name: build and test
         run: |
-          yarn bootstrap && yarn lerna run build --scope zubora --scope zubora-cli --scope zubora-plugin-*
+          yarn bootstrap && yarn lerna run build --scope zubora
           yarn test
