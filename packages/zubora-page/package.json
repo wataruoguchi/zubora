@@ -1,7 +1,7 @@
 {
   "name": "zubora-page",
   "description": "The zubora page. Running Zubora in UI for zubora (\"lazy\" in Japanese) developers.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -28,7 +28,7 @@
     "styled-jsx-plugin-postcss": "^2.0.1",
     "tailwindcss": "^1.4.6",
     "worker-loader": "^2.0.0",
-    "zubora": "^0.2.11"
+    "zubora": "^0.2.13"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.10.1",
