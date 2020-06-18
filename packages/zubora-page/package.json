@@ -8,7 +8,7 @@
     "dev:ci": "next dev -p 3001",
     "build": "next build",
     "start": "next start",
-    "export": "next build && next export",
+    "export": "rm -rf .next && next build && next export",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore .",
     "test": "start-server-and-test dev:ci http-get://localhost:3001/_next/static/chunks/0.js cy:test",
     "cy:test": "cypress run --spec cypress/integration/basic.spec.js",
